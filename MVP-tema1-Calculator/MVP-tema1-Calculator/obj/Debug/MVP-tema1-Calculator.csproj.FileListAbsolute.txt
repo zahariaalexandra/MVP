@@ -1,0 +1,14 @@
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\bin\Debug\MVP-tema1-Calculator.exe.config
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\bin\Debug\MVP-tema1-Calculator.exe
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\bin\Debug\MVP-tema1-Calculator.pdb
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MVP-tema1-Calculator.csprojAssemblyReference.cache
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MainWindow.g.cs
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\App.g.cs
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MVP-tema1-Calculator_MarkupCompile.cache
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MVP-tema1-Calculator_MarkupCompile.lref
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MainWindow.baml
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MVP-tema1-Calculator.g.resources
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MVP_tema1_Calculator.Properties.Resources.resources
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MVP-tema1-Calculator.csproj.GenerateResource.cache
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MVP-tema1-Calculator.exe
+D:\Facultate\MVP-tema1-Calculator\MVP-tema1-Calculator\obj\Debug\MVP-tema1-Calculator.pdb
