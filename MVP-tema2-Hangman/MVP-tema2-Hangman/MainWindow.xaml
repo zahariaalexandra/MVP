@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema2_Hangman"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="Beige"
+        Title="Hangman Login" Height="450" Width="650">
     <Grid>
-        
+
+        <ListBox Margin="30,50" Name="listBoxPlyers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="194" Height="250" />
+
+        <Label HorizontalAlignment="Center" Name="lblWelcome" FontSize="20" Margin="10">Welcome to Hangman. Enjoy the game</Label>
+
+        <DockPanel Name="panelImg" Background="White" Margin="290,50,66,120" >
+            <Image Name="imgProfile" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </DockPanel>
+
+        <Button x:Name="btnNewuser" Width="75" Height="50" Margin="30,336,538,34" FontSize="14">New User</Button>
+        <Button x:Name="btnDeleteUser" Width="75" Height="50" Margin="135,336,433,34" FontSize="14">Delete User</Button>
+        <Button Name="btnPlay" Width="75" Height="50" Margin="240,336,328,34" FontSize="14">Play</Button>
+        <Button x:Name="btnCancel" Width="75" Height="50" Margin="345,336,223,34" FontSize="14">Cancel</Button>
+        <Button x:Name="btnToLeft" Width="75" Height="50" Margin="450,336,118,34" FontSize="16" Content="&lt;&lt;"> </Button>
+        <Button x:Name="btntoRight" Width="75" Height="50" Margin="555,336,13,34" FontSize="16" Content="&gt;&gt;" ></Button>
+
     </Grid>
 </Window>
