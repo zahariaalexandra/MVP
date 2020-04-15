@@ -1,0 +1,17 @@
+﻿<Window x:Class="MVP_tema2_Hangman.NewUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVP_tema2_Hangman"
+        mc:Ignorable="d"
+        Background="Beige"
+        Title="New user" Height="200" Width="200">
+    <Grid>
+
+        <TextBox x:Name="txtName" HorizontalContentAlignment="Center" Foreground="LightSlateGray" Margin="10,55,9.6,94.4" TextChanged="txtName_TextChanged">Type your name...</TextBox>
+
+        <Button Name="btnAdd" HorizontalContentAlignment="Center"  Margin="69,81,68.6,64.4" Width="56" >Add</Button>
+
+    </Grid>
+</Window>

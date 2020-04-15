@@ -1,4 +1,4 @@
-﻿<Window x:Class="MVP_tema2_Hangman.MainWindow"
+﻿<Window x:Class="MVP_tema2_Hangman.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,13 +13,13 @@
 
         <Label HorizontalAlignment="Center" Name="lblWelcome" FontSize="20" Margin="10">Welcome to Hangman. Enjoy the game</Label>
 
-        <DockPanel Name="panelImg" Background="White" Margin="290,50,66,120" >
+        <DockPanel Name="panelProfile" Background="White" Margin="290,50,66,120" >
             <Image Name="imgProfile" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </DockPanel>
 
         <Button x:Name="btnNewuser" Width="75" Height="50" Margin="30,336,538,34" FontSize="14">New User</Button>
-        <Button x:Name="btnDeleteUser" Width="75" Height="50" Margin="135,336,433,34" FontSize="14">Delete User</Button>
-        <Button Name="btnPlay" Width="75" Height="50" Margin="240,336,328,34" FontSize="14">Play</Button>
+        <Button x:Name="btnDeleteUser" Width="75" Height="50" Margin="135,336,433,34" FontSize="14" IsEnabled="False">Delete User</Button>
+        <Button Name="btnPlay" Width="75" Height="50" Margin="240,336,328,34" FontSize="14" IsEnabled="True">Play</Button>
         <Button x:Name="btnCancel" Width="75" Height="50" Margin="345,336,223,34" FontSize="14">Cancel</Button>
         <Button x:Name="btnToLeft" Width="75" Height="50" Margin="450,336,118,34" FontSize="16" Content="&lt;&lt;"> </Button>
         <Button x:Name="btntoRight" Width="75" Height="50" Margin="555,336,13,34" FontSize="16" Content="&gt;&gt;" ></Button>

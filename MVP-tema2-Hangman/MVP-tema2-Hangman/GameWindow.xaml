@@ -1,0 +1,79 @@
+﻿<Window x:Class="MVP_tema2_Hangman.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVP_tema2_Hangman"
+        mc:Ignorable="d"
+        Background="Beige"
+        Title="Hangman" Height="450" Width="650">
+    <Grid>
+
+        <Menu x:Name="menuPrincipal" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="New game"/>
+                <MenuItem Header="Open game"/>
+                <MenuItem Header="Save game"/>
+                <MenuItem Header="Statistics"/>
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+
+            <MenuItem Header="Categories">
+                <MenuItem Header="All categories"/>
+                <MenuItem Header="Movies"/>
+                <MenuItem Header="States"/>
+                <MenuItem Header="Mountains"/>
+                <MenuItem Header="Rivers"/>
+            </MenuItem>
+
+            <MenuItem Header="Help">
+                <MenuItem Header="About"/>
+                <MenuItem Header="Info"/>
+            </MenuItem>
+        </Menu>
+
+        <Label Name="lblLevel" Background="Beige" FontSize="20" Margin="31,23,551,361">Level:</Label>
+        <Label Name="lblCategory" Background="Beige" FontSize="20" Margin="31,59,513.2,324">Category:</Label>
+
+        <TextBox x:Name="txtWord" FontSize="30" Margin="0,121,0.2,245" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="Beige">w o r d</TextBox>
+
+        <DockPanel Name="panelProgress" Background="White" Width="150" Height="150" Margin="31,211,462.2,59">
+            <Image Name="imgProgress" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </DockPanel>
+
+        <Button x:Name="btnQ" Width="35" Height="35" Margin="213,221,395.2,164">Q</Button>
+        <Button x:Name="btnW" Width="35" Height="35" Margin="253,221,355.2,164">W</Button>
+        <Button x:Name="btnE" Width="35" Height="35" Margin="293,221,315.2,164">E</Button>
+        <Button x:Name="btnR" Width="35" Height="35" Margin="333,221,275.2,164">R</Button>
+        <Button x:Name="btnT" Width="35" Height="35" Margin="373,221,235.2,164">T</Button>
+        <Button x:Name="btnY" Width="35" Height="35" Margin="413,221,195.2,164">Y</Button>
+        <Button x:Name="btnU" Width="35" Height="35" Margin="453,221,155.2,164">U</Button>
+        <Button x:Name="btnI" Width="35" Height="35" Margin="493,221,115.2,164">I</Button>
+        <Button x:Name="btnO" Width="35" Height="35" Margin="533,221,75.2,164">O</Button>
+        <Button x:Name="btnP" Width="35" Height="35" Margin="573,221,35.2,164">P</Button>
+
+        <Button x:Name="btnA" Width="35" Height="35" Margin="234,261,374.2,124">A</Button>
+        <Button x:Name="btnS" Width="35" Height="35" Margin="274,261,334.2,124">S</Button>
+        <Button x:Name="btnD" Width="35" Height="35" Margin="314,261,294.2,124">D</Button>
+        <Button x:Name="btnF" Width="35" Height="35" Margin="354,261,254.2,124">F</Button>
+        <Button x:Name="btnG" Width="35" Height="35" Margin="394,261,214.2,124">G</Button>
+        <Button x:Name="btnH" Width="35" Height="35" Margin="434,261,174.2,124">H</Button>
+        <Button x:Name="btnJ" Width="35" Height="35" Margin="474,261,134.2,124">J</Button>
+        <Button x:Name="btnK" Width="35" Height="35" Margin="514,261,94.2,124">K</Button>
+        <Button x:Name="btnL" Width="35" Height="35" Margin="554,261,54.2,124">L</Button>
+
+        <Button x:Name="btnZ" Width="35" Height="35" Margin="274,301,334.2,84">Z</Button>
+        <Button x:Name="btnX" Width="35" Height="35" Margin="313,301,295.2,84">X</Button>
+        <Button x:Name="btnC" Width="35" Height="35" Margin="353,301,255.2,84">C</Button>
+        <Button x:Name="btnV" Width="35" Height="35" Margin="393,301,215.2,84">V</Button>
+        <Button x:Name="btnB" Width="35" Height="35" Margin="433,301,175.2,84">B</Button>
+        <Button x:Name="btnN" Width="35" Height="35" Margin="473,301,135.2,84">N</Button>
+        <Button x:Name="btnM" Width="35" Height="35" Margin="514,301,94.2,84">M</Button>
+
+
+
+
+
+
+    </Grid>
+</Window>
