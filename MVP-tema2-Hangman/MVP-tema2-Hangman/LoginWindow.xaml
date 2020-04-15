@@ -17,9 +17,9 @@
             <Image Name="imgProfile" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </DockPanel>
 
-        <Button x:Name="btnNewuser" Width="75" Height="50" Margin="30,336,538,34" FontSize="14">New User</Button>
+        <Button x:Name="btnNewUser" Width="75" Height="50" Margin="30,336,538,34" FontSize="14" Click="btnNewUser_Click">New User</Button>
         <Button x:Name="btnDeleteUser" Width="75" Height="50" Margin="135,336,433,34" FontSize="14" IsEnabled="False">Delete User</Button>
-        <Button Name="btnPlay" Width="75" Height="50" Margin="240,336,328,34" FontSize="14" IsEnabled="True">Play</Button>
+        <Button Name="btnPlay" Width="75" Height="50" Margin="240,336,328,34" FontSize="14" IsEnabled="False">Play</Button>
         <Button x:Name="btnCancel" Width="75" Height="50" Margin="345,336,223,34" FontSize="14">Cancel</Button>
         <Button x:Name="btnToLeft" Width="75" Height="50" Margin="450,336,118,34" FontSize="16" Content="&lt;&lt;"> </Button>
         <Button x:Name="btntoRight" Width="75" Height="50" Margin="555,336,13,34" FontSize="16" Content="&gt;&gt;" ></Button>

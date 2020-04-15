@@ -27,6 +27,12 @@ namespace MVP_tema2_Hangman
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
             txtName.Foreground = new SolidColorBrush(Colors.Black);
+            txtName.FontStyle = FontStyles.Normal;
+        }
+
+        private void txtName_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtName.Text = "";
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -35,13 +41,15 @@ namespace MVP_tema2_Hangman
                 MessageBox.Show("Please insert your name!", "Error!", MessageBoxButton.OK);
             else
             {
-                SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=Hangman-Database;Server=localhost\sqlexpress");
+                SqlConnection connection =
+                    new SqlConnection(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=Hangman-Database;Integrated Security=True;Pooling=False;Connect Timeout=30");
                 SqlCommand command = new SqlCommand("InsertProcedure", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@name", SqlDbType.VarChar).Value = txtName.Text;
                 connection.Open();
                 command.ExecuteNonQuery();
                 MessageBox.Show("Your name was added", "", MessageBoxButton.OK);
+                this.Close();
                 connection.Close();
             }
         }

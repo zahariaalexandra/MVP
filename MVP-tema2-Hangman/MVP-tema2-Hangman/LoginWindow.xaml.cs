@@ -18,11 +18,17 @@ namespace MVP_tema2_Hangman
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginWindow : Window
     {
-        public MainWindow()
+        public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            NewUserWindow newUserWindow = new NewUserWindow();
+            newUserWindow.Show();
         }
     }
 }
