@@ -36,18 +36,17 @@ namespace MVP_tema2_Hangman
                 MessageBox.Show("Please insert your name!", "Error!", MessageBoxButton.OK);
             else
             {
-                SqlConnection connection =
-                    new SqlConnection(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=HangmanDatabase;Integrated Security=True;Pooling=False;Connect Timeout=30");
-                connection.Open();
+                SqlConnection connection = 
+                    new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
-                string query = @"insert into HangmanDatabase.Players(name) values(@name)";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.CommandType = CommandType.Text;
-                command.Parameters.AddWithValue("@name",SqlDbType.VarChar).Value = txtName.Text;
+                connection.Open();
+                SqlCommand command = new SqlCommand("InsertProcedure", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@name", txtName.Text);
                 command.ExecuteNonQuery();
-                MessageBox.Show("Your name was added", "", MessageBoxButton.OK);
-               
                 connection.Close();
+                MessageBox.Show("Name added!", "", MessageBoxButton.OK);
+
                 this.Close();
             }
         }
