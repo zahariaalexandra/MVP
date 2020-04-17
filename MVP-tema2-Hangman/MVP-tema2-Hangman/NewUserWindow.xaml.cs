@@ -26,7 +26,7 @@ namespace MVP_tema2_Hangman
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtName.Foreground = new SolidColorBrush(Colors.Black);
+            txtName.Foreground = new SolidColorBrush(Colors.SaddleBrown);
             txtName.FontStyle = FontStyles.Normal;
         }
 

@@ -23,7 +23,6 @@ namespace MVP_tema2_Hangman
         public LoginWindow()
         {
             InitializeComponent();
-            lblWelcome.FontFamily = new FontFamily("Balloon");
         }
 
         private void btnNewUser_Click(object sender, RoutedEventArgs e)
