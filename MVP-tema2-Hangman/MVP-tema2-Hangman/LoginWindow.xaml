@@ -5,24 +5,125 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema2_Hangman"
         mc:Ignorable="d"
-        Background="Beige"
+        Background="DeepSkyBlue"
         Title="Hangman Login" Height="450" Width="650">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <ListBox Margin="30,50" Name="listBoxPlyers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="194" Height="250" />
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <Label HorizontalAlignment="Center" Name="lblWelcome" FontSize="20" Margin="10">Welcome to Hangman. Enjoy the game</Label>
 
-        <DockPanel Name="panelProfile" Background="White" Margin="290,50,66,120" >
-            <Image Name="imgProfile" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        </DockPanel>
+        <Label Name="lblWelcome" 
+               FontSize="25"
+               FontFamily="Arial Black"
+               Foreground="SaddleBrown"
+               Grid.Row="0" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="6" 
+               HorizontalContentAlignment="Center" 
+               VerticalAlignment="Center">Welcome to Hangman. Enjoy the game
+        </Label>
 
-        <Button x:Name="btnNewUser" Width="75" Height="50" Margin="30,336,538,34" FontSize="14" Click="btnNewUser_Click">New User</Button>
-        <Button x:Name="btnDeleteUser" Width="75" Height="50" Margin="135,336,433,34" FontSize="14" IsEnabled="False">Delete User</Button>
-        <Button Name="btnPlay" Width="75" Height="50" Margin="240,336,328,34" FontSize="14" IsEnabled="False">Play</Button>
-        <Button x:Name="btnCancel" Width="75" Height="50" Margin="345,336,223,34" FontSize="14">Cancel</Button>
-        <Button x:Name="btnToLeft" Width="75" Height="50" Margin="450,336,118,34" FontSize="16" Content="&lt;&lt;"> </Button>
-        <Button x:Name="btntoRight" Width="75" Height="50" Margin="555,336,13,34" FontSize="16" Content="&gt;&gt;" ></Button>
+        <ListBox Name="listBoxPlyers" 
+                 FontSize="15"
+                 FontFamily="Arial"
+                 Foreground="SaddleBrown"
+                 Grid.Row="1"
+                 Grid.RowSpan="4"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 Margin="10,10,70,10"
+                 BorderThickness="0"
+                 Background="BlanchedAlmond"/>
+
+        <DataGridCellsPanel Grid.Row="1"
+                            Grid.RowSpan="4"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="4"
+                            Margin="55,10,10,10"
+                            Background="BlanchedAlmond">
+            <Image Name="imgProfile" 
+                   Stretch="Uniform"/>
+        </DataGridCellsPanel>
+
+        <Button Name="btnNewUser" 
+                FontSize="14" 
+                FontFamily="Arial Black"
+                Foreground="SaddleBrown"
+                Background="BlanchedAlmond"
+                Grid.Row="5"
+                Grid.Column="0"
+                Margin="10,10,10,10"
+                BorderThickness="0"
+                Click="btnNewUser_Click">New User</Button>
+
+        <Button Name="btnDeleteUser" 
+                FontSize="12" 
+                FontFamily="Arial Black"
+                Foreground="SaddleBrown"
+                Background="BlanchedAlmond"
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="10,10,10,10"
+                BorderThickness="0"
+                IsEnabled="False">Delete User</Button>
+
+        <Button Name="btnPlay" 
+                FontSize="14" 
+                FontFamily="Arial Black"
+                Foreground="SaddleBrown"
+                Background="BlanchedAlmond"
+                Grid.Row="5"
+                Grid.Column="2"
+                Margin="10,10,10,10"
+                BorderThickness="0"
+                IsEnabled="False">Play</Button>
+
+        <Button Name="btnCancel" 
+                FontSize="14"
+                FontFamily="Arial Black"
+                Foreground="SaddleBrown"
+                Background="BlanchedAlmond"
+                Grid.Row="5"
+                Grid.Column="3"
+                BorderThickness="0"
+                Margin="10,10,10,10">Cancel</Button>
+
+        <Button Name="btnToLeft" 
+                FontSize="16" 
+                FontFamily="Arial Black"
+                Foreground="SaddleBrown"
+                Background="BlanchedAlmond"
+                Grid.Row="5"
+                Grid.Column="4"
+                Margin="10,10,10,10"
+                BorderThickness="0"
+                Content="&lt;&lt;"/>
+
+        <Button Name="btntoRight" 
+                FontSize="16"
+                FontFamily="Arial Black"
+                Foreground="SaddleBrown"
+                Background="BlanchedAlmond"
+                Grid.Row="5"
+                Grid.Column="5"
+                Margin="10,10,10,10"
+                BorderThickness="0"
+                Content="&gt;&gt;"/>
 
     </Grid>
 </Window>
