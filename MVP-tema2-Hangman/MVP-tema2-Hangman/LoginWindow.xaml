@@ -8,8 +8,8 @@
         Background="DeepSkyBlue"
         Title="Hangman Login" 
         Height="450" 
-        Width="650" 
-        Icon="514163 (1).png">
+        Width="650">
+    <!--Icon="Icon.png">-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -59,8 +59,10 @@
                             Grid.ColumnSpan="4"
                             Margin="55,10,10,10"
                             Background="BlanchedAlmond">
+           
             <Image Name="imgProfile" 
                    Stretch="Uniform"/>
+            
         </DataGridCellsPanel>
 
         <Button Name="btnNewUser" 

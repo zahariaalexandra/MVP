@@ -23,6 +23,7 @@ namespace MVP_tema2_Hangman
         public LoginWindow()
         {
             InitializeComponent();
+            Utils.getNames(ref listBoxPlyers);
         }
 
         private void btnNewUser_Click(object sender, RoutedEventArgs e)

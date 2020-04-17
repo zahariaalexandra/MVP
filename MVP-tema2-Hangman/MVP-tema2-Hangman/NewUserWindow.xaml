@@ -9,7 +9,7 @@
         Title="New user" 
         Height="150" 
         Width="200"
-        Icon="514163 (1).png">
+        Icon="Icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

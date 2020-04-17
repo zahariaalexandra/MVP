@@ -5,11 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema2_Hangman"
         mc:Ignorable="d"
-        Background="Beige"
-        Title="Hangman" Height="450" Width="650">
+        Background="DeepSkyBlue"
+        Title="Hangman" 
+        Height="450" 
+        Width="650"
+        Icon="Icon.png">
     <Grid>
 
-        <Menu x:Name="menuPrincipal" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Menu Name="menuPrincipal" 
+              VerticalAlignment="Top"
+              Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="15"
+              FontFamily="Arial"
+              Background="BlanchedAlmond"
+              Foreground="SaddleBrown"
+              FontSize="15"
+              BorderThickness="0">
+            
             <MenuItem Header="File">
                 <MenuItem Header="New game"/>
                 <MenuItem Header="Open game"/>
@@ -32,48 +72,374 @@
             </MenuItem>
         </Menu>
 
-        <Label Name="lblLevel" Background="Beige" FontSize="20" Margin="31,23,551,361">Level:</Label>
-        <Label Name="lblCategory" Background="Beige" FontSize="20" Margin="31,59,513.2,324">Category:</Label>
+        <Label Name="lblLevel" 
+               Background="DeepSkyBlue" 
+               Foreground="SaddleBrown"
+               FontFamily="Arial Black"
+               FontSize="20" 
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="7"
+               Margin="15,30,0,0">Level:
+        </Label>
+        
+        <Label Name="lblCategory" 
+               Background="DeepSkyBlue"
+               Foreground="SaddleBrown"
+               FontFamily="Arial Black"
+               FontSize="20" 
+               Grid.Row="1"
+               Grid.Column="0"
+               Grid.ColumnSpan="8"
+               Margin="15,0,0,30">Category:
+        </Label>
 
-        <TextBox x:Name="txtWord" FontSize="30" Margin="0,121,0.2,245" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="Beige">w o r d</TextBox>
+        <Label Name="lblTimer"
+               Background="DeepSkyBlue"
+               Foreground="SaddleBrown"
+               FontFamily="Arial Black"
+               FontSize="21"
+               Grid.Row="0"
+               Grid.Column="13"
+               Grid.ColumnSpan="2"
+               Margin="0,30,0,0">00:00
+        </Label>
 
-        <DockPanel Name="panelProgress" Background="White" Width="150" Height="150" Margin="31,211,462.2,59">
-            <Image Name="imgProgress" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        </DockPanel>
+        <Label Name="lblPlayer"
+               Background="DeepSkyBlue"
+               Foreground="SaddleBrown"
+               FontFamily="Arial Black"
+               FontSize="20"
+               Grid.Row="1"
+               Grid.Column="8"
+               Grid.ColumnSpan="7"
+               Margin="0,0,10,30"
+               HorizontalContentAlignment="Right">Player:
+        </Label>
 
-        <Button x:Name="btnQ" Width="35" Height="35" Margin="213,221,395.2,164">Q</Button>
-        <Button x:Name="btnW" Width="35" Height="35" Margin="253,221,355.2,164">W</Button>
-        <Button x:Name="btnE" Width="35" Height="35" Margin="293,221,315.2,164">E</Button>
-        <Button x:Name="btnR" Width="35" Height="35" Margin="333,221,275.2,164">R</Button>
-        <Button x:Name="btnT" Width="35" Height="35" Margin="373,221,235.2,164">T</Button>
-        <Button x:Name="btnY" Width="35" Height="35" Margin="413,221,195.2,164">Y</Button>
-        <Button x:Name="btnU" Width="35" Height="35" Margin="453,221,155.2,164">U</Button>
-        <Button x:Name="btnI" Width="35" Height="35" Margin="493,221,115.2,164">I</Button>
-        <Button x:Name="btnO" Width="35" Height="35" Margin="533,221,75.2,164">O</Button>
-        <Button x:Name="btnP" Width="35" Height="35" Margin="573,221,35.2,164">P</Button>
+        <Image Name="imgProfile"
+               Grid.Row="0"
+               Grid.Column="7"
+               Margin="0,15,0,0"/>
 
-        <Button x:Name="btnA" Width="35" Height="35" Margin="234,261,374.2,124">A</Button>
-        <Button x:Name="btnS" Width="35" Height="35" Margin="274,261,334.2,124">S</Button>
-        <Button x:Name="btnD" Width="35" Height="35" Margin="314,261,294.2,124">D</Button>
-        <Button x:Name="btnF" Width="35" Height="35" Margin="354,261,254.2,124">F</Button>
-        <Button x:Name="btnG" Width="35" Height="35" Margin="394,261,214.2,124">G</Button>
-        <Button x:Name="btnH" Width="35" Height="35" Margin="434,261,174.2,124">H</Button>
-        <Button x:Name="btnJ" Width="35" Height="35" Margin="474,261,134.2,124">J</Button>
-        <Button x:Name="btnK" Width="35" Height="35" Margin="514,261,94.2,124">K</Button>
-        <Button x:Name="btnL" Width="35" Height="35" Margin="554,261,54.2,124">L</Button>
+        <TextBox Name="txtWord" 
+                 FontSize="35" 
+                 Background="DeepSkyBlue"
+                 Foreground="SaddleBrown"
+                 FontFamily="Arial Black"
+                 Grid.Row="1"
+                 Grid.RowSpan="2"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="15"
+                 Margin="15,40,15,10"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center">_ _ d _
+        </TextBox>
 
-        <Button x:Name="btnZ" Width="35" Height="35" Margin="274,301,334.2,84">Z</Button>
-        <Button x:Name="btnX" Width="35" Height="35" Margin="313,301,295.2,84">X</Button>
-        <Button x:Name="btnC" Width="35" Height="35" Margin="353,301,255.2,84">C</Button>
-        <Button x:Name="btnV" Width="35" Height="35" Margin="393,301,215.2,84">V</Button>
-        <Button x:Name="btnB" Width="35" Height="35" Margin="433,301,175.2,84">B</Button>
-        <Button x:Name="btnN" Width="35" Height="35" Margin="473,301,135.2,84">N</Button>
-        <Button x:Name="btnM" Width="35" Height="35" Margin="514,301,94.2,84">M</Button>
+        <Image Name="imgProgress" 
+                   Stretch="Uniform" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center"
+                   Grid.Row="3"
+                   Grid.RowSpan="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="5"
+                   Source="ImgStartProgress.png"/>
+
+        <Button Name="btnQ" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="5"
+                Margin="1,33,1,60">Q
+        </Button>
+        
+        <Button Name="btnW" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                 Grid.RowSpan="2"
+                Grid.Column="6"
+                Margin="1,33,1,60">W
+        </Button>
+        
+        <Button Name="btnE" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="7"
+                Margin="1,33,1,60">E
+        </Button>
+        
+        <Button Name="btnR" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="8"
+                Margin="1,33,1,60">R
+        </Button>
+        
+        <Button Name="btnT" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="9"
+                Margin="1,33,1,60">T
+        </Button>
+        
+        <Button Name="btnY" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="10"
+                Margin="1,33,1,60">Y
+        </Button>
+        
+        <Button Name="btnU" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="11"
+                Margin="1,33,1,60">U
+        </Button>
+        
+        <Button Name="btnI" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="12"
+                Margin="1,33,1,60">I
+        </Button>
+        
+        <Button Name="btnO" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="13"
+                Margin="1,33,1,60">O
+        </Button>
+        
+        <Button Name="btnP" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Grid.Column="14"
+                Margin="1,33,1,60">P
+        </Button>
+
+        
+        <Button Name="btnA" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="5"
+                Grid.ColumnSpan="2"
+                Margin="20,13,20,13">A
+        </Button>
+        
+        <Button Name="btnS" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="6"
+                Grid.ColumnSpan="2"
+                Margin="20,13,20,13">S
+        </Button>
+        
+        <Button Name="btnD" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="7"
+                Grid.ColumnSpan="2"
+                Margin="20,13,20,13">D
+        </Button>
+        
+        <Button Name="btnF" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="8"
+                Grid.ColumnSpan="2"
+                Margin="20,13,20,13">F
+        </Button>
+        
+        <Button Name="btnG" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="9"
+                Grid.ColumnSpan="2"
+                Margin="20,13,20,13">G
+        </Button>
+        
+        <Button Name="btnH" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="10"
+                Grid.ColumnSpan="2"
+                Margin="20,13,20,13">H
+        </Button>
+        
+        <Button Name="btnJ" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="11"
+                Grid.ColumnSpan="2"
+               Margin="20,13,20,13">J
+        </Button>
+        
+        <Button Name="btnK" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="12"
+                Grid.ColumnSpan="2"
+                Margin="20,13,20,13">K
+        </Button>
+
+        <Button Name="btnL" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.Column="13"
+                Grid.ColumnSpan="2"
+               Margin="20,13,20,13">L
+        </Button>
 
 
+        <Button Name="btnZ" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.RowSpan="5"
+                Grid.Column="6"
+              Grid.ColumnSpan="2"
+               Margin="20,60,20,33">Z
+        </Button>
 
-
-
-
+        <Button Name="btnX" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.RowSpan="5"
+                Grid.Column="7"
+               Grid.ColumnSpan="2"
+               Margin="20,60,20,33">X
+        </Button>
+        
+        <Button Name="btnC" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.RowSpan="5"
+                Grid.Column="8"
+               Grid.ColumnSpan="2"
+               Margin="20,60,20,33">C
+        </Button>
+        
+        <Button Name="btnV" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.RowSpan="5"
+                Grid.Column="9"
+               Grid.ColumnSpan="2"
+               Margin="20,60,20,33">V
+        </Button>
+        
+        <Button Name="btnB" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.RowSpan="5"
+                Grid.Column="10"
+               Grid.ColumnSpan="2"
+               Margin="20,60,20,33">B
+        </Button>
+        
+        <Button Name="btnN" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.RowSpan="5"
+                Grid.Column="11"
+             Grid.ColumnSpan="2"
+               Margin="20,60,20,33">N
+        </Button>
+        
+        <Button Name="btnM" 
+                FontFamily="Arial Black"
+                Background="BlanchedAlmond"
+                Foreground="SaddleBrown"
+                BorderThickness="0"
+                Grid.Row="4"
+                Grid.RowSpan="5"
+                Grid.Column="12"
+              Grid.ColumnSpan="2"
+               Margin="20,60,20,33">M
+        </Button>
+        
     </Grid>
 </Window>

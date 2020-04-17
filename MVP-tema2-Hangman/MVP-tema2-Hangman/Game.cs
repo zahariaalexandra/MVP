@@ -12,7 +12,13 @@ namespace MVP_tema2_Hangman
         private string category;
         private int level;
         private string word;
+        private string Player;
         Image drawing;
         Button[] usedLetters;
+
+        public Game()
+        {
+
+        }
     }
 }
