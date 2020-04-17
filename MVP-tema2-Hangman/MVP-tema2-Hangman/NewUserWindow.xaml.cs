@@ -30,11 +30,6 @@ namespace MVP_tema2_Hangman
             txtName.FontStyle = FontStyles.Normal;
         }
 
-        private void txtName_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            txtName.Text = "";
-        }
-
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (txtName.Text == "" || txtName.Text == "Type your name...")
@@ -42,16 +37,24 @@ namespace MVP_tema2_Hangman
             else
             {
                 SqlConnection connection =
-                    new SqlConnection(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=Hangman-Database;Integrated Security=True;Pooling=False;Connect Timeout=30");
-                SqlCommand command = new SqlCommand("InsertProcedure", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@name", SqlDbType.VarChar).Value = txtName.Text;
+                    new SqlConnection(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=HangmanDatabase;Integrated Security=True;Pooling=False;Connect Timeout=30");
                 connection.Open();
+
+                string query = @"insert into HangmanDatabase.Players(name) values(@name)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@name",SqlDbType.VarChar).Value = txtName.Text;
                 command.ExecuteNonQuery();
                 MessageBox.Show("Your name was added", "", MessageBoxButton.OK);
-                this.Close();
+               
                 connection.Close();
+                this.Close();
             }
+        }
+
+        private void txtName_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtName.Text = "";
         }
     }
 }

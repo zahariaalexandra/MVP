@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP-tema2-Hangman", "MVP-tema2-Hangman\MVP-tema2-Hangman.csproj", "{7874BB0A-9D33-4468-B451-399EF35F7D1C}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Hangman-Database", "Hangman-Database\Hangman-Database.sqlproj", "{E1F7B4A6-39C8-46C4-8A08-CB07833D037C}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HangmanDatabase", "HangmanDatabase\HangmanDatabase.sqlproj", "{E1F7B4A6-39C8-46C4-8A08-CB07833D037C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

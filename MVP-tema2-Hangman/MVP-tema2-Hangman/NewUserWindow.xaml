@@ -9,7 +9,7 @@
         Title="New user" Height="200" Width="200">
     <Grid>
 
-        <TextBox x:Name="txtName" HorizontalContentAlignment="Center" Foreground="LightSlateGray" Margin="10,55,9.6,94.4" FontStyle="Italic" MouseDown="txtName_MouseDown" TextChanged="txtName_TextChanged">Type your name...</TextBox>
+        <TextBox x:Name="txtName" HorizontalContentAlignment="Center" Foreground="LightSlateGray" Margin="10,55,9.6,94.4" FontStyle="Italic" PreviewMouseDown="txtName_PreviewMouseDown" TextChanged="txtName_TextChanged">Type your name...</TextBox>
 
         <Button Name="btnAdd" HorizontalContentAlignment="Center"  Margin="69,81,68.6,64.4" Width="56" Click="btnAdd_Click" >Add</Button>
 

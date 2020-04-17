@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Table1]
+﻿CREATE TABLE [dbo].[Players]
 (
 	[Id] INT IDENTITY (1, 1) NOT NULL, 
     [name] VARCHAR(15) NOT NULL, 
