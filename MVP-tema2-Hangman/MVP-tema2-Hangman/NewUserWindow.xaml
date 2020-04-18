@@ -7,21 +7,32 @@
         mc:Ignorable="d"
         Background="DeepSkyBlue"
         Title="New user" 
-        Height="150" 
-        Width="200"
+        Height="300" 
+        Width="300"
         Icon="Icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
         <TextBox Name="txtName" 
                  Grid.Row="0"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="5"
                  HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center"
-                 Margin="10,10,10,5"
+                 Margin="20,20,20,30"
                  FontStyle="Italic" 
                  FontFamily="Arial"
                  Foreground="Gray"
@@ -31,17 +42,131 @@
                  TextChanged="txtName_TextChanged">Type your name...
         </TextBox>
 
-        <Button>Choose a </Button>
+        <Label Name="lblChoose"
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="5"
+               Foreground="SaddleBrown"
+               FontFamily="Arial"
+               Margin="15,40,10,0">Choose a profile picture:
+        </Label>
+
+        <Button Name="btnPicture1"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent"
+                Click="btnPicture_Click">
+            <Image Name="img1"
+                   Source="profileImg.png"/>
+        </Button>
+        
+        <Button Name="btnPicture2"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent"
+                Click="btnPicture_Click">
+            <Image Name="img2"
+                   Source="profileImg2.png"/>
+        </Button>
+        
+        <Button Name="btnPicture3"
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent">
+            <Image Name="img3"
+                   Source="profileImg3.png"/>
+        </Button>
+        
+        <Button Name="btnPicture4"
+                Grid.Row="1"
+                Grid.Column="3"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent">
+            <Image Name="img4"
+                   Source="profileImg4.png"/>
+        </Button>
+        
+        <Button Name="btnPicture5"
+                Grid.Row="1"
+                Grid.Column="4"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent">
+            <Image Name="img5"
+                   Source="profileImg5.png"/>
+        </Button>
+        
+        <Button Name="btnPicture6"
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent">
+            <Image Name="img6"
+                   Source="profileImg6.png"/>
+        </Button>
+        
+        <Button Name="btnPicture7"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent">
+            <Image Name="img7"
+                   Source="profileImg7.png"/>
+        </Button>
+        
+        <Button Name="btnPicture8"
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent">
+            <Image Name="img8"
+                   Source="profileImg8.png"/>
+        </Button>
+        
+        <Button Name="btnPicture9"
+                Grid.Row="2"
+                Grid.Column="3"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent">
+            <Image Name="img9"
+                   Source="profileImg9.png"/>
+        </Button>
+        
+        <Button Name="btnPicture10"
+                Grid.Row="2"
+                Grid.Column="4"
+                Margin="5,10,5,10"
+                BorderThickness="0"
+                Background="Transparent">
+            <Image Name="img10"
+                   Source="profileImg10.png"/>
+        </Button>
         
         <Button Name="btnAdd" 
-                HorizontalContentAlignment="Center"  
-                Grid.Row="2"
-                Margin="25,5,25,5"
+                HorizontalContentAlignment="Center" 
+                VerticalContentAlignment="Center"
+                Grid.Row="4"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Margin="30,20,30,20"
                 FontFamily="Arial Black"
                 Foreground="SaddleBrown"
                 Background="BlanchedAlmond"
                 BorderThickness="0"
+                IsEnabled="False"
                 Click="btnAdd_Click" >Add
         </Button>
+
     </Grid>
 </Window>

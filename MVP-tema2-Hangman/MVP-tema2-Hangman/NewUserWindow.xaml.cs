@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace MVP_tema2_Hangman
             InitializeComponent();
         }
 
+        string image = "";
+
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
             txtName.Foreground = new SolidColorBrush(Colors.SaddleBrown);
@@ -32,13 +35,21 @@ namespace MVP_tema2_Hangman
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Utils.addNewPlayer(txtName);
+            Utils.addNewPlayer(txtName, image);
             this.Close();
         }
 
         private void txtName_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             txtName.Text = "";
+        }
+
+        private void btnPicture_Click(object sender, RoutedEventArgs e)
+        {
+            btnAdd.IsEnabled = true;
+            Button button = sender as Button;
+            Image temp = button.Content as Image;
+            image = temp.Source.ToString();
         }
     }
 }

@@ -10,13 +10,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace MVP_tema2_Hangman
 {
     class Utils
     {
-        private static List<Image> profilePictures;
-
         public static void getNames(ref ListBox listBoxNames)
         {
             List<string> names = new List<string>();
@@ -38,7 +37,7 @@ namespace MVP_tema2_Hangman
             listBoxNames.ItemsSource = names;
         }
 
-        public static void addNewPlayer(TextBox txtName)
+        public static void addNewPlayer(TextBox txtName, string imageString)
         {
             if (txtName.Text == "" || txtName.Text == "Type your name...")
                 MessageBox.Show("Please insert your name!", "Error!", MessageBoxButton.OK);
@@ -51,12 +50,11 @@ namespace MVP_tema2_Hangman
                 SqlCommand command = new SqlCommand("InsertProcedure", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@name", txtName.Text);
+                command.Parameters.AddWithValue("@image_string", imageString);
                 command.ExecuteNonQuery();
                 connection.Close();
                 MessageBox.Show("Name added!", "", MessageBoxButton.OK);
             }
         }
-
-        
     }
 }
