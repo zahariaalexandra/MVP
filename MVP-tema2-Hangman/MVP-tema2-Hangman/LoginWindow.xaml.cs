@@ -37,5 +37,10 @@ namespace MVP_tema2_Hangman
         {
             this.Close();
         }
+
+        private void listBoxPlyers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Utils.changeImage(listBoxPlyers, ref imgProfile);
+        }
     }
 }

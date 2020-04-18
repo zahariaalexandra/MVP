@@ -37,7 +37,7 @@ namespace MVP_tema2_Hangman
             listBoxNames.ItemsSource = names;
         }
 
-        public static void addNewPlayer(TextBox txtName, string imageString)
+        public static void addNewPlayer(TextBox txtName, byte[] image)
         {
             if (txtName.Text == "" || txtName.Text == "Type your name...")
                 MessageBox.Show("Please insert your name!", "Error!", MessageBoxButton.OK);
@@ -50,11 +50,59 @@ namespace MVP_tema2_Hangman
                 SqlCommand command = new SqlCommand("InsertProcedure", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@name", txtName.Text);
-                command.Parameters.AddWithValue("@image_string", imageString);
+                command.Parameters.AddWithValue("@image", image);
                 command.ExecuteNonQuery();
                 connection.Close();
                 MessageBox.Show("Name added!", "", MessageBoxButton.OK);
             }
+        }
+
+        public static void chooseImage(ref Button btnAdd, ref byte[] img, ref Label lblImage)
+        {
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.DefaultExt = ".png";
+            dialog.Filter = "PNG Files (*.png)|*.png|JPEG Files (*.jpeg)|*.jpeg|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            Nullable<bool> result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                FileStream fileStream = new FileStream(dialog.FileName, FileMode.Open, FileAccess.Read);
+                img = new byte[fileStream.Length];
+                fileStream.Read(img, 0, System.Convert.ToInt32(fileStream.Length));
+                fileStream.Close();
+                string fileName = dialog.FileName;
+                btnAdd.IsEnabled = true;
+                lblImage.Content = fileName;
+            }
+        }
+
+        public static void changeImage(ListBox listBoxPlayers, ref Image profileImage)
+        {
+            ListBoxItem item = (listBoxPlayers.SelectedItem as ListBoxItem);
+            SqlConnection connection =
+                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            
+            connection.Open();
+            DataSet data = new DataSet();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("GetImageProcedure", connection);
+            command.CommandType = CommandType.StoredProcedure;
+             command.Parameters.AddWithValue("@name", listBoxPlayers.SelectedItem.ToString());
+            adapter.SelectCommand = command;
+            adapter.Fill(data);
+            connection.Close();
+
+            byte[] image = (byte[])data.Tables[0].Rows[0][0];
+            MemoryStream stream = new MemoryStream();
+            stream.Write(image, 0, image.Length);
+            stream.Position = 0;
+            //
+            var source = new BitmapImage();
+            source.BeginInit();
+            source.StreamSource = stream;
+            source.EndInit();
+
+            profileImage.Source = source;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -25,7 +27,7 @@ namespace MVP_tema2_Hangman
             InitializeComponent();
         }
 
-        string image = "";
+        byte[] image;
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -44,12 +46,9 @@ namespace MVP_tema2_Hangman
             txtName.Text = "";
         }
 
-        private void btnPicture_Click(object sender, RoutedEventArgs e)
+        private void btnChoosePicture_Click(object sender, RoutedEventArgs e)
         {
-            btnAdd.IsEnabled = true;
-            Button button = sender as Button;
-            Image temp = button.Content as Image;
-            image = temp.Source.ToString();
+            Utils.chooseImage(ref btnAdd, ref image, ref lblImage);
         }
     }
 }

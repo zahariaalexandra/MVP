@@ -16,8 +16,6 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -36,7 +34,7 @@
                Foreground="SaddleBrown"
                Grid.Row="0" 
                Grid.Column="0" 
-               Grid.ColumnSpan="6" 
+               Grid.ColumnSpan="4" 
                HorizontalContentAlignment="Center" 
                VerticalAlignment="Center">Welcome to Hangman. Enjoy the game
         </Label>
@@ -48,19 +46,19 @@
                  Grid.Row="1"
                  Grid.RowSpan="4"
                  Grid.Column="0"
-                 Grid.ColumnSpan="3"
-                 Margin="10,10,70,10"
+                 Grid.ColumnSpan="2"
+                 Margin="10,10,10,10"
                  BorderThickness="0"
-                 Background="BlanchedAlmond"/>
+                 Background="BlanchedAlmond"
+                 SelectionChanged="listBoxPlyers_SelectionChanged"/>
            
             <Image Name="imgProfile" 
                    Stretch="Uniform"
-                   Source="Profile\profileImg.png"
                    Grid.Row="1"
                    Grid.RowSpan="4"
                    Grid.Column="2"
-                   Grid.ColumnSpan="4"
-                   Margin="55,10,10,10"/>
+                   Grid.ColumnSpan="2"
+                   Margin="10,10,10,10"/>
 
         <Button Name="btnNewUser" 
                 FontSize="14" 
@@ -108,17 +106,6 @@
                 BorderThickness="0"
                 Margin="10,10,10,10"
                 Click="btnCancel_Click">Cancel
-        </Button>
-
-        <Button Name="btnChoosePicture"
-                FontSize="14"
-                FontFamily="Arial Black"
-                Foreground="SaddleBrown"
-                Background="BlanchedAlmond"
-                Grid.Row="5"
-                Grid.Column="4"
-                Grid.ColumnSpan="2"
-                Margin="10,10,10,10">Choose profile picture
         </Button>
     </Grid>
 </Window>
