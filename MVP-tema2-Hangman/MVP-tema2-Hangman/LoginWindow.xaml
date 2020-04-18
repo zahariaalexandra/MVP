@@ -8,8 +8,9 @@
         Background="DeepSkyBlue"
         Title="Hangman Login" 
         Height="450" 
-        Width="650">
-    <!--Icon="Icon.png">-->
+        Width="650" 
+        Icon="Icon.png">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -73,7 +74,7 @@
         </Button>
 
         <Button Name="btnDeleteUser" 
-                FontSize="12" 
+                FontSize="14" 
                 FontFamily="Arial Black"
                 Foreground="SaddleBrown"
                 Background="BlanchedAlmond"
@@ -81,7 +82,8 @@
                 Grid.Column="1"
                 Margin="10,10,10,10"
                 BorderThickness="0"
-                IsEnabled="False">Delete User
+                IsEnabled="False"
+                Click="btnDeleteUser_Click">Delete User
         </Button>
 
         <Button Name="btnPlay" 

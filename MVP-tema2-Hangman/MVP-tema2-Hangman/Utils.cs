@@ -81,13 +81,13 @@ namespace MVP_tema2_Hangman
             ListBoxItem item = (listBoxPlayers.SelectedItem as ListBoxItem);
             SqlConnection connection =
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            
+
             connection.Open();
             DataSet data = new DataSet();
             SqlDataAdapter adapter = new SqlDataAdapter();
             SqlCommand command = new SqlCommand("GetImageProcedure", connection);
             command.CommandType = CommandType.StoredProcedure;
-             command.Parameters.AddWithValue("@name", listBoxPlayers.SelectedItem.ToString());
+            command.Parameters.AddWithValue("@name", listBoxPlayers.SelectedItem.ToString());
             adapter.SelectCommand = command;
             adapter.Fill(data);
             connection.Close();
@@ -96,13 +96,31 @@ namespace MVP_tema2_Hangman
             MemoryStream stream = new MemoryStream();
             stream.Write(image, 0, image.Length);
             stream.Position = 0;
-            //
+
             var source = new BitmapImage();
             source.BeginInit();
             source.StreamSource = stream;
             source.EndInit();
 
             profileImage.Source = source;
+        }   
+    
+     
+
+        public static void deleteUser(ref ListBox listBoxPlayers)
+        {
+            SqlConnection connection =
+                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+            connection.Open();
+            SqlCommand command = new SqlCommand("DeleteProcedure", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@name", listBoxPlayers.SelectedItem);
+            command.ExecuteNonQuery();
+            MessageBox.Show("User deleted!", "", MessageBoxButton.OK);
+            connection.Close();
+
+            listBoxPlayers.SelectedItem = "Ale";
         }
     }
 }

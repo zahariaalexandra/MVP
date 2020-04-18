@@ -40,7 +40,17 @@ namespace MVP_tema2_Hangman
 
         private void listBoxPlyers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (listBoxPlyers.SelectedItem.ToString() != "Ale")
+                btnDeleteUser.IsEnabled = true;
+            
+            btnPlay.IsEnabled = true;
             Utils.changeImage(listBoxPlyers, ref imgProfile);
+        }
+
+        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            Utils.deleteUser(ref listBoxPlyers);
+            Utils.getNames(ref listBoxPlyers);
         }
     }
 }
