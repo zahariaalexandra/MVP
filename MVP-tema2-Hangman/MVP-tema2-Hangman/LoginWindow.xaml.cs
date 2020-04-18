@@ -29,7 +29,13 @@ namespace MVP_tema2_Hangman
         private void btnNewUser_Click(object sender, RoutedEventArgs e)
         {
             NewUserWindow newUserWindow = new NewUserWindow();
-            newUserWindow.Show();
+            newUserWindow.ShowDialog();
+            Utils.getNames(ref listBoxPlyers);
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

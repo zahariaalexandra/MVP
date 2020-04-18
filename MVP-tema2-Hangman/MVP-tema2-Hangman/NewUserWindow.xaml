@@ -14,13 +14,14 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <TextBox Name="txtName" 
                  Grid.Row="0"
                  HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center"
-                 Margin="10,30,10,5"
+                 Margin="10,10,10,5"
                  FontStyle="Italic" 
                  FontFamily="Arial"
                  Foreground="Gray"
@@ -30,10 +31,12 @@
                  TextChanged="txtName_TextChanged">Type your name...
         </TextBox>
 
+        <Button>Choose a </Button>
+        
         <Button Name="btnAdd" 
                 HorizontalContentAlignment="Center"  
-                Grid.Row="1"
-                Margin="27,5,27,20"
+                Grid.Row="2"
+                Margin="25,5,25,5"
                 FontFamily="Arial Black"
                 Foreground="SaddleBrown"
                 Background="BlanchedAlmond"

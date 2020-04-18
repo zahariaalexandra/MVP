@@ -32,23 +32,8 @@ namespace MVP_tema2_Hangman
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (txtName.Text == "" || txtName.Text == "Type your name...")
-                MessageBox.Show("Please insert your name!", "Error!", MessageBoxButton.OK);
-            else
-            {
-                SqlConnection connection = 
-                    new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-
-                connection.Open();
-                SqlCommand command = new SqlCommand("InsertProcedure", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@name", txtName.Text);
-                command.ExecuteNonQuery();
-                connection.Close();
-                MessageBox.Show("Name added!", "", MessageBoxButton.OK);
-
-                this.Close();
-            }
+            Utils.addNewPlayer(txtName);
+            this.Close();
         }
 
         private void txtName_PreviewMouseDown(object sender, MouseButtonEventArgs e)
