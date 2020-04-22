@@ -18,6 +18,7 @@ namespace MVP_tema2_Hangman
     public partial class GameWindow : Window
     {
         public Game currentGame = new Game();
+        bool gameStarted = false;
 
         public GameWindow()
         {
@@ -32,6 +33,9 @@ namespace MVP_tema2_Hangman
 
         private void btnLetter_Click(object sender, RoutedEventArgs e)
         {
+            if (!gameStarted)
+                gameStarted = true;
+
             Button btnCurrent = sender as Button;
             bool gameWon = false;
             bool gameLost = Utils.letterTest(btnCurrent, ref currentGame, ref txtWord, ref imgProgress, ref gameWon);
@@ -98,9 +102,5 @@ namespace MVP_tema2_Hangman
             }
         }
 
-        private void Statistics_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

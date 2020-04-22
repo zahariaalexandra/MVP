@@ -54,8 +54,7 @@
                 <MenuItem Header="New game"/>
                 <MenuItem Header="Open game"/>
                 <MenuItem Header="Save game"/>
-                <MenuItem Header="Statistics"
-                          Click="Statistics_Click"/>
+                <MenuItem Header="Statistics"/>
                 <MenuItem Header="Exit"/>
             </MenuItem>
 
