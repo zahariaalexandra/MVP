@@ -138,7 +138,7 @@
                    Grid.RowSpan="3"
                    Grid.Column="0"
                    Grid.ColumnSpan="5" 
-                    Source="ImgStart.png"/>
+                    Source="progressImages\ImgStart.png"/>
 
         <Button Name="btnQ" 
                 FontFamily="Arial Black"

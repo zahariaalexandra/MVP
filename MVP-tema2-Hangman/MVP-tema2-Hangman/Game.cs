@@ -14,13 +14,13 @@ namespace MVP_tema2_Hangman
         internal int level;
         internal string word;
         internal Player player;
-        internal Image drawing;
         internal List<string> usedLetters;
+        internal int progress;
 
         internal string _category { get { return category; } set { category = value; } }
         internal int _level { get { return level; } set { this.level = value; } }
         internal string _word { get { return word; } set { word = value; } }
-        internal Image _drawing{ get { return drawing; } set { drawing = value; } }
+        internal int _progress{ get { return progress; } set { progress = value; } }
         internal List<string> _usedLetters { get { return usedLetters; } set { usedLetters = value; } }
        
         public Game()
@@ -29,7 +29,7 @@ namespace MVP_tema2_Hangman
             this.category = "";
             this.level = 0;
             this.word = "";
-            this.drawing = new Image();
+            this.progress = 0;
             this.usedLetters = new List<string>();
         }
 
@@ -39,7 +39,7 @@ namespace MVP_tema2_Hangman
             this.category = "";
             this.level = 0;
             this.word = "";
-            this.drawing = new Image();
+            this.progress = 0;
             this.usedLetters = new List<string>();
         }
 

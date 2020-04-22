@@ -61,7 +61,6 @@ namespace MVP_tema2_Hangman
             Game game = new Game(player);
             
             Utils.initializeGame(ref game);
-            game.drawing = gameWindow.imgProgress;
             Utils.addGame(game);
 
             gameWindow.Show();

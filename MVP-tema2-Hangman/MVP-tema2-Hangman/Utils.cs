@@ -125,7 +125,8 @@ namespace MVP_tema2_Hangman
         }
 
         public static void initializeGame(ref Game game)
-        {            
+        {
+            game.progress = 0;
             game.level = 0;
             SqlConnection connection =
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
@@ -224,6 +225,7 @@ namespace MVP_tema2_Hangman
             command.Parameters.AddWithValue("@category", game.category);
             command.Parameters.AddWithValue("@word", game.word);            
             command.Parameters.AddWithValue("@used_letters", game.usedLetters.ToString());
+            command.Parameters.AddWithValue("@progress", 0);
             command.ExecuteNonQuery();
             connection.Close();
         }
@@ -234,16 +236,10 @@ namespace MVP_tema2_Hangman
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
             connection.Open();
-            SqlCommand alter = new SqlCommand("AlterProgressImageProcedure", connection);
-            alter.CommandType = CommandType.StoredProcedure;
-            alter.Parameters.AddWithValue("@drawing", imageToByteArray(game.drawing));
-            alter.ExecuteNonQuery();
-
             SqlCommand command = new SqlCommand("GetGameProcedure", connection);
             command.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.SelectCommand = command;
-            adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
             game.player.name = dataSet.Tables[0].Rows[0][0].ToString();           
@@ -295,15 +291,6 @@ namespace MVP_tema2_Hangman
                 game.addUsedLetter(btn.Content.ToString());
                 btn.IsEnabled = false;
             }
-        }
-
-        public static ImageSource copyImage(ImageSource source)
-        {
-            BitmapImage img = new BitmapImage();
-            img.BeginInit();
-            img.UriSource = new Uri(source.ToString());
-            img.EndInit();
-            return img;
         }
 
         private static void changeImageProgress(ref bool gameWon, ref bool gameLost, ref Game game, ref Image progress)

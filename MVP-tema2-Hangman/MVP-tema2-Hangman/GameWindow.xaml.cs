@@ -27,7 +27,6 @@ namespace MVP_tema2_Hangman
         {
             InitializeComponent();
 
-            currentGame.drawing.Source = Utils.copyImage(imgProgress.Source);
             Utils.getGame(ref currentGame);
             lblLevel.Content = lblLevel.Content + " " + currentGame.level;
             lblCategory.Content = lblCategory.Content + " " + currentGame.category;
