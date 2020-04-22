@@ -119,21 +119,44 @@ namespace MVP_tema2_Hangman
             listBoxPlayers.SelectedItem = "Ale";
         }
 
-        public static void initializeGame(ref Game game)
+        public static void initializeGame(ref Game game, int category)
         {
             game.progress = 0;
-            game.level = 0;
             SqlConnection connection =
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             SqlCommand command;
-            Random random = new Random();
-            int randomCategory = random.Next(1, 6);
+            Random random = new Random();            
             int randomWord;
+           
+            switch(category)
+            {
+                case 0:
+                    int randomCategory = random.Next(1, 6);
+                    game.category = "All categories";
+                    category = randomCategory;
+                    break;
+                case 1:
+                    game.category = "Cars";
+                    break;
+                case 2:
+                    game.category = "Mountains";
+                    break;
+                case 3:
+                    game.category = "Movies & series";
+                    break;
+                case 4:
+                    game.category = "Rivers";
+                    break;
+                case 5:
+                    game.category = "States";
+                    break;
+                default:
+                    break;
+            }
 
-            switch(randomCategory)
+            switch (category)
             {
                 case 1:
-                    game.category = "All categories";
                     randomWord = random.Next(1, 42);
                     connection.Open();
                     command = new SqlCommand("GetCarProcedure", connection);
@@ -147,7 +170,6 @@ namespace MVP_tema2_Hangman
                     break;
                 
                 case 2:
-                    game.category = "All categories";
                     randomWord = random.Next(1, 19);
                     connection.Open();
                     command = new SqlCommand("GetMountainProcedure", connection);
@@ -161,7 +183,6 @@ namespace MVP_tema2_Hangman
                     break;
                 
                 case 3:
-                    game.category = "All categories";
                     randomWord = random.Next(1, 40);
                     connection.Open();
                     command = new SqlCommand("GetMovieProcedure", connection);
@@ -175,7 +196,6 @@ namespace MVP_tema2_Hangman
                     break;
                 
                 case 4:
-                    game.category = "All categories";
                     randomWord = random.Next(1, 18);
                     connection.Open();
                     command = new SqlCommand("GetRiverProcedure", connection);
@@ -189,7 +209,6 @@ namespace MVP_tema2_Hangman
                     break;
                 
                 case 5:
-                    game.category = "All categories";
                     randomWord = random.Next(1, 47);
                     connection.Open();
                     command = new SqlCommand("GetStateProcedure", connection);
@@ -338,7 +357,27 @@ namespace MVP_tema2_Hangman
             return false;
         }
 
-        publi
+        public static void updatePlayer(string playerName, bool game)
+        {
+            SqlConnection connection =
+                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            connection.Open();
+            SqlCommand command;
+
+            if(game)
+            {
+                command = new SqlCommand("UpdateWonProcedure", connection);
+            }
+            else
+            {
+                command = new SqlCommand("UpdateLostprocedure", connection);
+            }
+
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@name", playerName);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
 
         //private static byte[] imageToByteArray(System.Windows.Controls.Image image)
         //{

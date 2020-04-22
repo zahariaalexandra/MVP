@@ -58,7 +58,8 @@ namespace MVP_tema2_Hangman
         {
             Player player = new Player(listBoxPlyers.SelectedItem.ToString());
             Game game = new Game(player);
-            Utils.initializeGame(ref game);
+            Utils.initializeGame(ref game, 0);
+            game.level = 1;
             Utils.addGame(game);
 
             GameWindow gameWindow = new GameWindow();
