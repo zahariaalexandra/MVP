@@ -31,7 +31,7 @@ namespace MVP_tema2_Hangman
             lblLevel.Content = lblLevel.Content + " " + currentGame.level;
             lblCategory.Content = lblCategory.Content + " " + currentGame.category;
             lblPlayer.Content = lblPlayer.Content + " " + currentGame.player.name;
-            lblWord.Content = Utils.transformWord(currentGame.word);
+            txtWord.Text = Utils.transformWord(currentGame.word);
         }
 
         private void btnLetter_Click(object sender, RoutedEventArgs e)
@@ -40,6 +40,34 @@ namespace MVP_tema2_Hangman
                 gameStarted = true;
 
             Button btnCurrent = sender as Button;
+            bool gameWon = false;
+            bool gameLost = Utils.letterTest(btnCurrent, ref currentGame, ref txtWord, ref imgProgress, ref gameWon);
+
+            if(gameLost || gameWon)
+            {
+                Panel container = (Panel)this.Content;
+                UIElementCollection elementCollection = container.Children;
+                List<FrameworkElement> elementList = elementCollection.Cast<FrameworkElement>().ToList();
+                var buttons = elementList.OfType<Button>();
+
+                foreach (Button button in buttons)
+                {
+                    button.IsEnabled = false;
+                }
+
+                if (gameWon)
+                {
+                    imgProgress.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameWon.png"));
+                    txtWord.Foreground = new SolidColorBrush(Colors.DarkSeaGreen);
+                    MessageBox.Show("Game won!", "", MessageBoxButton.OK);
+                }
+                else
+                {
+                    imgProgress.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameLost.png"));
+                    txtWord.Foreground = new SolidColorBrush(Colors.MediumVioletRed);
+                    MessageBox.Show("Game lost!", "", MessageBoxButton.OK);
+                }
+            }
         }
 
     }

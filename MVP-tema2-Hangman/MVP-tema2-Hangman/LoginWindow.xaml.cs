@@ -56,13 +56,12 @@ namespace MVP_tema2_Hangman
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow();
             Player player = new Player(listBoxPlyers.SelectedItem.ToString());
             Game game = new Game(player);
-            
             Utils.initializeGame(ref game);
             Utils.addGame(game);
 
+            GameWindow gameWindow = new GameWindow();
             gameWindow.Show();
             this.Close();
         }

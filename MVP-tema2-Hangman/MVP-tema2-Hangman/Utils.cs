@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Drawing;
-using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using System.Security.Cryptography;
+using System.Windows.Media.Imaging;
 
 namespace MVP_tema2_Hangman
 {
@@ -77,7 +74,7 @@ namespace MVP_tema2_Hangman
             }
         }
 
-        public static void changeImage(ListBox listBoxPlayers, ref Image profileImage)
+        public static void changeImage(ListBox listBoxPlayers, ref System.Windows.Controls.Image profileImage)
         {
             ListBoxItem item = (listBoxPlayers.SelectedItem as ListBoxItem);
             SqlConnection connection =
@@ -106,8 +103,6 @@ namespace MVP_tema2_Hangman
             profileImage.Source = source;
         }   
     
-     
-
         public static void deleteUser(ref ListBox listBoxPlayers)
         {
             SqlConnection connection =
@@ -138,7 +133,7 @@ namespace MVP_tema2_Hangman
             switch(randomCategory)
             {
                 case 1:
-                    game.category = "All categories: cars";
+                    game.category = "All categories";
                     randomWord = random.Next(1, 42);
                     connection.Open();
                     command = new SqlCommand("GetCarProcedure", connection);
@@ -152,7 +147,7 @@ namespace MVP_tema2_Hangman
                     break;
                 
                 case 2:
-                    game.category = "All categories: mountains";
+                    game.category = "All categories";
                     randomWord = random.Next(1, 19);
                     connection.Open();
                     command = new SqlCommand("GetMountainProcedure", connection);
@@ -166,7 +161,7 @@ namespace MVP_tema2_Hangman
                     break;
                 
                 case 3:
-                    game.category = "All categories: movies & series";
+                    game.category = "All categories";
                     randomWord = random.Next(1, 40);
                     connection.Open();
                     command = new SqlCommand("GetMovieProcedure", connection);
@@ -180,7 +175,7 @@ namespace MVP_tema2_Hangman
                     break;
                 
                 case 4:
-                    game.category = "All categories: rivers";
+                    game.category = "All categories";
                     randomWord = random.Next(1, 18);
                     connection.Open();
                     command = new SqlCommand("GetRiverProcedure", connection);
@@ -194,7 +189,7 @@ namespace MVP_tema2_Hangman
                     break;
                 
                 case 5:
-                    game.category = "All categories: states";
+                    game.category = "All categories";
                     randomWord = random.Next(1, 47);
                     connection.Open();
                     command = new SqlCommand("GetStateProcedure", connection);
@@ -240,6 +235,7 @@ namespace MVP_tema2_Hangman
             command.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter adapter = new SqlDataAdapter();
             adapter.SelectCommand = command;
+            adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
             game.player.name = dataSet.Tables[0].Rows[0][0].ToString();           
@@ -251,63 +247,109 @@ namespace MVP_tema2_Hangman
 
         public static string transformWord(string word)
         {
-            string codedWord = "";
+            StringBuilder codedWord = new StringBuilder("");
 
-            foreach(char letter in word)
+            foreach (char letter in word)
             {
                 if (Char.IsLetter(letter))
-                    codedWord = codedWord + "_ ";
+                    codedWord.Append("_ ");
                 else
-                    codedWord = codedWord + letter + " ";
+                    codedWord.Append(letter + " ");
             }
-
-            return codedWord;
+            
+             return codedWord.ToString();
         }
 
-        public static void letterTest(Button btn, ref Game game, ref Label lbl, ref Image img)
+        public static bool letterTest(Button btn, ref Game game, ref TextBox txt, ref System.Windows.Controls.Image img, ref bool gameWon)
         {
             bool exists = false;
-            StringBuilder codedWord = new StringBuilder(lbl.Content.ToString());
+            StringBuilder codedWord = new StringBuilder(txt.Text.ToString());
 
             for (int index = 0; index < game.word.Length; index++) 
             {
                 if (game.word[index].ToString() == btn.Content.ToString())
                 {
-                    codedWord[(index * 2) - 1] = game.word[index];
+                    codedWord[index * 2] = game.word[index];
                     exists = true;
                 }
-
-                if(exists)
-                {
-                    lbl.Content = codedWord;
-                    btn.Background = new SolidColorBrush(Colors.LightGreen);
-                }
-                else
-                {
-                    btn.Background = new SolidColorBrush(Colors.PaleVioletRed);
-
-                }
-
-                game.addUsedLetter(btn.Content.ToString());
-                btn.IsEnabled = false;
             }
+
+            if(exists)
+            {
+                txt.Text = codedWord.ToString();
+                btn.Background = new SolidColorBrush(Colors.LightGreen);
+                bool found = false;
+
+                foreach(char letter in txt.Text)
+                {
+                    if (letter == Convert.ToChar("_"))
+                        found = true;
+                }
+
+                if(!found)
+                {
+                    gameWon = true;
+                    return false;
+                }
+            }
+            else
+            {
+                btn.Background = new SolidColorBrush(Colors.PaleVioletRed);
+                   
+                switch(game.progress)
+                {
+                    case 0:
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgHeadProgress.png"));
+                        game.progress++;
+                        break;
+                    case 1:
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBodyProgress.png"));
+                        game.progress++;
+                        break;
+                    case 2:
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgOneHandProgress.png"));
+                        game.progress++;
+                        break;
+                    case 3:
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBothHandsProgress.png"));
+                        game.progress++;
+                        break;
+                    case 4:
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgOneLegProgress.png"));
+                        game.progress++;
+                        break;
+                    case 5:
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBothLegsProgress.png"));
+                        game.progress++;
+                        break;
+                    case 6:
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameLostProgress.png"));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            game.addUsedLetter(btn.Content.ToString());
+            btn.IsEnabled = false;
+
+            if (game.progress == 6)
+                return true;
+            return false;
         }
 
-        private static void changeImageProgress(ref bool gameWon, ref bool gameLost, ref Game game, ref Image progress)
-        {
+        publi
 
-        }
-
-        private static byte[] imageToByteArray(Image image)
-        {
-            BitmapImage bitmap = (image.Source as BitmapImage);
-            int height = bitmap.PixelHeight;
-            int width = bitmap.PixelWidth;
-            int stride = width * ((bitmap.Format.BitsPerPixel + 7) / 8);
-            byte[] data = new byte[height * stride];
-            bitmap.CopyPixels(data, stride, 0);
-            return data;
-        }
+        //private static byte[] imageToByteArray(System.Windows.Controls.Image image)
+        //{
+        //    BitmapImage bitmap = (image.Source as BitmapImage);
+        //    int height = bitmap.PixelHeight;
+        //    int width = bitmap.PixelWidth;
+        //    int stride = width * ((bitmap.Format.BitsPerPixel + 7) / 8);
+        //    byte[] data = new byte[height * stride];
+        //    bitmap.CopyPixels(data, stride, 0);
+        //    return data;
+        //}
 
     }
 }

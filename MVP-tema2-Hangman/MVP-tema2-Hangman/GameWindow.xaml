@@ -117,7 +117,7 @@
                HorizontalContentAlignment="Right">Player:
         </Label>
 
-        <Label Name="lblWord" 
+        <TextBox Name="txtWord" 
                  FontSize="35" 
                  Background="DeepSkyBlue"
                  Foreground="SaddleBrown"
@@ -127,6 +127,9 @@
                  Grid.Column="0"
                  Grid.ColumnSpan="15"
                  Margin="15,40,15,10"
+                 BorderThickness="0"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
                  HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center"/>        
 
@@ -138,7 +141,7 @@
                    Grid.RowSpan="3"
                    Grid.Column="0"
                    Grid.ColumnSpan="5" 
-                    Source="progressImages\ImgStart.png"/>
+                   Source="/progressImages/ImgStart.png"/>
 
         <Button Name="btnQ" 
                 FontFamily="Arial Black"

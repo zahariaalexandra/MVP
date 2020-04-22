@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -101,7 +102,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -116,10 +117,37 @@
     <Resource Include="Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ImgGameWon.png" />
+    <Resource Include="progressImages\ImgBodyProgress.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ImgStart.png" />
+    <Resource Include="progressImages\ImgBothHandsProgress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="progressImages\ImgBothLegsProgress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="progressImages\ImgGameLost.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="progressImages\ImgGameWon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="progressImages\ImgHeadProgress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="progressImages\ImgOneHandProgress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="progressImages\ImgOneLegProgress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="progressImages\ImgStart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgHeadProgress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgStart.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -134,7 +134,7 @@
     <value>..\progressImages\ImgGameWon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ImgHeadProgress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\progressImages\ImgHeadProgress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\ImgHeadProgress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ImgOneHandProgress" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\progressImages\ImgOneHandProgress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -143,6 +143,6 @@
     <value>..\progressImages\ImgOneLegProgress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ImgStart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\progressImages\ImgStart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\ImgStart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
