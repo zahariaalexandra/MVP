@@ -20,9 +20,28 @@ namespace MVP_tema2_Hangman
     /// </summary>
     public partial class GameWindow : Window
     {
+        public Game currentGame = new Game();
+        bool gameStarted = false;
+
         public GameWindow()
         {
             InitializeComponent();
+
+            currentGame.drawing.Source = Utils.copyImage(imgProgress.Source);
+            Utils.getGame(ref currentGame);
+            lblLevel.Content = lblLevel.Content + " " + currentGame.level;
+            lblCategory.Content = lblCategory.Content + " " + currentGame.category;
+            lblPlayer.Content = lblPlayer.Content + " " + currentGame.player.name;
+            lblWord.Content = Utils.transformWord(currentGame.word);
         }
+
+        private void btnLetter_Click(object sender, RoutedEventArgs e)
+        {
+            if (!gameStarted)
+                gameStarted = true;
+
+            Button btnCurrent = sender as Button;
+        }
+
     }
 }

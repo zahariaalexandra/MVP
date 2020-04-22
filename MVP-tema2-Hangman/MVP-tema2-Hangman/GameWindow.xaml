@@ -80,9 +80,9 @@
                Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="7"
-               Margin="15,30,0,0">Level:
-        </Label>
-        
+               Margin="15,30,0,0"
+               IsEnabled="False">Level: </Label>
+
         <Label Name="lblCategory" 
                Background="DeepSkyBlue"
                Foreground="SaddleBrown"
@@ -117,12 +117,7 @@
                HorizontalContentAlignment="Right">Player:
         </Label>
 
-        <Image Name="imgProfile"
-               Grid.Row="0"
-               Grid.Column="7"
-               Margin="0,15,0,0"/>
-
-        <TextBox Name="txtWord" 
+        <Label Name="lblWord" 
                  FontSize="35" 
                  Background="DeepSkyBlue"
                  Foreground="SaddleBrown"
@@ -133,8 +128,7 @@
                  Grid.ColumnSpan="15"
                  Margin="15,40,15,10"
                  HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center">_ _ d _
-        </TextBox>
+                 VerticalContentAlignment="Center"/>        
 
         <Image Name="imgProgress" 
                    Stretch="Uniform" 
@@ -143,8 +137,8 @@
                    Grid.Row="3"
                    Grid.RowSpan="3"
                    Grid.Column="0"
-                   Grid.ColumnSpan="5"
-                   Source="ImgStart.png"/>
+                   Grid.ColumnSpan="5" 
+                    Source="ImgStart.png"/>
 
         <Button Name="btnQ" 
                 FontFamily="Arial Black"
@@ -154,7 +148,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="5"
-                Margin="1,33,1,60">Q
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">Q
         </Button>
         
         <Button Name="btnW" 
@@ -165,7 +160,8 @@
                 Grid.Row="3"
                  Grid.RowSpan="2"
                 Grid.Column="6"
-                Margin="1,33,1,60">W
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">W
         </Button>
         
         <Button Name="btnE" 
@@ -176,7 +172,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="7"
-                Margin="1,33,1,60">E
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">E
         </Button>
         
         <Button Name="btnR" 
@@ -187,7 +184,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="8"
-                Margin="1,33,1,60">R
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">R
         </Button>
         
         <Button Name="btnT" 
@@ -198,7 +196,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="9"
-                Margin="1,33,1,60">T
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">T
         </Button>
         
         <Button Name="btnY" 
@@ -209,7 +208,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="10"
-                Margin="1,33,1,60">Y
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">Y
         </Button>
         
         <Button Name="btnU" 
@@ -220,7 +220,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="11"
-                Margin="1,33,1,60">U
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">U
         </Button>
         
         <Button Name="btnI" 
@@ -231,7 +232,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="12"
-                Margin="1,33,1,60">I
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">I
         </Button>
         
         <Button Name="btnO" 
@@ -242,7 +244,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="13"
-                Margin="1,33,1,60">O
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">O
         </Button>
         
         <Button Name="btnP" 
@@ -253,7 +256,8 @@
                 Grid.Row="3"
                 Grid.RowSpan="2"
                 Grid.Column="14"
-                Margin="1,33,1,60">P
+                Margin="1,33,1,60"
+                Click="btnLetter_Click">P
         </Button>
 
         
@@ -265,7 +269,8 @@
                 Grid.Row="4"
                 Grid.Column="5"
                 Grid.ColumnSpan="2"
-                Margin="20,13,20,13">A
+                Margin="20,13,20,13"
+                Click="btnLetter_Click">A
         </Button>
         
         <Button Name="btnS" 
@@ -276,7 +281,8 @@
                 Grid.Row="4"
                 Grid.Column="6"
                 Grid.ColumnSpan="2"
-                Margin="20,13,20,13">S
+                Margin="20,13,20,13"
+                Click="btnLetter_Click">S
         </Button>
         
         <Button Name="btnD" 
@@ -287,7 +293,8 @@
                 Grid.Row="4"
                 Grid.Column="7"
                 Grid.ColumnSpan="2"
-                Margin="20,13,20,13">D
+                Margin="20,13,20,13"
+                Click="btnLetter_Click">D
         </Button>
         
         <Button Name="btnF" 
@@ -298,7 +305,8 @@
                 Grid.Row="4"
                 Grid.Column="8"
                 Grid.ColumnSpan="2"
-                Margin="20,13,20,13">F
+                Margin="20,13,20,13"
+                Click="btnLetter_Click">F
         </Button>
         
         <Button Name="btnG" 
@@ -309,7 +317,8 @@
                 Grid.Row="4"
                 Grid.Column="9"
                 Grid.ColumnSpan="2"
-                Margin="20,13,20,13">G
+                Margin="20,13,20,13"
+                Click="btnLetter_Click">G
         </Button>
         
         <Button Name="btnH" 
@@ -320,7 +329,8 @@
                 Grid.Row="4"
                 Grid.Column="10"
                 Grid.ColumnSpan="2"
-                Margin="20,13,20,13">H
+                Margin="20,13,20,13"
+                Click="btnLetter_Click">H
         </Button>
         
         <Button Name="btnJ" 
@@ -331,7 +341,8 @@
                 Grid.Row="4"
                 Grid.Column="11"
                 Grid.ColumnSpan="2"
-               Margin="20,13,20,13">J
+               Margin="20,13,20,13"
+                Click="btnLetter_Click">J
         </Button>
         
         <Button Name="btnK" 
@@ -342,7 +353,8 @@
                 Grid.Row="4"
                 Grid.Column="12"
                 Grid.ColumnSpan="2"
-                Margin="20,13,20,13">K
+                Margin="20,13,20,13"
+                Click="btnLetter_Click">K
         </Button>
 
         <Button Name="btnL" 
@@ -353,7 +365,8 @@
                 Grid.Row="4"
                 Grid.Column="13"
                 Grid.ColumnSpan="2"
-               Margin="20,13,20,13">L
+               Margin="20,13,20,13"
+                Click="btnLetter_Click">L
         </Button>
 
 
@@ -366,7 +379,8 @@
                 Grid.RowSpan="5"
                 Grid.Column="6"
               Grid.ColumnSpan="2"
-               Margin="20,60,20,33">Z
+               Margin="20,60,20,33"
+                Click="btnLetter_Click">Z
         </Button>
 
         <Button Name="btnX" 
@@ -378,7 +392,8 @@
                 Grid.RowSpan="5"
                 Grid.Column="7"
                Grid.ColumnSpan="2"
-               Margin="20,60,20,33">X
+               Margin="20,60,20,33"
+                Click="btnLetter_Click">X
         </Button>
         
         <Button Name="btnC" 
@@ -390,7 +405,8 @@
                 Grid.RowSpan="5"
                 Grid.Column="8"
                Grid.ColumnSpan="2"
-               Margin="20,60,20,33">C
+               Margin="20,60,20,33"
+                Click="btnLetter_Click">C
         </Button>
         
         <Button Name="btnV" 
@@ -402,7 +418,8 @@
                 Grid.RowSpan="5"
                 Grid.Column="9"
                Grid.ColumnSpan="2"
-               Margin="20,60,20,33">V
+               Margin="20,60,20,33"
+                Click="btnLetter_Click">V
         </Button>
         
         <Button Name="btnB" 
@@ -414,7 +431,8 @@
                 Grid.RowSpan="5"
                 Grid.Column="10"
                Grid.ColumnSpan="2"
-               Margin="20,60,20,33">B
+               Margin="20,60,20,33"
+                Click="btnLetter_Click">B
         </Button>
         
         <Button Name="btnN" 
@@ -426,7 +444,8 @@
                 Grid.RowSpan="5"
                 Grid.Column="11"
              Grid.ColumnSpan="2"
-               Margin="20,60,20,33">N
+               Margin="20,60,20,33"
+                Click="btnLetter_Click">N
         </Button>
         
         <Button Name="btnM" 
@@ -438,7 +457,8 @@
                 Grid.RowSpan="5"
                 Grid.Column="12"
               Grid.ColumnSpan="2"
-               Margin="20,60,20,33">M
+               Margin="20,60,20,33"
+                Click="btnLetter_Click">M
         </Button>
         
     </Grid>

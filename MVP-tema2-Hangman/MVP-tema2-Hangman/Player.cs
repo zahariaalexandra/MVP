@@ -6,12 +6,22 @@ using System.Threading.Tasks;
 
 namespace MVP_tema2_Hangman
 {
-    class Player
+    public class Player
     {
-        private string name;
-        private int gamesPlayed;
-        private int gamesLost;
-        private int gamesWon;
+        internal string name;
+        internal int gamesPlayed;
+        internal int gamesLost;
+        internal int gamesWon;
+        
+        internal string _name { get { return name; } set { name = value; } }
+
+        public Player()
+        {
+            name = "";
+            gamesPlayed = 0;
+            gamesLost = 0;
+            gamesWon = 0;
+        }
 
         public Player(string name)
         {

@@ -20,6 +20,7 @@ namespace MVP_tema2_Hangman
     /// </summary>
     public partial class LoginWindow : Window
     {
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -51,6 +52,20 @@ namespace MVP_tema2_Hangman
         {
             Utils.deleteUser(ref listBoxPlyers);
             Utils.getNames(ref listBoxPlyers);
+        }
+
+        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        {
+            GameWindow gameWindow = new GameWindow();
+            Player player = new Player(listBoxPlyers.SelectedItem.ToString());
+            Game game = new Game(player);
+            
+            Utils.initializeGame(ref game);
+            game.drawing = gameWindow.imgProgress;
+            Utils.addGame(game);
+
+            gameWindow.Show();
+            this.Close();
         }
     }
 }

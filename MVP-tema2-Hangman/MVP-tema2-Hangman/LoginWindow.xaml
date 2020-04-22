@@ -95,7 +95,8 @@
                 Grid.Column="2"
                 Margin="10,10,10,10"
                 BorderThickness="0"
-                IsEnabled="False">Play
+                IsEnabled="False"
+                Click="btnPlay_Click">Play
         </Button>
 
         <Button Name="btnCancel" 
