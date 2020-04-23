@@ -100,7 +100,8 @@ namespace MVP_tema2_Hangman
 
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
-
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }

@@ -7,8 +7,10 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 
 namespace MVP_tema2_Hangman
 {
@@ -376,6 +378,37 @@ namespace MVP_tema2_Hangman
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@name", playerName);
             command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public static void fillStatisticsTable(ref Table tbl)
+        {
+            SqlConnection connection =
+               new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            int row = 1;
+
+            connection.Open();
+            SqlCommand command = new SqlCommand("GetPlayerProcedure", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader = command.ExecuteReader();
+            
+            while(reader.Read())
+            {
+                Player player = new Player();
+                player.name = reader["name"].ToString();
+                player.gamesPlayed = Convert.ToInt32(reader["played_games"]);
+                player.gamesWon = Convert.ToInt32(reader["won_games"]);
+                player.gamesLost = Convert.ToInt32(reader["lost_games"]);
+                
+                tbl.RowGroups[0].Rows.Add(new TableRow());
+                TableRow currentRow = tbl.RowGroups[0].Rows[row];
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(player.name))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(player.gamesPlayed.ToString()))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(player.gamesWon.ToString()))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(player.gamesLost.ToString()))));
+                row++;
+            }
+
             connection.Close();
         }
 
