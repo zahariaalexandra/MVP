@@ -14,9 +14,6 @@ namespace MVP_tema2_Hangman
     /// </summary>
     public partial class StatisticsWindow : Window
     {
-        public Game currentGame = new Game();
-        bool gameStarted = false;
-
         public StatisticsWindow()
         {
             InitializeComponent();

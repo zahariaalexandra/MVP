@@ -55,7 +55,8 @@ namespace MVP_tema2_Hangman
                     MessageBox.Show("Level finished!", "", MessageBoxButton.OK);
                     currentGame.level++;
                     Utils.initializeGame(ref currentGame, 0);
-                    Utils.addGame(currentGame);
+                    currentGame.progress = 0;
+                    Utils.addGame(currentGame, false);
                     GameWindow newGameWindow = new GameWindow();
                     newGameWindow.Show();
                     this.Close();
@@ -81,7 +82,7 @@ namespace MVP_tema2_Hangman
                         newGame.level = 1;
                         Utils.initializeGame(ref newGame, 0);
                         newGame.usedLetters = new List<string>();
-                        Utils.addGame(newGame);
+                        Utils.addGame(newGame, false);
 
                         GameWindow newGameWindow = new GameWindow();
                         newGameWindow.Show();
@@ -102,6 +103,41 @@ namespace MVP_tema2_Hangman
         {
             StatisticsWindow statisticsWindow = new StatisticsWindow();
             statisticsWindow.ShowDialog();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow login = new LoginWindow();
+            login.Show();
+            this.Close();
+        }
+
+        private void NewGame_Click(object sender, RoutedEventArgs e)
+        {
+            Player player = new Player(currentGame.player.name);
+            Game newGame = new Game(player);
+            Utils.initializeGame(ref newGame, Utils.categorySwich(currentGame.category));
+            newGame.level = 1;
+            Utils.addGame(newGame, false);
+            GameWindow window = new GameWindow();
+            window.Show();
+            this.Close();
+        }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            string instructions = "The goal is to guess all letters contained by the word. \nOnce you pressed a letter it becomes used. If it was right, it will be revealed in the word, otherwise a new body part will be added to the drawing. \nIf the word is completed before the drawing is finished, the level is won and the next level will appear. \nIf the drawing is completed before the word is guessed, the game is lost.";
+            MessageBox.Show(instructions, "Game instructions", MessageBoxButton.OK);
+        }
+
+        private void Info_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Zaharia Alexandra\nGrupa 283\nInformatica", "Info", MessageBoxButton.OK);
+        }
+
+        private void SaveGame_Click(object sender, RoutedEventArgs e)
+        {
+            Utils.addGame(currentGame, true);
         }
     }
 }

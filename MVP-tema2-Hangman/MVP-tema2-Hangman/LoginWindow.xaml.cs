@@ -60,7 +60,7 @@ namespace MVP_tema2_Hangman
             Game game = new Game(player);
             Utils.initializeGame(ref game, 0);
             game.level = 1;
-            Utils.addGame(game);
+            Utils.addGame(game, false);
 
             GameWindow gameWindow = new GameWindow();
             gameWindow.Show();

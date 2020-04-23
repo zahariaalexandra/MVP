@@ -228,7 +228,7 @@ namespace MVP_tema2_Hangman
             }
         }
 
-        public static void addGame(Game game)
+        public static void addGame(Game game, bool saved)
         {
             SqlConnection connection = 
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
@@ -241,7 +241,15 @@ namespace MVP_tema2_Hangman
             command.Parameters.AddWithValue("@category", game.category);
             command.Parameters.AddWithValue("@word", game.word);            
             command.Parameters.AddWithValue("@used_letters", game.usedLetters.ToString());
-            command.Parameters.AddWithValue("@progress", 0);
+            command.Parameters.AddWithValue("@progress", game.progress);
+            if (saved)
+            {
+                command.Parameters.AddWithValue("@saved", 1);
+            }
+            else
+            {
+                command.Parameters.AddWithValue("@saved", 0);
+            }
             command.ExecuteNonQuery();
             connection.Close();
         }
@@ -412,16 +420,25 @@ namespace MVP_tema2_Hangman
             connection.Close();
         }
 
-        //private static byte[] imageToByteArray(System.Windows.Controls.Image image)
-        //{
-        //    BitmapImage bitmap = (image.Source as BitmapImage);
-        //    int height = bitmap.PixelHeight;
-        //    int width = bitmap.PixelWidth;
-        //    int stride = width * ((bitmap.Format.BitsPerPixel + 7) / 8);
-        //    byte[] data = new byte[height * stride];
-        //    bitmap.CopyPixels(data, stride, 0);
-        //    return data;
-        //}
+        public static int categorySwich(string category)
+        {
+            switch(category)
+            {
+                case "Cars":
+                    return 1;
+                case "Mountains":
+                    return 2;
+                case "Movies & series":
+                    return 3;
+                case "Rivers":
+                    return 4;
+                case "States":
+                    return 5;
+                default:
+                    return 0;
+            }
+        }
 
+        public static int updateSavedGame()
     }
 }
