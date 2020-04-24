@@ -230,7 +230,6 @@ namespace MVP_tema2_Hangman
             command.Parameters.AddWithValue("@word", game.word);            
             command.Parameters.AddWithValue("@used_letters", game.usedLetters.ToString());
             command.Parameters.AddWithValue("@progress", game.progress);
-            command.Parameters.AddWithValue("@saved", saved);
             command.ExecuteNonQuery();
             connection.Close();
         }

@@ -23,10 +23,10 @@ namespace MVP_tema2_Hangman
             InitializeComponent();
 
             Utils.getGame(ref currentGame);
-            lblLevel.Content = lblLevel.Content + " " + currentGame._level;
-            lblCategory.Content = lblCategory.Content + " " + currentGame._category;
-            lblPlayer.Content = lblPlayer.Content + " " + currentGame._player._name;
-            txtWord.Text = Utils.transformWord(currentGame._word);
+            lblLevel.Content = lblLevel.Content + " " + currentGame.level;
+            lblCategory.Content = lblCategory.Content + " " + currentGame.category;
+            lblPlayer.Content = lblPlayer.Content + " " + currentGame.player.name;
+            txtWord.Text = Utils.transformWord(currentGame.word);
         }
 
         private void btnLetter_Click(object sender, RoutedEventArgs e)
@@ -53,25 +53,25 @@ namespace MVP_tema2_Hangman
                     button.IsEnabled = false;
                 }
 
-                if (gameWon && currentGame._level < 5)
+                if (gameWon && currentGame.level < 5)
                 {
                     imgProgress.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameWon.png"));
                     txtWord.Foreground = new SolidColorBrush(Colors.DarkSeaGreen);
                     MessageBox.Show("Level finished!", "", MessageBoxButton.OK);
-                    currentGame._level++;
+                    currentGame.level++;
                     Utils.initializeGame(ref currentGame, 0);
-                    currentGame._progress = 0;
+                    currentGame.progress = 0;
                     Utils.addGame(currentGame, false);
                     GameWindow newGameWindow = new GameWindow();
                     newGameWindow.Show();
                     this.Close();
                 }
-                else if (gameWon && currentGame._level == 5)
+                else if (gameWon && currentGame.level == 5)
                 {
                     imgProgress.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameWon.png"));
                     txtWord.Foreground = new SolidColorBrush(Colors.DarkSeaGreen);
                     MessageBox.Show("Game won!", "", MessageBoxButton.OK);
-                    Utils.updatePlayer(currentGame._player._name, true);
+                    Utils.updatePlayer(currentGame.player.name, true);
                     LoginWindow newWindow = new LoginWindow();
                     newWindow.Show();
                     this.Close();
@@ -83,10 +83,10 @@ namespace MVP_tema2_Hangman
 
                     if (MessageBox.Show("Game lost. \nDo you want to start a new game?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
-                        Game newGame = new Game(currentGame._player);
-                        newGame._level = 1;
+                        Game newGame = new Game(currentGame.player);
+                        newGame.level = 1;
                         Utils.initializeGame(ref newGame, 0);
-                        newGame._usedLetters = new List<string>();
+                        newGame.usedLetters = new List<string>();
                         Utils.addGame(newGame, false);
 
                         GameWindow newGameWindow = new GameWindow();
@@ -98,7 +98,7 @@ namespace MVP_tema2_Hangman
                         newWindow.Show();
                     }
 
-                    Utils.updatePlayer(currentGame._player._name, false);
+                    Utils.updatePlayer(currentGame.player.name, false);
                     this.Close();
                 }
             }
@@ -119,7 +119,7 @@ namespace MVP_tema2_Hangman
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
-            Player player = new Player(currentGame._player._name);
+            Player player = new Player(currentGame.player.name);
             Game newGame = new Game(player);
             Utils.initializeGame(ref newGame, Utils.categorySwich(currentGame._category));
             newGame._level = 1;
