@@ -8,12 +8,15 @@ namespace MVP_tema2_Hangman
 {
     public class Player
     {
-        internal string name;
-        internal int gamesPlayed;
-        internal int gamesLost;
-        internal int gamesWon;
+        internal string _name;
+        internal int _gamesPlayed;
+        internal int _gamesLost;
+        internal int _gamesWon;
         
-        internal string _name { get { return name; } set { name = value; } }
+        internal string name { get { return _name; } set { _name = value; } }
+        internal int gamesPlayed { get { return _gamesPlayed; } set { _gamesPlayed = value; } }
+        internal int gamesWon { get { return _gamesWon; } set { _gamesWon = value; } }
+        internal int gamesLost { get { return _gamesLost; } set { _gamesLost = value; } }
 
         public Player()
         {
@@ -29,21 +32,6 @@ namespace MVP_tema2_Hangman
             gamesPlayed = 0;
             gamesLost = 0;
             gamesWon = 0;
-        }
-
-        public void addGame()
-        {
-            gamesPlayed++;
-        }
-
-        public void addLostGame()
-        {
-            gamesLost++;
-        }
-
-        public void addWonGame()
-        {
-            gamesWon++;
         }
     }
 }

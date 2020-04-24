@@ -53,10 +53,6 @@
             <MenuItem Header="File">
                 <MenuItem Header="New game"
                           Click="NewGame_Click"/>
-                <MenuItem Header="Open game"
-                          Click="OpenGame_Click"/>
-                <MenuItem Header="Save game"
-                          Click="SaveGame_Click"/>
                 <MenuItem Header="Statistics"
                           Click="Statistics_Click"/>
                 <MenuItem Header="Exit"

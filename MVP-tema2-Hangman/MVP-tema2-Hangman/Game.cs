@@ -10,41 +10,42 @@ namespace MVP_tema2_Hangman
 {
     public class Game
     {
-        internal int id;
-        internal string category;
-        internal int level;
-        internal string word;
-        internal Player player;
-        internal List<string> usedLetters;
-        internal int progress;
+        internal int _id;
+        internal string _category;
+        internal int _level;
+        internal string _word;
+        internal Player _player;
+        internal List<string> _usedLetters;
+        internal int _progress;
 
-        internal string _id { get { return category; } set { category = value; } }
-        internal string _category { get { return category; } set { category = value; } }
-        internal int _level { get { return level; } set { this.level = value; } }
-        internal string _word { get { return word; } set { word = value; } }
-        internal int _progress{ get { return progress; } set { progress = value; } }
-        internal List<string> _usedLetters { get { return usedLetters; } set { usedLetters = value; } }
-       
+        public int id { get { return _id; } set { _id = value; } }
+        public string category { get { return _category; } set { _category = value; } }
+        public int level { get { return _level; } set { this._level = value; } }
+        public string word { get { return _word; } set { _word = value; } }
+        public int progress{ get { return _progress; } set { _progress = value; } }
+        public List<string> usedLetters { get { return _usedLetters; } set { _usedLetters = value; } }
+        public Player player { get { return _player; } set { _player = value; } }
+
         public Game()
         {
-            this.id = 0;
-            this.player = new Player();
-            this.category = "";
-            this.level = 0;
-            this.word = "";
-            this.progress = 0;
-            this.usedLetters = new List<string>();
+            id = 0;
+            player = new Player();
+            category = "";
+            level = 0;
+            word = "";
+            progress = 0;
+            usedLetters = new List<string>();
         }
 
         public Game(Player player)
         {
-            this.id = 0;
+            id = 0;
             this.player = player;
-            this.category = "";
-            this.level = 0;
-            this.word = "";
-            this.progress = 0;
-            this.usedLetters = new List<string>();
+            category = "";
+            level = 0;
+            word = "";
+            progress = 0;
+            usedLetters = new List<string>();
         }
 
         public void addUsedLetter(string letter)
