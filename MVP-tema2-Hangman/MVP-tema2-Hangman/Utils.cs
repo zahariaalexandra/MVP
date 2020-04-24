@@ -18,7 +18,7 @@ namespace MVP_tema2_Hangman
 {
     class Utils
     {
-        public static void getNames(ref ListBox listBoxNames)
+        public static void getNames(ref List<string> namesList)
         {
             List<string> names = new List<string>();
 
@@ -36,7 +36,7 @@ namespace MVP_tema2_Hangman
             }
             connection.Close();
 
-            listBoxNames.ItemsSource = names;
+            namesList.ItemsSource = names;
         }
 
         public static void addNewPlayer(TextBox txtName, byte[] image)
