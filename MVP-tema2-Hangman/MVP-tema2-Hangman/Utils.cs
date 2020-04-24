@@ -289,7 +289,7 @@ namespace MVP_tema2_Hangman
                 txt = codedWord.ToString();
                 bool found = false;
 
-                foreach(char letter in txt)
+                foreach (char letter in txt)
                 {
                     if (letter == Convert.ToChar("_"))
                         found = true;

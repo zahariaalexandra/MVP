@@ -34,12 +34,17 @@ namespace MVP_tema2_Hangman
             Button btnCurrent = sender as Button;
             bool gameWon = false;
             string txt = txtWord.Text;
-            BitmapImage img = new BitmapImage();
+            BitmapImage img;
+
+            if (currentGame.progress == 0)
+                img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgStart.png"));
+            else
+                img = (BitmapImage)imgProgress.Source;
+
             bool gameLost = Utils.letterTest(btnCurrent.Content.ToString(), ref currentGame, ref txt, ref img, ref gameWon);
             btnCurrent.IsEnabled = false;
             txtWord.Text = txt;
             imgProgress.Source = img;
-
 
             if (gameLost || gameWon)
             {
