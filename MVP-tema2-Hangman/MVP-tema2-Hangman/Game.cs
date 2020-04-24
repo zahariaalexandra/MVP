@@ -10,6 +10,7 @@ namespace MVP_tema2_Hangman
 {
     public class Game
     {
+        internal int id;
         internal string category;
         internal int level;
         internal string word;
@@ -17,6 +18,7 @@ namespace MVP_tema2_Hangman
         internal List<string> usedLetters;
         internal int progress;
 
+        internal string _id { get { return category; } set { category = value; } }
         internal string _category { get { return category; } set { category = value; } }
         internal int _level { get { return level; } set { this.level = value; } }
         internal string _word { get { return word; } set { word = value; } }
@@ -25,6 +27,7 @@ namespace MVP_tema2_Hangman
        
         public Game()
         {
+            this.id = 0;
             this.player = new Player();
             this.category = "";
             this.level = 0;
@@ -35,6 +38,7 @@ namespace MVP_tema2_Hangman
 
         public Game(Player player)
         {
+            this.id = 0;
             this.player = player;
             this.category = "";
             this.level = 0;

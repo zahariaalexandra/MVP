@@ -138,6 +138,32 @@ namespace MVP_tema2_Hangman
         private void SaveGame_Click(object sender, RoutedEventArgs e)
         {
             Utils.addGame(currentGame, true);
+            Game savedGame = new Game();
+            Utils.getGame(ref savedGame);
+            Utils.updateSavedGame(savedGame);
+            MessageBox.Show("The game is saved!", "", MessageBoxButton.OK);
+        }
+
+        private void OpenGame_Click(object sender, RoutedEventArgs e)
+        {
+            int savedGameId = 0;
+            bool saved = Utils.checkSavedGame(ref currentGame.player, ref savedGameId);
+
+            if(saved)
+            {
+                if(MessageBox.Show("Are you sure you want to load your saved game?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Game savedGame = Utils.getGameById(savedGameId);
+                    Utils.addGame(savedGame, false);
+                    GameWindow gameWindow = new GameWindow();
+                    gameWindow.Show();
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("You don't have any saved games", "", MessageBoxButton.OK);
+            }
         }
     }
 }

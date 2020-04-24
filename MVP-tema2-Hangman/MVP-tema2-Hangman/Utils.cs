@@ -4,10 +4,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
@@ -242,14 +244,7 @@ namespace MVP_tema2_Hangman
             command.Parameters.AddWithValue("@word", game.word);            
             command.Parameters.AddWithValue("@used_letters", game.usedLetters.ToString());
             command.Parameters.AddWithValue("@progress", game.progress);
-            if (saved)
-            {
-                command.Parameters.AddWithValue("@saved", 1);
-            }
-            else
-            {
-                command.Parameters.AddWithValue("@saved", 0);
-            }
+            command.Parameters.AddWithValue("@saved", saved);
             command.ExecuteNonQuery();
             connection.Close();
         }
@@ -267,10 +262,11 @@ namespace MVP_tema2_Hangman
             adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
-            game.player.name = dataSet.Tables[0].Rows[0][0].ToString();           
-            game.level = Convert.ToInt32(dataSet.Tables[0].Rows[0][1].ToString());
-            game.category = dataSet.Tables[0].Rows[0][2].ToString();
-            game.word = dataSet.Tables[0].Rows[0][3].ToString();
+            game.id = Convert.ToInt32(dataSet.Tables[0].Rows[0][0]);
+            game.player.name = dataSet.Tables[0].Rows[0][1].ToString();           
+            game.level = Convert.ToInt32(dataSet.Tables[0].Rows[0][2].ToString());
+            game.category = dataSet.Tables[0].Rows[0][3].ToString();
+            game.word = dataSet.Tables[0].Rows[0][4].ToString();
             connection.Close();
         }
 
@@ -439,6 +435,85 @@ namespace MVP_tema2_Hangman
             }
         }
 
-        public static int updateSavedGame()
+        public static void updateSavedGame(Game game)
+        {
+            SqlConnection connection =
+               new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+            connection.Open();
+            SqlCommand command = new SqlCommand("UpdateSavedProcedure", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@name", game.player.name);
+            command.Parameters.AddWithValue("@saved", game.id);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public static bool checkSavedGame(ref Player player, ref int savedId)
+        {
+            SqlConnection connection =
+               new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+            connection.Open();
+            SqlCommand command = new SqlCommand("GetSavedProcedure", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@name", player._name);
+            SqlDataReader reader = command.ExecuteReader();
+            if(reader.Read())
+            {
+                savedId = Convert.ToInt32(reader["saved_game"]);
+                reader.Close();
+
+                if (savedId != 0)
+                {
+                    command = new SqlCommand("UpdateSavedProcedure", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@name", player._name);
+                    command.Parameters.AddWithValue("@saved", 0);
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static Game getGameById(int id)
+        {
+            Game game = new Game();
+            SqlConnection connection =
+               new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+            connection.Open();
+            SqlCommand command = new SqlCommand("LoadSavedGameProcedure", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = command.ExecuteReader();
+           
+            if(reader.Read())
+            {
+                game.player._name = reader["player_name"].ToString();
+                game._level = Convert.ToInt32(reader["level"]);
+                game._category = reader["category"].ToString();
+                game._word = reader["word"].ToString();
+                string usedLetters = reader["used_letters"].ToString();
+                
+                foreach(char letter in usedLetters)
+                {
+                    game.addUsedLetter(letter.ToString());
+                }
+
+                game._progress = Convert.ToInt32(reader["progress"]);
+            }
+            
+            connection.Close();
+            return game;
+        }
     }
 }
