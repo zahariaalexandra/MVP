@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.TextFormatting;
 
 namespace MVP_tema2_Hangman
 {
@@ -20,9 +14,7 @@ namespace MVP_tema2_Hangman
     {
         public static void getNames(ref List<string> namesList)
         {
-            List<string> names = new List<string>();
-
-            SqlConnection connection =
+             SqlConnection connection =
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
             connection.Open();
@@ -32,16 +24,14 @@ namespace MVP_tema2_Hangman
 
             while (reader.Read())
             {
-                names.Add(reader["name"].ToString());
+                namesList.Add(reader["name"].ToString());
             }
             connection.Close();
-
-            namesList.ItemsSource = names;
         }
 
-        public static void addNewPlayer(TextBox txtName, byte[] image)
+        public static void addNewPlayer(string txtName, byte[] image)
         {
-            if (txtName.Text == "" || txtName.Text == "Type your name...")
+            if (txtName == "" || txtName == "Type your name...")
                 MessageBox.Show("Please insert your name!", "Error!", MessageBoxButton.OK);
             else
             {
@@ -51,7 +41,7 @@ namespace MVP_tema2_Hangman
                 connection.Open();
                 SqlCommand command = new SqlCommand("InsertProcedure", connection);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@name", txtName.Text);
+                command.Parameters.AddWithValue("@name", txtName);
                 command.Parameters.AddWithValue("@image", image);
                 command.ExecuteNonQuery();
                 connection.Close();
@@ -59,7 +49,7 @@ namespace MVP_tema2_Hangman
             }
         }
 
-        public static void chooseImage(ref Button btnAdd, ref byte[] img, ref Label lblImage)
+        public static void chooseImage(ref bool enabled, ref byte[] img, ref string fileName)
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.DefaultExt = ".png";
@@ -72,15 +62,13 @@ namespace MVP_tema2_Hangman
                 img = new byte[fileStream.Length];
                 fileStream.Read(img, 0, System.Convert.ToInt32(fileStream.Length));
                 fileStream.Close();
-                string fileName = dialog.FileName;
-                btnAdd.IsEnabled = true;
-                lblImage.Content = fileName;
+                fileName = dialog.FileName;
+                enabled = true;
             }
         }
 
-        public static void changeImage(ListBox listBoxPlayers, ref System.Windows.Controls.Image profileImage)
+        public static void changeImage(string selectedItem, ref BitmapImage source)
         {
-            ListBoxItem item = (listBoxPlayers.SelectedItem as ListBoxItem);
             SqlConnection connection =
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
@@ -89,7 +77,7 @@ namespace MVP_tema2_Hangman
             SqlDataAdapter adapter = new SqlDataAdapter();
             SqlCommand command = new SqlCommand("GetImageProcedure", connection);
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@name", listBoxPlayers.SelectedItem.ToString());
+            command.Parameters.AddWithValue("@name", selectedItem);
             adapter.SelectCommand = command;
             adapter.Fill(data);
             connection.Close();
@@ -99,15 +87,13 @@ namespace MVP_tema2_Hangman
             stream.Write(image, 0, image.Length);
             stream.Position = 0;
 
-            var source = new BitmapImage();
+            source = new BitmapImage();
             source.BeginInit();
             source.StreamSource = stream;
             source.EndInit();
-
-            profileImage.Source = source;
         }   
     
-        public static void deleteUser(ref ListBox listBoxPlayers)
+        public static void deleteUser(string selectedItem, ref string newSelectedItem)
         {
             SqlConnection connection =
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
@@ -115,12 +101,12 @@ namespace MVP_tema2_Hangman
             connection.Open();
             SqlCommand command = new SqlCommand("DeleteProcedure", connection);
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@name", listBoxPlayers.SelectedItem);
+            command.Parameters.AddWithValue("@name", selectedItem);
             command.ExecuteNonQuery();
             MessageBox.Show("User deleted!", "", MessageBoxButton.OK);
             connection.Close();
 
-            listBoxPlayers.SelectedItem = "Ale";
+            newSelectedItem = "Ale";
         }
 
         public static void initializeGame(ref Game game, int category)
@@ -285,14 +271,14 @@ namespace MVP_tema2_Hangman
              return codedWord.ToString();
         }
 
-        public static bool letterTest(Button btn, ref Game game, ref TextBox txt, ref System.Windows.Controls.Image img, ref bool gameWon)
+        public static bool letterTest(string btnContent, ref Game game, ref string txt, ref BitmapImage img, ref bool gameWon)
         {
             bool exists = false;
-            StringBuilder codedWord = new StringBuilder(txt.Text.ToString());
+            StringBuilder codedWord = new StringBuilder(txt);
 
             for (int index = 0; index < game.word.Length; index++) 
             {
-                if (game.word[index].ToString() == btn.Content.ToString())
+                if (game.word[index].ToString() == btnContent)
                 {
                     codedWord[index * 2] = game.word[index];
                     exists = true;
@@ -301,11 +287,10 @@ namespace MVP_tema2_Hangman
 
             if(exists)
             {
-                txt.Text = codedWord.ToString();
-                btn.Background = new SolidColorBrush(Colors.LightGreen);
+                txt = codedWord.ToString();
                 bool found = false;
 
-                foreach(char letter in txt.Text)
+                foreach(char letter in txt)
                 {
                     if (letter == Convert.ToChar("_"))
                         found = true;
@@ -318,45 +303,42 @@ namespace MVP_tema2_Hangman
                 }
             }
             else
-            {
-                btn.Background = new SolidColorBrush(Colors.PaleVioletRed);
-                   
+            {   
                 switch(game.progress)
                 {
                     case 0:
-                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgHeadProgress.png"));
+                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgHeadProgress.png"));
                         game.progress++;
                         break;
                     case 1:
-                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBodyProgress.png"));
+                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBodyProgress.png"));
                         game.progress++;
                         break;
                     case 2:
-                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgOneHandProgress.png"));
+                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgOneHandProgress.png"));
                         game.progress++;
                         break;
                     case 3:
-                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBothHandsProgress.png"));
+                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBothHandsProgress.png"));
                         game.progress++;
                         break;
                     case 4:
-                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgOneLegProgress.png"));
+                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgOneLegProgress.png"));
                         game.progress++;
                         break;
                     case 5:
-                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBothLegsProgress.png"));
+                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBothLegsProgress.png"));
                         game.progress++;
                         break;
                     case 6:
-                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameLostProgress.png"));
+                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameLostProgress.png"));
                         break;
                     default:
                         break;
                 }
             }
 
-            game.addUsedLetter(btn.Content.ToString());
-            btn.IsEnabled = false;
+            game.addUsedLetter(btnContent);
 
             if (game.progress == 6)
                 return true;

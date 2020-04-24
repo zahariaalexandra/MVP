@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace MVP_tema2_Hangman
 {
     /// <summary>
@@ -24,14 +14,18 @@ namespace MVP_tema2_Hangman
         public LoginWindow()
         {
             InitializeComponent();
-            Utils.getNames(ref listBoxPlyers);
+            List<string> namesList = new List<string>();
+            Utils.getNames(ref namesList);
+            listBoxPlyers.ItemsSource = namesList;
         }
 
         private void btnNewUser_Click(object sender, RoutedEventArgs e)
         {
             NewUserWindow newUserWindow = new NewUserWindow();
             newUserWindow.ShowDialog();
-            Utils.getNames(ref listBoxPlyers);
+            List<string> namesList = new List<string>();
+            Utils.getNames(ref namesList);
+            listBoxPlyers.ItemsSource = namesList;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -45,13 +39,22 @@ namespace MVP_tema2_Hangman
                 btnDeleteUser.IsEnabled = true;
             
             btnPlay.IsEnabled = true;
-            Utils.changeImage(listBoxPlyers, ref imgProfile);
+            string selectedItem = listBoxPlyers.SelectedItem.ToString();
+            BitmapImage source = new BitmapImage();
+            Utils.changeImage(selectedItem, ref source);         
+            imgProfile.Source = source;
         }
 
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            Utils.deleteUser(ref listBoxPlyers);
-            Utils.getNames(ref listBoxPlyers);
+            string selectedItem = listBoxPlyers.SelectedItem.ToString();
+            string newSelectedItem = "";
+            Utils.deleteUser(selectedItem, ref newSelectedItem);
+            listBoxPlyers.SelectedItem = newSelectedItem;
+
+            List<string> namesList = new List<string>();
+            Utils.getNames(ref namesList);
+            listBoxPlyers.ItemsSource = namesList;
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)

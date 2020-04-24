@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Button = System.Windows.Controls.Button;
@@ -34,7 +33,13 @@ namespace MVP_tema2_Hangman
         {
             Button btnCurrent = sender as Button;
             bool gameWon = false;
-            bool gameLost = Utils.letterTest(btnCurrent, ref currentGame, ref txtWord, ref imgProgress, ref gameWon);
+            string txt = txtWord.Text;
+            BitmapImage img = new BitmapImage();
+            bool gameLost = Utils.letterTest(btnCurrent.Content.ToString(), ref currentGame, ref txt, ref img, ref gameWon);
+            btnCurrent.IsEnabled = false;
+            txtWord.Text = txt;
+            imgProgress.Source = img;
+
 
             if(gameLost || gameWon)
             {

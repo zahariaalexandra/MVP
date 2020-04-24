@@ -1,22 +1,7 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MVP_tema2_Hangman
 {
@@ -37,7 +22,7 @@ namespace MVP_tema2_Hangman
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Utils.addNewPlayer(txtName, image);
+            Utils.addNewPlayer(txtName.Text, image);
             this.Close();
         }
 
@@ -48,7 +33,11 @@ namespace MVP_tema2_Hangman
 
         private void btnChoosePicture_Click(object sender, RoutedEventArgs e)
         {
-            Utils.chooseImage(ref btnAdd, ref image, ref lblImage);
+            bool enabled = false;
+            string fileName = "";
+            Utils.chooseImage(ref enabled, ref image, ref fileName);
+            btnAdd.IsEnabled = enabled;
+            lblImage.Content = fileName;
         }
     }
 }
