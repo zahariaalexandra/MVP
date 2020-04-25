@@ -216,7 +216,7 @@ namespace MVP_tema2_Hangman
             }
         }
 
-        public static void addGame(Game game, bool saved)
+        public static void addGame(Game game)
         {
             SqlConnection connection = 
                 new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");

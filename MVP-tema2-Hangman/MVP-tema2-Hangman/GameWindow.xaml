@@ -60,11 +60,18 @@
             </MenuItem>
 
             <MenuItem Header="Categories">
-                <MenuItem Header="All categories"/>
-                <MenuItem Header="Movies"/>
-                <MenuItem Header="States"/>
-                <MenuItem Header="Mountains"/>
-                <MenuItem Header="Rivers"/>
+                <MenuItem Header="All categories"
+                          Click="Category_Click"/>
+                <MenuItem Header="Movies &amp; series"
+                          Click="Category_Click" />
+                <MenuItem Header="States"
+                          Click="Category_Click"/>
+                <MenuItem Header="Mountains"
+                          Click="Category_Click"/>
+                <MenuItem Header="Rivers"
+                          Click="Category_Click"/>
+                <MenuItem Header="Cars"
+                          Click="Category_Click"/>
             </MenuItem>
 
             <MenuItem Header="Help">
@@ -95,17 +102,6 @@
                Grid.Column="0"
                Grid.ColumnSpan="8"
                Margin="15,0,0,30">Category:
-        </Label>
-
-        <Label Name="lblTimer"
-               Background="DeepSkyBlue"
-               Foreground="SaddleBrown"
-               FontFamily="Arial Black"
-               FontSize="21"
-               Grid.Row="0"
-               Grid.Column="13"
-               Grid.ColumnSpan="2"
-               Margin="0,30,0,0">00:00
         </Label>
 
         <Label Name="lblPlayer"

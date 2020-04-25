@@ -64,9 +64,9 @@ namespace MVP_tema2_Hangman
                     txtWord.Foreground = new SolidColorBrush(Colors.DarkSeaGreen);
                     MessageBox.Show("Level finished!", "", MessageBoxButton.OK);
                     currentGame.level++;
-                    Utils.initializeGame(ref currentGame, 0);
+                    Utils.initializeGame(ref currentGame, Utils.categorySwich(currentGame.category));
                     currentGame.progress = 0;
-                    Utils.addGame(currentGame, false);
+                    Utils.addGame(currentGame);
                     GameWindow newGameWindow = new GameWindow();
                     newGameWindow.Show();
                     this.Close();
@@ -92,7 +92,7 @@ namespace MVP_tema2_Hangman
                         newGame.level = 1;
                         Utils.initializeGame(ref newGame, 0);
                         newGame.usedLetters = new List<string>();
-                        Utils.addGame(newGame, false);
+                        Utils.addGame(newGame);
 
                         GameWindow newGameWindow = new GameWindow();
                         newGameWindow.Show();
@@ -128,7 +128,7 @@ namespace MVP_tema2_Hangman
             Game newGame = new Game(player);
             Utils.initializeGame(ref newGame, Utils.categorySwich(currentGame._category));
             newGame._level = 1;
-            Utils.addGame(newGame, false);
+            Utils.addGame(newGame);
             GameWindow window = new GameWindow();
             window.Show();
             this.Close();
@@ -143,6 +143,18 @@ namespace MVP_tema2_Hangman
         private void Info_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Zaharia Alexandra\nGrupa 283\nInformatica", "Info", MessageBoxButton.OK);
+        }
+
+        private void Category_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem item = sender as MenuItem;
+            Game newGame = new Game(currentGame.player);
+            Utils.initializeGame(ref newGame, Utils.categorySwich(item.Header.ToString()));
+            newGame.level = 1;
+            Utils.addGame(newGame);
+            GameWindow window = new GameWindow();
+            window.Show();
+            this.Close();
         }
     }
 }
