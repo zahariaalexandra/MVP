@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,9 +12,6 @@ using Panel = System.Windows.Controls.Panel;
 
 namespace MVP_tema2_Hangman
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class GameWindow : Window
     {
         public Game currentGame = new Game();
@@ -37,7 +35,7 @@ namespace MVP_tema2_Hangman
             BitmapImage img;
 
             if (currentGame.progress == 0)
-                img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgStart.png"));
+                img = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgStart"]));
             else
                 img = (BitmapImage)imgProgress.Source;
 
@@ -60,7 +58,7 @@ namespace MVP_tema2_Hangman
 
                 if (gameWon && currentGame.level < 5)
                 {
-                    imgProgress.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameWon.png"));
+                    imgProgress.Source = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgGameWon"]));
                     txtWord.Foreground = new SolidColorBrush(Colors.DarkSeaGreen);
                     MessageBox.Show("Level finished!", "", MessageBoxButton.OK);
                     currentGame.level++;
@@ -73,7 +71,7 @@ namespace MVP_tema2_Hangman
                 }
                 else if (gameWon && currentGame.level == 5)
                 {
-                    imgProgress.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameWon.png"));
+                    imgProgress.Source = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgGameWon"]));
                     txtWord.Foreground = new SolidColorBrush(Colors.DarkSeaGreen);
                     MessageBox.Show("Game won!", "", MessageBoxButton.OK);
                     Utils.updatePlayer(currentGame.player.name, true);
@@ -83,7 +81,7 @@ namespace MVP_tema2_Hangman
                 }
                 else
                 {
-                    imgProgress.Source = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameLost.png"));
+                    imgProgress.Source = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgGameLost"]));
                     txtWord.Foreground = new SolidColorBrush(Colors.MediumVioletRed);
 
                     if (MessageBox.Show("Game lost. \nDo you want to start a new game?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -126,8 +124,8 @@ namespace MVP_tema2_Hangman
         {
             Player player = new Player(currentGame.player.name);
             Game newGame = new Game(player);
-            Utils.initializeGame(ref newGame, Utils.categorySwich(currentGame._category));
-            newGame._level = 1;
+            Utils.initializeGame(ref newGame, Utils.categorySwich(currentGame.category));
+            newGame.level = 1;
             Utils.addGame(newGame);
             GameWindow window = new GameWindow();
             window.Show();
@@ -142,7 +140,7 @@ namespace MVP_tema2_Hangman
 
         private void Info_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Zaharia Alexandra\nGrupa 283\nInformatica", "Info", MessageBoxButton.OK);
+            MessageBox.Show("Zaharia Alexandra\nGrupa 283\nInformatica");
         }
 
         private void Category_Click(object sender, RoutedEventArgs e)

@@ -5,12 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 namespace MVP_tema2_Hangman
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
-
         public LoginWindow()
         {
             InitializeComponent();
@@ -35,26 +31,28 @@ namespace MVP_tema2_Hangman
 
         private void listBoxPlyers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (listBoxPlyers.SelectedItem.ToString() != "Ale")
+            if(listBoxPlyers.SelectedIndex != -1)
+            {
                 btnDeleteUser.IsEnabled = true;
-            
-            btnPlay.IsEnabled = true;
-            string selectedItem = listBoxPlyers.SelectedItem.ToString();
-            BitmapImage source = new BitmapImage();
-            Utils.changeImage(selectedItem, ref source);         
-            imgProfile.Source = source;
+                btnPlay.IsEnabled = true;
+                string selectedItem = listBoxPlyers.SelectedItem.ToString();
+                BitmapImage source = new BitmapImage();
+                Utils.changeImage(selectedItem, ref source);
+                imgProfile.Source = source;
+            }
         }
 
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             string selectedItem = listBoxPlyers.SelectedItem.ToString();
-            string newSelectedItem = "";
-            Utils.deleteUser(selectedItem, ref newSelectedItem);
-            listBoxPlyers.SelectedItem = newSelectedItem;
-
+            Utils.deleteUser(selectedItem);
+            listBoxPlyers.SelectedIndex = -1;
             List<string> namesList = new List<string>();
             Utils.getNames(ref namesList);
             listBoxPlyers.ItemsSource = namesList;
+            btnDeleteUser.IsEnabled = false;
+            btnPlay.IsEnabled = false;
+            imgProfile.Source = null;
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)

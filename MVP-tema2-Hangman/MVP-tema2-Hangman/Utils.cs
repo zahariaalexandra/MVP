@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -14,9 +15,9 @@ namespace MVP_tema2_Hangman
     {
         public static void getNames(ref List<string> namesList)
         {
-             SqlConnection connection =
-                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-
+            SqlConnection connection = 
+                new SqlConnection(ConfigurationManager.ConnectionStrings["HangamanDatabase"].ConnectionString);
+            
             connection.Open();
             SqlCommand command = new SqlCommand("GetNamesProcedure", connection);
             command.CommandType = CommandType.StoredProcedure;
@@ -36,7 +37,7 @@ namespace MVP_tema2_Hangman
             else
             {
                 SqlConnection connection =
-                    new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["HangamanDatabase"].ConnectionString);
 
                 connection.Open();
                 SqlCommand command = new SqlCommand("InsertProcedure", connection);
@@ -70,7 +71,7 @@ namespace MVP_tema2_Hangman
         public static void changeImage(string selectedItem, ref BitmapImage source)
         {
             SqlConnection connection =
-                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                new SqlConnection(ConfigurationManager.ConnectionStrings["HangamanDatabase"].ConnectionString);
 
             connection.Open();
             DataSet data = new DataSet();
@@ -93,10 +94,10 @@ namespace MVP_tema2_Hangman
             source.EndInit();
         }   
     
-        public static void deleteUser(string selectedItem, ref string newSelectedItem)
-        {
+        public static void deleteUser(string selectedItem)
+        { 
             SqlConnection connection =
-                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                new SqlConnection(ConfigurationManager.ConnectionStrings["HangamanDatabase"].ConnectionString);
 
             connection.Open();
             SqlCommand command = new SqlCommand("DeleteProcedure", connection);
@@ -105,8 +106,6 @@ namespace MVP_tema2_Hangman
             command.ExecuteNonQuery();
             MessageBox.Show("User deleted!", "", MessageBoxButton.OK);
             connection.Close();
-
-            newSelectedItem = "Ale";
         }
 
         public static void initializeGame(ref Game game, int category)
@@ -218,8 +217,8 @@ namespace MVP_tema2_Hangman
 
         public static void addGame(Game game)
         {
-            SqlConnection connection = 
-                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlConnection connection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["HangamanDatabase"].ConnectionString);
 
             connection.Open();
             SqlCommand command = new SqlCommand("InsertGameProcedure", connection);
@@ -236,8 +235,8 @@ namespace MVP_tema2_Hangman
 
         public static void getGame(ref Game game)
         {
-            SqlConnection connection = 
-                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlConnection connection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["HangamanDatabase"].ConnectionString);
 
             connection.Open();
             SqlCommand command = new SqlCommand("GetGameProcedure", connection);
@@ -306,31 +305,31 @@ namespace MVP_tema2_Hangman
                 switch(game.progress)
                 {
                     case 0:
-                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgHeadProgress.png"));
+                        img = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgHead"]));
                         game.progress++;
                         break;
                     case 1:
-                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBodyProgress.png"));
+                        img = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgBody"]));
                         game.progress++;
                         break;
                     case 2:
-                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgOneHandProgress.png"));
+                        img = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgOneHand"]));
                         game.progress++;
                         break;
                     case 3:
-                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBothHandsProgress.png"));
+                        img = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgBothHands"]));
                         game.progress++;
                         break;
                     case 4:
-                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgOneLegProgress.png"));
+                        img = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgOneLeg"]));
                         game.progress++;
                         break;
                     case 5:
-                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgBothLegsProgress.png"));
+                        img = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgBothLegs"]));
                         game.progress++;
                         break;
                     case 6:
-                        img = new BitmapImage(new Uri("pack://application:,,,/MVP-tema2-Hangman;component/progressImages/ImgGameLostProgress.png"));
+                        img = new BitmapImage(new Uri(ConfigurationManager.AppSettings["imgGameLost"]));
                         break;
                     default:
                         break;
@@ -347,7 +346,8 @@ namespace MVP_tema2_Hangman
         public static void updatePlayer(string playerName, bool game)
         {
             SqlConnection connection =
-                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                new SqlConnection(ConfigurationManager.ConnectionStrings["HangamanDatabase"].ConnectionString);
+
             connection.Open();
             SqlCommand command;
 
@@ -369,7 +369,7 @@ namespace MVP_tema2_Hangman
         public static void fillStatisticsTable(ref Table tbl)
         {
             SqlConnection connection =
-               new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hangman;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+               new SqlConnection(ConfigurationManager.ConnectionStrings["HangamanDatabase"].ConnectionString);
             int row = 1;
 
             connection.Open();

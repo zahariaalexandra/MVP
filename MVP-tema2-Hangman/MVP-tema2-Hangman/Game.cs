@@ -10,13 +10,13 @@ namespace MVP_tema2_Hangman
 {
     public class Game
     {
-        internal int _id;
-        internal string _category;
-        internal int _level;
-        internal string _word;
-        internal Player _player;
-        internal List<string> _usedLetters;
-        internal int _progress;
+        private int _id;
+        private string _category;
+        private int _level;
+        private string _word;
+        private Player _player;
+        private List<string> _usedLetters;
+        private int _progress;
 
         public int id { get { return _id; } set { _id = value; } }
         public string category { get { return _category; } set { _category = value; } }
