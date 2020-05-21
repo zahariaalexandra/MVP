@@ -15,7 +15,7 @@
     <Window.Background>
         <ImageBrush ImageSource="AppImages/LoginBackground.jpg"/>
     </Window.Background>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4.5*"/>
@@ -40,12 +40,16 @@
         <Button Name="btnCustomerAccount"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="Black"
-                Foreground="Red"
+                Foreground="Black"
                 BorderThickness="0"
-                FontSize="22"
-                Margin="0,10,10,10" 
-                FontFamily="Viner Hand ITC">I have a customer account</Button>
+                FontSize="18"
+                Margin="0,10,5,5" 
+                FontFamily="Viner Hand ITC"
+                GotFocus="btnGotFocus">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/Border.png"/>
+            </Button.Background> I have a customer account
+        </Button>
 
         <Button Name="btnNoAccount"
                 Grid.Row="2"

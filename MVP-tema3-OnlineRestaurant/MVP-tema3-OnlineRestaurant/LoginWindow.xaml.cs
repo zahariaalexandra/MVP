@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace MVP_tema3_OnlineRestaurant
@@ -20,6 +23,13 @@ namespace MVP_tema3_OnlineRestaurant
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnGotFocus(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            button.Background = Brushes.Black;
+            button.Foreground = Brushes.Red;
         }
     }
 }

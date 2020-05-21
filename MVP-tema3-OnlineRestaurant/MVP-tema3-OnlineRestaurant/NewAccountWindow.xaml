@@ -15,7 +15,7 @@
     <Window.Background>
         <ImageBrush ImageSource="AppImages/NewAccountBackground.jpg"/>
     </Window.Background>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
@@ -113,32 +113,36 @@
                  TextWrapping="Wrap"
                  AcceptsReturn="True">Address...</TextBox>
 
-        <CheckBox Name="checkCustomer"
+        <RadioButton Name="checkCustomer"
                   Grid.Row="7"
                   Grid.Column="1"
                   FontSize="25"
                   VerticalContentAlignment="Center"
                   Margin="10,0,0,30"
                   Foreground="Black"
-                  FontFamily="Viner Hand ITC">I am a customer</CheckBox>
+                  FontFamily="Viner Hand ITC">I am a customer</RadioButton>
 
-        <CheckBox Name="checkEmployee"
+        <RadioButton Name="checkEmployee"
                   Grid.Row="7"
                   Grid.Column="1"
                   FontSize="25"
                   VerticalContentAlignment="Center"
                   Margin="10,35,0,0"
                   Foreground="Black"
-                  FontFamily="Viner Hand ITC">I am an employee</CheckBox>
+                  FontFamily="Viner Hand ITC">I am an employee</RadioButton>
 
         <Button Name="btnCancel"
                 Grid.Row="8"
                 Grid.Column="1"
-                Background="Black"
-                Foreground="Red"
-                Margin="5,5,153,5"
+                Foreground="Black"
+                Margin="0,0,153,5"
                 FontSize="25"
-                FontFamily="Viner Hand ITC">Cancel...</Button>
+                FontFamily="Viner Hand ITC"
+                MouseEnter="btnMouseEnter">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/Border.png"/>
+            </Button.Background> Cancel...
+        </Button>
 
         <Button Name="btnContinue"
                 Grid.Row="8"

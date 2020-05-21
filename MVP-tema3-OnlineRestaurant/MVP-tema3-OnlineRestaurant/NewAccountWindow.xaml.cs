@@ -21,5 +21,11 @@ namespace MVP_tema3_OnlineRestaurant
         {
             InitializeComponent();
         }
+
+        private void btnMouseEnter(object sender, MouseEventArgs e)
+        {
+            Button button = sender as Button;
+            button.Margin = new Thickness(0, 0, 0, 0);
+        }
     }
 }
