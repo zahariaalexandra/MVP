@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\User.cs" />
     <Compile Include="NewAccountWindow.xaml.cs">
       <DependentUpon>NewAccountWindow.xaml</DependentUpon>
     </Compile>

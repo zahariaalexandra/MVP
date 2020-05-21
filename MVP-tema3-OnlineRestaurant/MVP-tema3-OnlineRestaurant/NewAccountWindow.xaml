@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
         Title="Chopsticks Login" 
-        Height="750"
+        Height="760"
         Width="500" 
         Icon="Logo.png"
         WindowStyle="ThreeDBorderWindow"
@@ -16,7 +16,7 @@
         <ImageBrush ImageSource="AppImages/NewAccountBackground.jpg"/>
     </Window.Background>
 
-    <Grid>
+    <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition/>
@@ -40,85 +40,114 @@
                Source="AppImages/Logo.png"
                Margin="50,50,55,20"/>
 
+        <Label Grid.Row="1"
+               Grid.Column="1"
+               VerticalAlignment="Top"
+               FontFamily="Viner Hand ITC"
+               Foreground="Black">First name...</Label>
+
         <TextBox Name="txtFirstName"
                  Grid.Row="1"
                  Grid.Column="1"
                  BorderBrush="Black"
                  BorderThickness="2"
-                 Margin="0,10,10,5"
+                 Margin="0,10,10,0"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
-                 Foreground="Gray"
-                 VerticalAlignment="Center"
-                 PreviewMouseDown="txtPreviewMouseDown"
-                 LostFocus="txtLostFocus">First name...</TextBox>
+                 Foreground="Black"
+                 VerticalAlignment="Bottom"/>
+
+        <Label Grid.Row="2"
+               Grid.Column="1"
+               VerticalAlignment="Top"
+               FontFamily="Viner Hand ITC"
+               Foreground="Black">Last name...</Label>
 
         <TextBox Name="txtLastName"
                  Grid.Row="2"
                  Grid.Column="1"
                  BorderBrush="Black"
                  BorderThickness="2"
-                 Margin="0,5,10,5"
+                 Margin="0,5,10,0"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
-                 Foreground="Gray"
-                 VerticalAlignment="Center"
-                 PreviewMouseDown="txtPreviewMouseDown">Last name...</TextBox>
+                 Foreground="Black"
+                 VerticalAlignment="Bottom"/>
+
+        <Label Grid.Row="3"
+               Grid.Column="1"
+               VerticalAlignment="Top"
+               FontFamily="Viner Hand ITC"
+               Foreground="Black">Email address...</Label>
 
         <TextBox Name="txtEmail"
                  Grid.Row="3"
                  Grid.Column="1"
                  BorderBrush="Black"
                  BorderThickness="2"
-                 Margin="0,5,10,5"
+                 Margin="0,5,10,0"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
-                 Foreground="Gray"
-                 VerticalAlignment="Center"
-                 PreviewMouseDown="txtPreviewMouseDown">Email address...</TextBox>
+                 Foreground="Black"
+                 VerticalAlignment="Bottom"/>
 
-        <TextBox Name="txtPassword"
+        <Label Grid.Row="4"
+               Grid.Column="1"
+               VerticalAlignment="Top"
+               FontFamily="Viner Hand ITC"
+               Foreground="Black">Password...</Label>
+
+        <PasswordBox Name="txtPassword"
                  Grid.Row="4"
                  Grid.Column="1"
                  BorderBrush="Black"
                  BorderThickness="2"
-                 Margin="0,5,10,5"
+                 Margin="0,5,10,0"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
-                 Foreground="Gray"
-                 VerticalAlignment="Center"
-                 PreviewMouseDown="txtPreviewMouseDown">Password...</TextBox>
+                 Foreground="Black"
+                 VerticalAlignment="Bottom"/>
+
+        <Label Grid.Row="5"
+               Grid.Column="1"
+               VerticalAlignment="Top"
+               FontFamily="Viner Hand ITC"
+               Foreground="Black">Telephone...</Label>
 
         <TextBox Name="txtTelephone"
                  Grid.Row="5"
                  Grid.Column="1"
                  BorderBrush="Black"
                  BorderThickness="2"
-                 Margin="0,5,10,5"
+                 Margin="0,5,10,0"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
-                 Foreground="Gray"
-                 VerticalAlignment="Center"
-                 PreviewMouseDown="txtPreviewMouseDown">Telephone...</TextBox>
+                 Foreground="Black"
+                 VerticalAlignment="Bottom"/>
+
+        <Label Grid.Row="6"
+               Grid.Column="1"
+               VerticalAlignment="Top"
+               FontFamily="Viner Hand ITC"
+               Foreground="Black">Address...</Label>
 
         <TextBox Name="txtAddress"
                  Grid.Row="6"
                  Grid.Column="1"
                  BorderBrush="Black"
                  BorderThickness="2"
-                 Margin="0,5,10,5"
+                 Margin="0,20,10,0"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
-                 Foreground="Gray"
+                 Foreground="Black"
                  TextWrapping="Wrap"
-                 AcceptsReturn="True"
-                 PreviewMouseDown="txtPreviewMouseDown">Address...</TextBox>
+                 AcceptsReturn="True"/>
 
         <RadioButton Name="checkCustomer"
                   Grid.Row="7"
@@ -157,7 +186,8 @@
                 Foreground="Black"
                 Margin="152,0,5,5"
                 FontSize="22"
-                FontFamily="Viner Hand ITC">
+                FontFamily="Viner Hand ITC"
+                Click="btnContinue_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Border.png"/>
             </Button.Background> Continue...

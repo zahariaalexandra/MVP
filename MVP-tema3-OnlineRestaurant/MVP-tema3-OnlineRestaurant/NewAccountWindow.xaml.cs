@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVP_tema3_OnlineRestaurant.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -18,39 +19,18 @@ namespace MVP_tema3_OnlineRestaurant
 {
     public partial class NewAccountWindow : Window
     {
-        string originalText = "";
-
         public NewAccountWindow()
         {
             InitializeComponent();
         }
 
-        private void txtPreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-
-            if(textBox.Foreground == Brushes.Gray)
-            {
-                textBox.Text = "";
-                textBox.Foreground = Brushes.Black;
-                originalText = textBox.Text;
-            }
-        }
-
-        private void txtLostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-
-            if (textBox.Text == "")
-            {
-                textBox.Text = originalText;
-                textBox.Foreground = Brushes.Gray;
-            }
-        }
-
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show(ConfigurationManager.AppSettings["btnCancelMessage"], "", MessageBoxButton.YesNo);
+            MessageBoxResult result = 
+                MessageBox.Show(ConfigurationManager.AppSettings["btnCancelMessage"], 
+                "", 
+                MessageBoxButton.YesNo);
+
             if(result == MessageBoxResult.Yes)
             {
                 LoginWindow window = new LoginWindow();
@@ -59,5 +39,61 @@ namespace MVP_tema3_OnlineRestaurant
             }
         }
 
+        private void btnContinue_Click(object sender, RoutedEventArgs e)
+        {
+            User user = new User();
+
+            foreach(TextBox textBox in grid.Children.OfType<TextBox>())
+            {
+                if(textBox.Text == "")
+                {
+                    MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageIncomplete"],
+                            "",
+                            MessageBoxButton.OK);
+                    return;
+                }
+            }
+
+            user.FirstName = txtFirstName.Text;
+            user.LastName = txtLastName.Text;
+            user.Email = txtEmail.Text;
+            user.Password = txtPassword.Password;
+            user.Telephone = txtTelephone.Text;
+            user.Address = txtAddress.Text;
+
+            if (checkCustomer.IsChecked == false && checkEmployee.IsChecked == false)
+            {
+                MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageIncomplete"],
+                        "",
+                        MessageBoxButton.OK);
+                return;
+            } 
+            else if (checkCustomer.IsChecked == true)
+                user.Status = Status.Customer;
+            else
+                user.Status = Status.Employee;
+            
+            MessageBoxResult result = 
+                MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageConfimation"],
+                "",
+                MessageBoxButton.YesNo);
+
+            if(result == MessageBoxResult.Yes)
+            {
+                if (!Utils.AddUser(user))
+                {
+                    MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageCreated"],
+                    "",
+                    MessageBoxButton.OK);
+                    LoginWindow window = new LoginWindow();
+                    window.Show();
+                    Close();
+                }
+                else
+                    MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageNotCreated"],
+                        "",
+                        MessageBoxButton.OK);
+            }
+        }
     }
 }
