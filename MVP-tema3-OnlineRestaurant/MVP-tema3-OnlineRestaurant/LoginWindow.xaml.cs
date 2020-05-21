@@ -25,11 +25,11 @@ namespace MVP_tema3_OnlineRestaurant
             InitializeComponent();
         }
 
-        private void btnGotFocus(object sender, RoutedEventArgs e)
+        private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            button.Background = Brushes.Black;
-            button.Foreground = Brushes.Red;
+            NewAccountWindow window = new NewAccountWindow();
+            window.Show();
+            this.Close();
         }
     }
 }

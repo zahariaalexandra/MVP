@@ -44,74 +44,81 @@
                  Grid.Row="1"
                  Grid.Column="1"
                  BorderBrush="Black"
-                 BorderThickness="3"
+                 BorderThickness="2"
                  Margin="0,10,10,5"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
                  Foreground="Gray"
-                 VerticalAlignment="Center">First name...</TextBox>
+                 VerticalAlignment="Center"
+                 PreviewMouseDown="txtPreviewMouseDown"
+                 LostFocus="txtLostFocus">First name...</TextBox>
 
         <TextBox Name="txtLastName"
                  Grid.Row="2"
                  Grid.Column="1"
                  BorderBrush="Black"
-                 BorderThickness="3"
+                 BorderThickness="2"
                  Margin="0,5,10,5"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
                  Foreground="Gray"
-                 VerticalAlignment="Center">Last name...</TextBox>
+                 VerticalAlignment="Center"
+                 PreviewMouseDown="txtPreviewMouseDown">Last name...</TextBox>
 
         <TextBox Name="txtEmail"
                  Grid.Row="3"
                  Grid.Column="1"
                  BorderBrush="Black"
-                 BorderThickness="3"
+                 BorderThickness="2"
                  Margin="0,5,10,5"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
                  Foreground="Gray"
-                 VerticalAlignment="Center">Email address...</TextBox>
+                 VerticalAlignment="Center"
+                 PreviewMouseDown="txtPreviewMouseDown">Email address...</TextBox>
 
         <TextBox Name="txtPassword"
                  Grid.Row="4"
                  Grid.Column="1"
                  BorderBrush="Black"
-                 BorderThickness="3"
+                 BorderThickness="2"
                  Margin="0,5,10,5"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
                  Foreground="Gray"
-                 VerticalAlignment="Center">Password...</TextBox>
+                 VerticalAlignment="Center"
+                 PreviewMouseDown="txtPreviewMouseDown">Password...</TextBox>
 
         <TextBox Name="txtTelephone"
                  Grid.Row="5"
                  Grid.Column="1"
                  BorderBrush="Black"
-                 BorderThickness="3"
+                 BorderThickness="2"
                  Margin="0,5,10,5"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
                  Foreground="Gray"
-                 VerticalAlignment="Center">Telephone...</TextBox>
+                 VerticalAlignment="Center"
+                 PreviewMouseDown="txtPreviewMouseDown">Telephone...</TextBox>
 
         <TextBox Name="txtAddress"
                  Grid.Row="6"
                  Grid.Column="1"
                  BorderBrush="Black"
-                 BorderThickness="3"
+                 BorderThickness="2"
                  Margin="0,5,10,5"
                  Background="Transparent"
                  FontFamily="Viner Hand ITC"
                  FontSize="20"
                  Foreground="Gray"
                  TextWrapping="Wrap"
-                 AcceptsReturn="True">Address...</TextBox>
+                 AcceptsReturn="True"
+                 PreviewMouseDown="txtPreviewMouseDown">Address...</TextBox>
 
         <RadioButton Name="checkCustomer"
                   Grid.Row="7"
@@ -136,9 +143,9 @@
                 Grid.Column="1"
                 Foreground="Black"
                 Margin="0,0,153,5"
-                FontSize="25"
+                FontSize="22"
                 FontFamily="Viner Hand ITC"
-                MouseEnter="btnMouseEnter">
+                Click="btnCancel_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Border.png"/>
             </Button.Background> Cancel...
@@ -147,10 +154,13 @@
         <Button Name="btnContinue"
                 Grid.Row="8"
                 Grid.Column="1"
-                Background="Black"
-                Foreground="Red"
-                Margin="152,5,5,5"
-                FontSize="25"
-                FontFamily="Viner Hand ITC">Continue...</Button>
+                Foreground="Black"
+                Margin="152,0,5,5"
+                FontSize="22"
+                FontFamily="Viner Hand ITC">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/Border.png"/>
+            </Button.Background> Continue...
+        </Button>
     </Grid>
 </Window>

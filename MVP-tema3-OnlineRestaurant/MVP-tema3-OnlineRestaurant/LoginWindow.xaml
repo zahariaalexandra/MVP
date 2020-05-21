@@ -42,10 +42,9 @@
                 Grid.Column="1"
                 Foreground="Black"
                 BorderThickness="0"
-                FontSize="18"
+                FontSize="20"
                 Margin="0,10,5,5" 
-                FontFamily="Viner Hand ITC"
-                GotFocus="btnGotFocus">
+                FontFamily="Viner Hand ITC">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Border.png"/>
             </Button.Background> I have a customer account
@@ -54,31 +53,41 @@
         <Button Name="btnNoAccount"
                 Grid.Row="2"
                 Grid.Column="1"
-                Background="Black"
-                Foreground="Red"
+                Foreground="Black"
                 BorderThickness="0"
-                FontSize="22"
+                FontSize="20"
                 Margin="0,10,10,10"
-                FontFamily="Viner Hand ITC">I don't have an account</Button>
+                FontFamily="Viner Hand ITC">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/Border.png"/>
+            </Button.Background> I don't have an account
+        </Button>
 
         <Button Name="btnCreateAccount"
                 Grid.Row="3"
                 Grid.Column="1"
-                Background="Black"
-                Foreground="Red"
+                Foreground="Black"
                 BorderThickness="0"
-                FontSize="22"
+                FontSize="19"
                 Margin="0,10,10,10"
-                FontFamily="Viner Hand ITC">I want to create an account</Button>
+                FontFamily="Viner Hand ITC"
+                Click="btnCreateAccount_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/Border.png"/>
+            </Button.Background>I want to create an account
+        </Button>
 
         <Button Name="btnEmployeeAccount"
                 Grid.Row="4"
                 Grid.Column="1"
-                Background="Black"
-                Foreground="Red"
+                Foreground="Black"
                 BorderThickness="0"
-                FontSize="22"
+                FontSize="19"
                 Margin="0,10,10,10"
-                FontFamily="Viner Hand ITC">I have an employee account</Button>
+                FontFamily="Viner Hand ITC">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/Border.png"/>
+            </Button.Background>I have an employee account
+        </Button>
     </Grid>
 </Window>
