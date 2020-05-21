@@ -9,4 +9,10 @@ namespace MVP_tema3_OnlineRestaurant
     class Utils
     {
     }
+
+    enum Status
+    {
+        Employee,
+        Customer
+    }
 }

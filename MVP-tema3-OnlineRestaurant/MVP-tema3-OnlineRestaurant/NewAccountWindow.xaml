@@ -1,0 +1,152 @@
+﻿<Window x:Class="MVP_tema3_OnlineRestaurant.NewAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
+        mc:Ignorable="d"
+        Title="Chopsticks Login" 
+        Height="750"
+        Width="500" 
+        Icon="Logo.png"
+        WindowStyle="ThreeDBorderWindow"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="AppImages/NewAccountBackground.jpg"/>
+    </Window.Background>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1.3*"/>
+            <RowDefinition Height="1.2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.65*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Name="imgLogo"
+               Grid.Row="0"
+               Grid.Column="1"
+               Source="AppImages/Logo.png"
+               Margin="50,50,55,20"/>
+
+        <TextBox Name="txtFirstName"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 BorderBrush="Black"
+                 BorderThickness="3"
+                 Margin="0,10,10,5"
+                 Background="Transparent"
+                 FontFamily="Viner Hand ITC"
+                 FontSize="20"
+                 Foreground="Gray"
+                 VerticalAlignment="Center">First name...</TextBox>
+
+        <TextBox Name="txtLastName"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 BorderBrush="Black"
+                 BorderThickness="3"
+                 Margin="0,5,10,5"
+                 Background="Transparent"
+                 FontFamily="Viner Hand ITC"
+                 FontSize="20"
+                 Foreground="Gray"
+                 VerticalAlignment="Center">Last name...</TextBox>
+
+        <TextBox Name="txtEmail"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 BorderBrush="Black"
+                 BorderThickness="3"
+                 Margin="0,5,10,5"
+                 Background="Transparent"
+                 FontFamily="Viner Hand ITC"
+                 FontSize="20"
+                 Foreground="Gray"
+                 VerticalAlignment="Center">Email address...</TextBox>
+
+        <TextBox Name="txtPassword"
+                 Grid.Row="4"
+                 Grid.Column="1"
+                 BorderBrush="Black"
+                 BorderThickness="3"
+                 Margin="0,5,10,5"
+                 Background="Transparent"
+                 FontFamily="Viner Hand ITC"
+                 FontSize="20"
+                 Foreground="Gray"
+                 VerticalAlignment="Center">Password...</TextBox>
+
+        <TextBox Name="txtTelephone"
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 BorderBrush="Black"
+                 BorderThickness="3"
+                 Margin="0,5,10,5"
+                 Background="Transparent"
+                 FontFamily="Viner Hand ITC"
+                 FontSize="20"
+                 Foreground="Gray"
+                 VerticalAlignment="Center">Telephone...</TextBox>
+
+        <TextBox Name="txtAddress"
+                 Grid.Row="6"
+                 Grid.Column="1"
+                 BorderBrush="Black"
+                 BorderThickness="3"
+                 Margin="0,5,10,5"
+                 Background="Transparent"
+                 FontFamily="Viner Hand ITC"
+                 FontSize="20"
+                 Foreground="Gray"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True">Address...</TextBox>
+
+        <CheckBox Name="checkCustomer"
+                  Grid.Row="7"
+                  Grid.Column="1"
+                  FontSize="25"
+                  VerticalContentAlignment="Center"
+                  Margin="10,0,0,30"
+                  Foreground="Black"
+                  FontFamily="Viner Hand ITC">I am a customer</CheckBox>
+
+        <CheckBox Name="checkEmployee"
+                  Grid.Row="7"
+                  Grid.Column="1"
+                  FontSize="25"
+                  VerticalContentAlignment="Center"
+                  Margin="10,35,0,0"
+                  Foreground="Black"
+                  FontFamily="Viner Hand ITC">I am an employee</CheckBox>
+
+        <Button Name="btnCancel"
+                Grid.Row="8"
+                Grid.Column="1"
+                Background="Black"
+                Foreground="Red"
+                Margin="5,5,153,5"
+                FontSize="25"
+                FontFamily="Viner Hand ITC">Cancel...</Button>
+
+        <Button Name="btnContinue"
+                Grid.Row="8"
+                Grid.Column="1"
+                Background="Black"
+                Foreground="Red"
+                Margin="152,5,5,5"
+                FontSize="25"
+                FontFamily="Viner Hand ITC">Continue...</Button>
+    </Grid>
+</Window>

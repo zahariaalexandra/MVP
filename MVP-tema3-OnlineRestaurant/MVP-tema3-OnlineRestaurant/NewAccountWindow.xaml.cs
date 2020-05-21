@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 
 namespace MVP_tema3_OnlineRestaurant
 {
-    public partial class LoginWindow : Window
+    public partial class NewAccountWindow : Window
     {
-        public LoginWindow()
+        public NewAccountWindow()
         {
             InitializeComponent();
         }

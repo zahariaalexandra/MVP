@@ -13,7 +13,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <ImageBrush ImageSource="AppImages/Background.jpg"/>
+        <ImageBrush ImageSource="AppImages/LoginBackground.jpg"/>
     </Window.Background>
     
     <Grid>
