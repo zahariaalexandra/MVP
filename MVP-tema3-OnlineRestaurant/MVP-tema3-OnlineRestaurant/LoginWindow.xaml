@@ -6,59 +6,75 @@
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
         Title="Chopsticks Login" 
-        Height="500"
+        Height="650"
         Width="500" 
         Icon="Logo.png"
-        Background="Red"
-        WindowStyle="ThreeDBorderWindow">
+        WindowStyle="ThreeDBorderWindow"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="AppImages/Background.jpg"/>
+    </Window.Background>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="4.5*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.65*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
         <Image Name="imgLogo"
                Grid.Row="0"
+               Grid.Column="1"
                HorizontalAlignment="Center"
-               Source="AppImages/Logo.png"/>
+               Source="AppImages/Logo.png"
+               Margin="35,65,50,0"/>
 
         <Button Name="btnCustomerAccount"
                 Grid.Row="1"
+                Grid.Column="1"
                 Background="Black"
                 Foreground="Red"
                 BorderThickness="0"
-                FontSize="25"
-                Margin="50,10" 
+                FontSize="22"
+                Margin="0,10,10,10" 
                 FontFamily="Viner Hand ITC">I have a customer account</Button>
 
         <Button Name="btnNoAccount"
                 Grid.Row="2"
+                Grid.Column="1"
                 Background="Black"
                 Foreground="Red"
                 BorderThickness="0"
-                FontSize="25"
-                Margin="50,10"
+                FontSize="22"
+                Margin="0,10,10,10"
                 FontFamily="Viner Hand ITC">I don't have an account</Button>
 
         <Button Name="btnCreateAccount"
                 Grid.Row="3"
+                Grid.Column="1"
                 Background="Black"
                 Foreground="Red"
                 BorderThickness="0"
-                FontSize="25"
-                Margin="50,10"
+                FontSize="22"
+                Margin="0,10,10,10"
                 FontFamily="Viner Hand ITC">I want to create an account</Button>
 
         <Button Name="btnEmployeeAccount"
                 Grid.Row="4"
+                Grid.Column="1"
                 Background="Black"
                 Foreground="Red"
                 BorderThickness="0"
-                FontSize="25"
-                Margin="50,10"
+                FontSize="22"
+                Margin="0,10,10,10"
                 FontFamily="Viner Hand ITC">I have an employee account</Button>
     </Grid>
 </Window>
