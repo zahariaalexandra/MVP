@@ -27,9 +27,23 @@ namespace MVP_tema3_OnlineRestaurant
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
-            NewAccountWindow window = new NewAccountWindow();
+            NewAccountWindow window = new NewAccountWindow(PreviousWindow.LOGIN, null);
             window.Show();
             this.Close();
+        }
+
+        private void btnCustomerAccount_Click(object sender, RoutedEventArgs e)
+        {
+            AccessWindow window = new AccessWindow(Status.CUSTOMER);
+            window.Show();
+            Close();
+        }
+
+        private void btnEmployeeAccount_Click(object sender, RoutedEventArgs e)
+        {
+            AccessWindow window = new AccessWindow(Status.EMPLOYEE);
+            window.Show();
+            Close();
         }
     }
 }

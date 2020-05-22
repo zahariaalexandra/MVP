@@ -44,7 +44,8 @@
                 BorderThickness="0"
                 FontSize="20"
                 Margin="0,10,5,5" 
-                FontFamily="Viner Hand ITC">
+                FontFamily="Viner Hand ITC"
+                Click="btnCustomerAccount_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Border.png"/>
             </Button.Background> I have a customer account
@@ -84,7 +85,8 @@
                 BorderThickness="0"
                 FontSize="19"
                 Margin="0,10,10,10"
-                FontFamily="Viner Hand ITC">
+                FontFamily="Viner Hand ITC"
+                Click="btnEmployeeAccount_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Border.png"/>
             </Button.Background>I have an employee account

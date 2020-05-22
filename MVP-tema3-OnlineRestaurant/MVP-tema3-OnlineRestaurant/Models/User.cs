@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MVP_tema3_OnlineRestaurant.Models
 {
-    class User
+    public class User
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -26,7 +26,7 @@ namespace MVP_tema3_OnlineRestaurant.Models
             Password = "";
             Telephone = "";
             Address = "";
-            Status = Status.Customer;
+            Status = Status.CUSTOMER;
         }
     }
 }

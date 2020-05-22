@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVP_tema3_OnlineRestaurant
 {
-    class Utils
+    public class Utils
     {
         static SqlConnection connection =
             new SqlConnection(ConfigurationManager.ConnectionStrings["database"].ConnectionString);
@@ -57,9 +57,16 @@ namespace MVP_tema3_OnlineRestaurant
         }
     }
 
-    enum Status
+    public enum Status
     {
-        Employee,
-        Customer
+        EMPLOYEE,
+        CUSTOMER,
+        NO_ACCOUNT
+    }
+
+    public enum PreviousWindow
+    {
+        ACCESS,
+        LOGIN
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -19,23 +20,50 @@ namespace MVP_tema3_OnlineRestaurant
 {
     public partial class NewAccountWindow : Window
     {
+        private PreviousWindow window;
+        private Status status;
+
         public NewAccountWindow()
         {
             InitializeComponent();
         }
 
+        public NewAccountWindow(PreviousWindow window, Status? status)
+        {
+            InitializeComponent();
+
+            this.window = window;
+            if(status != null)
+                this.status = (Status)status;
+        }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = 
-                MessageBox.Show(ConfigurationManager.AppSettings["btnCancelMessage"], 
-                "", 
-                MessageBoxButton.YesNo);
-
-            if(result == MessageBoxResult.Yes)
+            switch(window)
             {
-                LoginWindow window = new LoginWindow();
-                window.Show();
-                this.Close();
+                case PreviousWindow.ACCESS:
+                    AccessWindow accessWindow = new AccessWindow(status);
+                    accessWindow.Show();
+                    Close();
+                    break;
+
+                case PreviousWindow.LOGIN:
+                    MessageBoxResult result =
+                         MessageBox.Show(ConfigurationManager.AppSettings["btnCancelMessage"],
+                         "",
+                         MessageBoxButton.YesNo);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        LoginWindow loginWindow = new LoginWindow();
+                        loginWindow.Show();
+                        this.Close();
+                    }
+
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -69,9 +97,9 @@ namespace MVP_tema3_OnlineRestaurant
                 return;
             } 
             else if (checkCustomer.IsChecked == true)
-                user.Status = Status.Customer;
+                user.Status = Status.CUSTOMER;
             else
-                user.Status = Status.Employee;
+                user.Status = Status.EMPLOYEE;
             
             MessageBoxResult result = 
                 MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageConfimation"],
