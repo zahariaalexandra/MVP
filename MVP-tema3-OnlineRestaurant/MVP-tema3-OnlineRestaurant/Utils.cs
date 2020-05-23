@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace MVP_tema3_OnlineRestaurant
             int result = 0;
 
             connection.Open();
-            SqlCommand checkCommand = new SqlCommand("CheckUserExistence", connection);
+            SqlCommand checkCommand = new SqlCommand("procCheckUserExistence", connection);
             checkCommand.CommandType = CommandType.StoredProcedure;
             checkCommand.Parameters.AddWithValue("@email", user.Email);
             checkCommand.Parameters.AddWithValue("@status", user.Status.ToString());
@@ -37,7 +38,7 @@ namespace MVP_tema3_OnlineRestaurant
             {
                 connection.Open();
                 SqlCommand insertCommand =
-                    new SqlCommand("InsertUser", connection);
+                    new SqlCommand("procInsertUser", connection);
 
                 insertCommand.CommandType = CommandType.StoredProcedure;
                 insertCommand.Parameters.AddWithValue("@first_name", user.FirstName);
@@ -54,6 +55,28 @@ namespace MVP_tema3_OnlineRestaurant
             }
             else
                 return true;
+        }
+
+        public static bool GetUser(string email, string password, string status, ref string firstName, ref string lastName)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("procgetUser", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@email", email);
+            command.Parameters.AddWithValue("@password", password);
+            command.Parameters.AddWithValue("@status", status);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if(reader.Read())
+            {
+                firstName = reader[0].ToString();
+                lastName = reader[1].ToString();
+            }
+
+            if (firstName != "" && lastName != "")
+                return true;
+
+            return false;
         }
     }
 

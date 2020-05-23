@@ -45,5 +45,10 @@ namespace MVP_tema3_OnlineRestaurant
             window.Show();
             Close();
         }
+
+        private void btnNoAccount_Click(object sender, RoutedEventArgs e)
+        {
+            MenuWindow window = new MenuWindow(null, null, Status.NO_ACCOUNT);
+        }
     }
 }

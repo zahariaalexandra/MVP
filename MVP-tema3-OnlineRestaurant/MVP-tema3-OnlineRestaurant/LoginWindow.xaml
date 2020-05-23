@@ -58,7 +58,8 @@
                 BorderThickness="0"
                 FontSize="20"
                 Margin="0,10,10,10"
-                FontFamily="Viner Hand ITC">
+                FontFamily="Viner Hand ITC"
+                Click="btnNoAccount_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Border.png"/>
             </Button.Background> I don't have an account
