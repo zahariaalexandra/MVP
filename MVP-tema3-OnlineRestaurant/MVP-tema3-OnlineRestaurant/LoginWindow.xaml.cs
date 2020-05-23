@@ -48,7 +48,9 @@ namespace MVP_tema3_OnlineRestaurant
 
         private void btnNoAccount_Click(object sender, RoutedEventArgs e)
         {
-            MenuWindow window = new MenuWindow(null, null, Status.NO_ACCOUNT);
+            MenuWindow window = new MenuWindow(null, Status.NO_ACCOUNT);
+            window.Show();
+            Close();
         }
     }
 }

@@ -19,15 +19,18 @@ namespace MVP_tema3_OnlineRestaurant
     /// </summary>
     public partial class MenuWindow : Window
     {
+        int id;
+
         public MenuWindow()
         {
             InitializeComponent();
         }
 
-        public MenuWindow(string firstName, string lastName)
+        public MenuWindow(int? id, Status status)
         {
             InitializeComponent();
-            MessageBox.Show(firstName + " " + lastName);
+
+            this.id = Convert.ToInt32(id);
         }
     }
 }

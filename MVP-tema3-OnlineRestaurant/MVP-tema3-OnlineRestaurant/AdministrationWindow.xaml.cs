@@ -14,19 +14,20 @@ using System.Windows.Shapes;
 
 namespace MVP_tema3_OnlineRestaurant
 {
-    /// <summary>
-    /// Interaction logic for AdministrationWindow.xaml
-    /// </summary>
     public partial class AdministrationWindow : Window
     {
+        int id;
+
         public AdministrationWindow()
         {
             InitializeComponent();
         }
 
-        public AdministrationWindow(string firstName, string lastName)
+        public AdministrationWindow(int id, string firstName, string lastName)
         {
             InitializeComponent();
+
+            this.id = id;
         }
     }
 }

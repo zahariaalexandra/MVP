@@ -77,6 +77,9 @@
     <Compile Include="AccessWindow.xaml.cs">
       <DependentUpon>AccessWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdministrationWindow.xaml.cs">
+      <DependentUpon>AdministrationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
     </Compile>
     <Compile Include="Utils.cs" />
     <Page Include="AccessWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdministrationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +162,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="AppImages\AccessBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\BlackLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AppImages\imgbin-chongzuo-red-envelope-wechat-chinese-new-year-black-hair-hfz4H7ka9uLL3SeTqEBiGBFQi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\MenuBackground.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

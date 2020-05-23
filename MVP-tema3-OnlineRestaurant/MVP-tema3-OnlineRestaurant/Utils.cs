@@ -57,10 +57,12 @@ namespace MVP_tema3_OnlineRestaurant
                 return true;
         }
 
-        public static bool GetUser(string email, string password, string status, ref string firstName, ref string lastName)
+        public static int GetUser(string email, string password, string status, ref string firstName, ref string lastName)
         {
+            int id = 0;
+
             connection.Open();
-            SqlCommand command = new SqlCommand("procgetUser", connection);
+            SqlCommand command = new SqlCommand("procGetUser", connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@email", email);
             command.Parameters.AddWithValue("@password", password);
@@ -69,14 +71,15 @@ namespace MVP_tema3_OnlineRestaurant
 
             if(reader.Read())
             {
-                firstName = reader[0].ToString();
-                lastName = reader[1].ToString();
+                id = Convert.ToInt32(reader[0]);
+                firstName = reader[1].ToString();
+                lastName = reader[2].ToString();
             }
 
             if (firstName != "" && lastName != "")
-                return true;
+                return id;
 
-            return false;
+            return id;
         }
     }
 

@@ -38,21 +38,21 @@ namespace MVP_tema3_OnlineRestaurant
             {
                 string firstName = "";
                 string lastName = "";
-                bool valid = 
+                int id = 
                     Utils.GetUser(txtEmail.Text, txtPassword.Password, status.ToString(), ref firstName, ref lastName);
 
-                if(valid && firstName != "" && lastName != "")
+                if(id != 0 && firstName != "" && lastName != "")
                 {
                     switch(status)
                     {
                         case Status.CUSTOMER:
-                            MenuWindow menuWindow = new MenuWindow(firstName, lastName, status);
+                            MenuWindow menuWindow = new MenuWindow(id, status);
                             menuWindow.Show();
                             Close();
                             break;
 
                         case Status.EMPLOYEE:
-                            AdministrationWindow administrationWindow = new AdministrationWindow(firstName, lastName);
+                            AdministrationWindow administrationWindow = new AdministrationWindow(id, firstName, lastName);
                             administrationWindow.Show();
                             Close();
                             break;
