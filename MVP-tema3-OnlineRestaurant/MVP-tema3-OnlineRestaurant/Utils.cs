@@ -76,6 +76,8 @@ namespace MVP_tema3_OnlineRestaurant
                 lastName = reader[2].ToString();
             }
 
+            connection.Close();
+
             if (firstName != "" && lastName != "")
                 return id;
 
@@ -94,5 +96,18 @@ namespace MVP_tema3_OnlineRestaurant
     {
         ACCESS,
         LOGIN
+    }
+
+    public enum Category
+    {
+        Appetizers,
+        Salads,
+        Soups,
+        Rice,
+        Noodles,
+        Deserts,
+        Sauces,
+        Drinks,
+        Menus
     }
 }

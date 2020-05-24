@@ -28,11 +28,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <Button Name="btnBack"
+                Grid.Row="0"
+                Grid.Column="0"
+               Margin="65,5,30,5"
+                Click="btnBack_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/BackLogo.png"/>
+            </Button.Background>
+        </Button>
+
         <ListView Name="listCategories"
                   Grid.Row="0"
                   Grid.Column="0"
                   Grid.ColumnSpan="3"
-                  Margin="70,7"
+                  Margin="150,5,70,5"
                   BorderThickness="3"
                   BorderBrush="#FFCE1D2D"
                   Background="Transparent"
@@ -44,9 +54,10 @@
             <ListViewItem>Soups</ListViewItem>
             <ListViewItem>Rice</ListViewItem>
             <ListViewItem>Noodles</ListViewItem>
-            <ListViewItem>Desserts</ListViewItem>
+            <ListViewItem>Deserts</ListViewItem>
             <ListViewItem>Sauces</ListViewItem>
             <ListViewItem>Drinks</ListViewItem>
+            <ListViewItem>Menus</ListViewItem>
         </ListView>
 
         <ListView Name="listFoods"

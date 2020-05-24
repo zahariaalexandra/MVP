@@ -83,11 +83,15 @@
     <Compile Include="MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="NewAccountWindow.xaml.cs">
       <DependentUpon>NewAccountWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Page Include="AccessWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +120,10 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -171,6 +179,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="AppImages\MenuBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\Cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\Profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\RedBorder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\BackLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,6 +44,9 @@ namespace MVP_tema3_OnlineRestaurant
             AccessWindow window = new AccessWindow(Status.EMPLOYEE);
             window.Show();
             Close();
+            /*Window1 window = new Window1();
+            window.Show();
+            Close();*/
         }
 
         private void btnNoAccount_Click(object sender, RoutedEventArgs e)

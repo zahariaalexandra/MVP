@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Animation;
 
 namespace MVP_tema3_OnlineRestaurant.Models
 {
     public class User
     {
+        private int _id;
+        private string _firstName;
+        private string _lastname;
+        private string _email;
+        private string _password;
+        private string _telephone;
+        private string _address;
+        private Status _status;
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
