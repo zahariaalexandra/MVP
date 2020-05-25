@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
         Title="Chopsticks" 
-        Height="650" 
-        Width="800"
+        Height="800" 
+        Width="900"
         Icon="Logo.png"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
@@ -15,11 +15,11 @@
         <ImageBrush ImageSource="AppImages/MenuBackground.jpg"/>
     </Window.Background>
 
-    <Grid Margin="90,80,90,90">
+    <Grid Margin="90,80,90,110">
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition/>
+            <RowDefinition Height="3.5*"/>
+            <RowDefinition Height="0.85*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
         <Button Name="btnBack"
                 Grid.Row="0"
                 Grid.Column="0"
-               Margin="65,5,30,5"
+               Margin="80,25,30,5"
                 Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
@@ -42,23 +42,14 @@
                   Grid.Row="0"
                   Grid.Column="0"
                   Grid.ColumnSpan="3"
-                  Margin="150,5,70,5"
+                  Margin="185,25,75,5"
                   BorderThickness="3"
                   BorderBrush="#FFCE1D2D"
                   Background="Transparent"
                   FontFamily="Viner Hand ITC"
-                  FontSize="22"
-                  Foreground="#FFCE1D2D">
-            <ListViewItem>Appetizers</ListViewItem>
-            <ListViewItem>Salads</ListViewItem>
-            <ListViewItem>Soups</ListViewItem>
-            <ListViewItem>Rice</ListViewItem>
-            <ListViewItem>Noodles</ListViewItem>
-            <ListViewItem>Deserts</ListViewItem>
-            <ListViewItem>Sauces</ListViewItem>
-            <ListViewItem>Drinks</ListViewItem>
-            <ListViewItem>Menus</ListViewItem>
-        </ListView>
+                  FontSize="24"
+                  Foreground="#FFCE1D2D"
+                  SelectionChanged="listCategory_SelectionChanged"/>
 
         <ListView Name="listFoods"
                   Grid.Row="1"
@@ -68,12 +59,59 @@
                   BorderBrush="#FFCE1D2D"
                   BorderThickness="3"
                   Background="Transparent"
-                  Foreground="#FFCE1D2D"/>
+                  Foreground="#FFCE1D2D">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3"
+                                 HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical"
+                                Width="160"
+                                Height="275"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <Image Source="{Binding Photo}"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Top"
+                               Stretch="UniformToFill"/>
+
+                        <TextBox Text="{Binding Name}"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 FontSize="18"
+                                 FontFamily="Viner Hand ITC"
+                                 Foreground="#FFCE1D2D"
+                                 Background="Transparent"
+                                 BorderThickness="2,0,2,0"
+                                 BorderBrush="#FFCE1D2D"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="WrapWithOverflow"
+                                 IsReadOnly="True"/>
+
+                        <Label Content="{Binding Info}"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Bottom"
+                                 FontSize="18"
+                                 FontFamily="Viner Hand ITC"
+                                 Foreground="#FFCE1D2D"
+                                 Background="Transparent"
+                                 BorderThickness="2,0,2,2"
+                                 BorderBrush="#FFCE1D2D"
+                                  HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <Button Name="btnProfile"
                 Grid.Row="2"
                 Grid.Column="0"
-                Margin="80,1,15,0">
+                Margin="85,1,15,0"
+                BorderThickness="0">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Profile.png"/>
             </Button.Background>
@@ -95,7 +133,7 @@
         <Button Name="btnCart"
                 Grid.Row="2"
                 Grid.Column="2"
-                Margin="15,2,80,0">
+                Margin="15,2,85,0">
             <Button.Background>
                <ImageBrush ImageSource="AppImages/Cart.png"/>
             </Button.Background>

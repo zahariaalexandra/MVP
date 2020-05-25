@@ -10,28 +10,32 @@ namespace MVP_tema3_OnlineRestaurant.Models
 {
     public class Product
     {
+        int _id;
         string _name;
         decimal _price;
-        Category _category;
-        decimal _quantity;
+        string _category;
+        uint _quantity;
         uint _totalQuantity;
         BitmapImage _photo;
 
         public Product()
         {
+            _id = 0;
             _name = "";
             _price = 0.0m;
-            _category = Category.Appetizers;
-            _quantity = 0.0m;
+            _category = "";
+            _quantity = 0;
             _totalQuantity = 0;
             _photo = new BitmapImage();
         }
 
-        string Name { get { return _name; } set { _name = value; } }
-        decimal Price { get { return _price; } set { _price = value; } }
-        Category Category { get { return _category; } set { _category = value; } }
-        decimal Quantity { get { return _quantity; } set { _quantity = value; } }
-        uint TotalQuantity { get { return _totalQuantity; } set { _totalQuantity = value; } }
-        BitmapImage Photo { get { return _photo; } set { _photo = value; } }
+        public int Id { get { return _id; } set { _id = value; } }
+        public string Name { get { return _name; } set { _name = value; } }
+        public decimal Price { get { return _price; } set { _price = value; } }
+        public string Category { get { return _category; } set { _category = value; } }
+        public uint Quantity { get { return _quantity; } set { _quantity = value; } }
+        public uint TotalQuantity { get { return _totalQuantity; } set { _totalQuantity = value; } }
+        public BitmapImage Photo { get { return _photo; } set { _photo = value; } }
+        public string Info { get { return (Price.ToString() + "lei / " + Quantity.ToString()) + "g"; } }
     }
 }

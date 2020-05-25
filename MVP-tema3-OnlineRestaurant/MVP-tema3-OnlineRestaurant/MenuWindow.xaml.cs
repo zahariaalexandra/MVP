@@ -1,7 +1,10 @@
-﻿using System;
+﻿using MVP_tema3_OnlineRestaurant.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace MVP_tema3_OnlineRestaurant
 {
-    /// <summary>
-    /// Interaction logic for MenuWindow.xaml
-    /// </summary>
     public partial class MenuWindow : Window
     {
         int id;
@@ -30,6 +30,19 @@ namespace MVP_tema3_OnlineRestaurant
         public MenuWindow(int? id, Status status)
         {
             InitializeComponent();
+
+            List<string> categories = new List<string>();
+            categories.Add("Appetizers");
+            categories.Add("Salads");
+            categories.Add("Soups");
+            categories.Add("Rice");
+            categories.Add("Noodles");
+            categories.Add("Deserts");
+            categories.Add("Sauces");
+            categories.Add("Drinks");
+            categories.Add("Menus");
+            listCategories.ItemsSource = categories;
+
             listCategories.SelectedIndex = 0;
 
             if(id != null)
@@ -39,7 +52,6 @@ namespace MVP_tema3_OnlineRestaurant
                 btnAdd.Visibility = Visibility.Hidden;
                 btnCart.Visibility = Visibility.Hidden;
                 btnProfile.Visibility = Visibility.Hidden;
-
             }
         }
 
@@ -56,6 +68,22 @@ namespace MVP_tema3_OnlineRestaurant
                 window.Show();
                 Close();
             }            
+        }
+
+        private void listCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string category = listCategories.SelectedItem.ToString();
+
+            if(category != "Menus")
+            {
+                List<Product> products =
+                    Utils.GetProductsByCategory(category);
+                listFoods.ItemsSource = products;
+            } 
+            else
+            {
+
+            }           
         }
     }
 }

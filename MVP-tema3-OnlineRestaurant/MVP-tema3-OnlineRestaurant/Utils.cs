@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -83,6 +85,44 @@ namespace MVP_tema3_OnlineRestaurant
 
             return id;
         }
+
+        public static List<Product> GetProductsByCategory(string category)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("procGetProductByCategory", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@category", category);
+            SqlDataReader reader = command.ExecuteReader();
+            List<Product> products = new List<Product>();
+
+            while(reader.Read())
+            {
+                Product product = new Product();
+
+                product.Id = Convert.ToInt32(reader[0]);
+                product.Name = reader[1].ToString();
+                product.Price = Convert.ToDecimal(reader[2]);
+                product.Category = category;
+                product.Quantity = Convert.ToUInt32(reader[4]);
+                product.TotalQuantity = Convert.ToUInt32(reader[5]);
+
+                byte[] image = (byte[])reader[6];
+                MemoryStream stream = new MemoryStream();
+                stream.Write(image, 0, image.Length);
+                stream.Position = 0;
+                BitmapImage photo = new BitmapImage();
+                photo.BeginInit();
+                photo.StreamSource = stream;
+                photo.EndInit();
+                product.Photo = photo;
+
+                products.Add(product);
+            }
+
+            connection.Close();
+
+            return products;
+        }       
     }
 
     public enum Status
@@ -96,18 +136,5 @@ namespace MVP_tema3_OnlineRestaurant
     {
         ACCESS,
         LOGIN
-    }
-
-    public enum Category
-    {
-        Appetizers,
-        Salads,
-        Soups,
-        Rice,
-        Noodles,
-        Deserts,
-        Sauces,
-        Drinks,
-        Menus
     }
 }
