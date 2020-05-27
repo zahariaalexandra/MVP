@@ -90,12 +90,9 @@
       <DependentUpon>NewAccountWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions.cs" />
-<<<<<<< Updated upstream
-=======
     <Compile Include="ProductWindow.xaml.cs">
       <DependentUpon>ProductWindow.xaml</DependentUpon>
     </Compile>
->>>>>>> Stashed changes
     <Compile Include="Utils.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>

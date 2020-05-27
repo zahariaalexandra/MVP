@@ -104,7 +104,7 @@
                 Grid.Row="4"
                 Grid.Column="1"
                 Margin="5"
-                BorderThickness="3"
+                BorderThickness="2"
                 BorderBrush="#FFCE1D2D"
                 Foreground="#FFCE1D2D"
                  Background="Transparent"

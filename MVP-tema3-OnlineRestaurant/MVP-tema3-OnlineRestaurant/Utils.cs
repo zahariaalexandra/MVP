@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -80,13 +82,11 @@ namespace MVP_tema3_OnlineRestaurant
 
             if (firstName != "" && lastName != "")
                 return id;
-<<<<<<< Updated upstream
-=======
 
             return id;
         }
 
-        public static List<Product> GetProductsByCategory(string category)
+         public static List<Product> GetProductsByCategory(string category)
         {
             connection.Open();
             SqlCommand command = new SqlCommand("procGetProductByCategory", connection);
@@ -95,7 +95,7 @@ namespace MVP_tema3_OnlineRestaurant
             SqlDataReader reader = command.ExecuteReader();
             List<Product> products = new List<Product>();
 
-            while (reader.Read())
+            while(reader.Read())
             {
                 Product product = new Product();
 
@@ -159,9 +159,8 @@ namespace MVP_tema3_OnlineRestaurant
             }
 
             connection.Close();
->>>>>>> Stashed changes
 
-            return id;
+            return products;
         }
     }
 
@@ -175,19 +174,7 @@ namespace MVP_tema3_OnlineRestaurant
     public enum PreviousWindow
     {
         ACCESS,
-        LOGIN
-    }
-
-    public enum Category
-    {
-        Appetizers,
-        Salads,
-        Soups,
-        Rice,
-        Noodles,
-        Deserts,
-        Sauces,
-        Drinks,
-        Menus
+        LOGIN,
+        MENU
     }
 }

@@ -37,20 +37,16 @@ namespace MVP_tema3_OnlineRestaurant
             commandTypes.Add("Active commands");
             listFoods.ItemsSource = products;
             listCommandTypes.ItemsSource = commandTypes;
+            listFoods.SelectedIndex = -1;
         }
 
-        private void btnPlus_Click(object sender, RoutedEventArgs e)
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            //int quantity = listFoods.SelectedItem.txt
-
-            /*var parent = (sender as Button).Parent;
-            TextBox txtQuantity = parent.GetChildrenOfType<TextBox>().First(x => x.Name == "txtQuantityTotal");
-            int quantity = Convert.ToInt32*/
-        }
-
-        private void btnMinus_Click(object sender, RoutedEventArgs e)
-        {
-
+            if(listFoods.SelectedIndex != -1)
+            {
+                Product product = new Product();
+                string name = listFoods.GetChildrenOfType<TextBox>().First(x => x.Name == "txtName").Text.ToString();
+            }
         }
     }
 }

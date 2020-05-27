@@ -48,17 +48,8 @@
                   Background="Transparent"
                   FontFamily="Viner Hand ITC"
                   FontSize="22"
-                  Foreground="#FFCE1D2D">
-            <ListViewItem>Appetizers</ListViewItem>
-            <ListViewItem>Salads</ListViewItem>
-            <ListViewItem>Soups</ListViewItem>
-            <ListViewItem>Rice</ListViewItem>
-            <ListViewItem>Noodles</ListViewItem>
-            <ListViewItem>Deserts</ListViewItem>
-            <ListViewItem>Sauces</ListViewItem>
-            <ListViewItem>Drinks</ListViewItem>
-            <ListViewItem>Menus</ListViewItem>
-        </ListView>
+                  Foreground="#FFCE1D2D"
+                  SelectionChanged="listCategory_SelectionChanged"/>
 
         <ListView Name="listFoods"
                   Grid.Row="1"
@@ -90,6 +81,20 @@
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
             </Button.Background> Add to cart...
+        </Button>
+
+        <Button Name="btnCreateAccount"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="0,5"
+                FontFamily="Viner Hand ITC"
+                FontSize="22"
+                Foreground="#FFCE1D2D"
+                BorderThickness="0"
+                Click="btnCreateAccount_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/RedBorder.png"/>
+            </Button.Background> Create new account...
         </Button>
 
         <Button Name="btnCart"

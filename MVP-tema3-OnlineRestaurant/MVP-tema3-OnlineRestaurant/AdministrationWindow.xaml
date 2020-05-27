@@ -83,26 +83,40 @@
         </ListView>
 
         <Button Name="btnBack"
-                Grid.Row="0"
-                Grid.Column="1"
+                Grid.Row="2"
+                Grid.Column="0"
                 BorderThickness="0"
-                Margin="150,2,295,2">
+                Margin="195,2,265,2">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
             </Button.Background>
         </Button>
 
-        <Button Name="btnAddProduct"
+        <Button Name="btnOrder"
                 Grid.Row="0"
                 Grid.Column="1"
                 BorderThickness="0"
-                Margin="260,2,80,2"
+                Margin="160,2,230,2"
                 Foreground="#FFCE1D2D"
                 FontFamily="Viner Hand ITC"
-                FontSize="18">
+                FontSize="16"
+                Click="btnOrder_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
-            </Button.Background>Add new product...
+            </Button.Background> Order product...
+        </Button>
+
+        <Button Name="btnDelete"
+                Grid.Row="0"
+                Grid.Column="1"
+                BorderThickness="0"
+                Margin="320,2,80,2"
+                Foreground="#FFCE1D2D"
+                FontFamily="Viner Hand ITC"
+                FontSize="16">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/RedBorder.png"/>
+            </Button.Background>Delete product...
         </Button>
 
         <ListView Name="listFoods"
@@ -125,11 +139,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Vertical"
                                 Width="120"
-<<<<<<< Updated upstream
-                                Height="250"
-=======
                                 Height="270"
->>>>>>> Stashed changes
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                         <Image Source="{Binding Photo}"
@@ -138,6 +148,7 @@
                                Stretch="UniformToFill"/>
 
                         <TextBox Text="{Binding FullInfo}"
+                                 Name="txtName"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Center"
                                  FontSize="18"
@@ -167,7 +178,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Name="btnUpdate"
+        <Button Name="btnAdd"
                 Grid.Row="2"
                 Grid.Column="1"
                 Foreground="#FFCE1D2D"
@@ -177,7 +188,7 @@
                 Margin="170,5,80,3">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
-            </Button.Background>Update inventory...
+            </Button.Background>Add new product...
         </Button>
     </Grid>
 </Window>
