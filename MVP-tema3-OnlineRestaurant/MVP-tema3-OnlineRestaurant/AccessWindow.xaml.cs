@@ -36,12 +36,10 @@ namespace MVP_tema3_OnlineRestaurant
             }
             else
             {
-                string firstName = "";
-                string lastName = "";
                 int id = 
-                    Utils.GetUser(txtEmail.Text, txtPassword.Password, status.ToString(), ref firstName, ref lastName);
+                    Utils.GetUser(txtEmail.Text, txtPassword.Password, status.ToString());
 
-                if(id != 0 && firstName != "" && lastName != "")
+                if(id != 0)
                 {
                     switch(status)
                     {
@@ -52,7 +50,7 @@ namespace MVP_tema3_OnlineRestaurant
                             break;
 
                         case Status.EMPLOYEE:
-                            AdministrationWindow administrationWindow = new AdministrationWindow(id, firstName, lastName);
+                            AdministrationWindow administrationWindow = new AdministrationWindow(id);
                             administrationWindow.Show();
                             Close();
                             break;

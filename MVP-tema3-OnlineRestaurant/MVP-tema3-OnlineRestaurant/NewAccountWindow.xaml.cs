@@ -39,31 +39,31 @@ namespace MVP_tema3_OnlineRestaurant
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            switch(window)
+            if(window == PreviousWindow.ACCESS)
             {
-                case PreviousWindow.ACCESS:
-                    AccessWindow accessWindow = new AccessWindow(status);
-                    accessWindow.Show();
-                    Close();
-                    break;
-
-                case PreviousWindow.LOGIN:
-                    MessageBoxResult result =
+                AccessWindow accessWindow = new AccessWindow(status);
+                accessWindow.Show();
+                Close();
+            }
+            else if(window == PreviousWindow.LOGIN || window == PreviousWindow.MENU)
+            {
+                MessageBoxResult result =
                          MessageBox.Show(ConfigurationManager.AppSettings["btnCancelMessage"],
                          "",
                          MessageBoxButton.YesNo);
 
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        LoginWindow loginWindow = new LoginWindow();
-                        loginWindow.Show();
-                        this.Close();
-                    }
-
-                    break;
-
-                default:
-                    break;
+                if(result == MessageBoxResult.Yes && window == PreviousWindow.LOGIN)
+                {
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.Show();
+                    this.Close();
+                }
+                else if(result == MessageBoxResult.Yes && window == PreviousWindow.MENU)
+                {
+                    MenuWindow menuWindow = new MenuWindow(null, Status.NO_ACCOUNT);
+                    menuWindow.Show();
+                    Close();
+                }
             }
         }
 

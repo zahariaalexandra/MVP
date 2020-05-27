@@ -5,8 +5,175 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
-        Title="AdministrationWindow" Height="450" Width="800">
-    <Grid>
-        
+        Height="850" 
+        Width="1250"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Chopsticks Administration"
+        Icon="Logo.png">
+    <Window.Background>
+        <ImageBrush ImageSource="AppImages/AdministrationBackground.png"/>
+    </Window.Background>
+    
+    <Grid Name="grid"
+          Margin="85,90,70,90">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="6.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Name="listCommandTypes"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  BorderThickness="2"
+                  BorderBrush="#FFCE1D2D"
+                  Background="Transparent"
+                  Margin="75,5,160,7"
+                  Foreground="#FFCE1D2D"
+                  FontFamily="Viner Hand ITC"
+                  FontSize="27"/>
+
+        <ListView Name="listCommands"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  BorderThickness="2"
+                  BorderBrush="#FFCE1D2D"
+                 Background="Transparent"
+                  Margin="10,0,90,0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="1"
+                                 HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBox Text="{Binding CommandInfo}"
+                                 VerticalAlignment="Top"
+                                 FontSize="18"
+                                 FontFamily="Viner Hand ITC"
+                                 Foreground="#FFCE1D2D"
+                                 Background="Transparent"
+                                 BorderThickness="2,2,2,0"
+                                 BorderBrush="#FFCE1D2D"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="WrapWithOverflow"
+                                 IsReadOnly="True"/>
+
+                        <ListView ItemsSource="{Binding States}"
+                                  VerticalAlignment="Bottom"
+                                 FontSize="18"
+                                 FontFamily="Viner Hand ITC"
+                                 Foreground="#FFCE1D2D"
+                                 Background="Transparent"
+                                 BorderThickness="2,0,2,2"
+                                 BorderBrush="#FFCE1D2D"
+                                 HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Name="btnBack"
+                Grid.Row="0"
+                Grid.Column="1"
+                BorderThickness="0"
+                Margin="150,2,295,2">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/BackLogo.png"/>
+            </Button.Background>
+        </Button>
+
+        <Button Name="btnAddProduct"
+                Grid.Row="0"
+                Grid.Column="1"
+                BorderThickness="0"
+                Margin="260,2,80,2"
+                Foreground="#FFCE1D2D"
+                FontFamily="Viner Hand ITC"
+                FontSize="18">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/RedBorder.png"/>
+            </Button.Background>Add new product...
+        </Button>
+
+        <ListView Name="listFoods"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="3"
+                  BorderBrush="#FFCE1D2D"
+                  BorderThickness="2"
+                  Background="Transparent"
+                  Foreground="#FFCE1D2D"
+                  Margin="90,2,5,0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3"
+                                 HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical"
+                                Width="120"
+                                Height="250"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <Image Source="{Binding Photo}"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Top"
+                               Stretch="UniformToFill"/>
+
+                        <TextBox Text="{Binding FullInfo}"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 FontSize="18"
+                                 FontFamily="Viner Hand ITC"
+                                 Foreground="#FFCE1D2D"
+                                 Background="Transparent"
+                                 BorderThickness="2,0,2,0"
+                                 BorderBrush="#FFCE1D2D"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="WrapWithOverflow"
+                                 IsReadOnly="True"/>
+
+                        <TextBox Text="{Binding Info}"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Bottom"
+                                 FontSize="16"
+                                 FontFamily="Viner Hand ITC"
+                                 Foreground="#FFCE1D2D"
+                                 Background="Transparent"
+                                 BorderThickness="2,0,2,2"
+                                 BorderBrush="#FFCE1D2D"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="WrapWithOverflow"
+                                 IsReadOnly="True"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Name="btnUpdate"
+                Grid.Row="2"
+                Grid.Column="1"
+                Foreground="#FFCE1D2D"
+                FontFamily="Viner Hand ITC"
+                FontSize="20"
+                BorderThickness="0"
+                Margin="170,5,80,3">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/RedBorder.png"/>
+            </Button.Background>Update inventory...
+        </Button>
     </Grid>
 </Window>
