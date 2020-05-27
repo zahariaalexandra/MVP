@@ -6,10 +6,20 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
+<<<<<<< Updated upstream
 using System.Windows.Media.Imaging;
+=======
+<<<<<<< Updated upstream
+=======
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -59,7 +69,7 @@ namespace MVP_tema3_OnlineRestaurant
                 return true;
         }
 
-        public static int GetUser(string email, string password, string status, ref string firstName, ref string lastName)
+        public static int GetUser(string email, string password, string status)
         {
             int id = 0;
 
@@ -74,17 +84,17 @@ namespace MVP_tema3_OnlineRestaurant
             if(reader.Read())
             {
                 id = Convert.ToInt32(reader[0]);
-                firstName = reader[1].ToString();
-                lastName = reader[2].ToString();
             }
 
             connection.Close();
 
-            if (firstName != "" && lastName != "")
-                return id;
-
             return id;
         }
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 
         public static List<Product> GetProductsByCategory(string category)
         {
@@ -123,6 +133,49 @@ namespace MVP_tema3_OnlineRestaurant
 
             return products;
         }       
+<<<<<<< Updated upstream
+=======
+
+        public static List<Product> GetAllProducts()
+        {
+            List<Product> products = new List<Product>();
+
+            connection.Open();
+            SqlCommand command = new SqlCommand("procGetAllProducts", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader = command.ExecuteReader();
+
+            while(reader.Read())
+            {
+                byte[] image = (byte[])reader[6];
+                MemoryStream stream = new MemoryStream();
+                stream.Write(image, 0, image.Length);
+                stream.Position = 0;
+                BitmapImage photo = new BitmapImage();
+                photo.BeginInit();
+                photo.StreamSource = stream;
+                photo.EndInit();
+
+                Product product = new Product()
+                {
+                    Id = Convert.ToInt32(reader[0]),
+                    Name = reader[1].ToString(),
+                    Price = Convert.ToDecimal(reader[2]),
+                    Category = reader[3].ToString(),
+                    Quantity = Convert.ToUInt32(reader[4]),
+                    TotalQuantity = Convert.ToUInt32(reader[5]),
+                    Photo = photo
+                };
+
+                products.Add(product);
+            }
+
+            connection.Close();
+
+            return products;
+        }
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
 
     public enum Status
@@ -135,6 +188,7 @@ namespace MVP_tema3_OnlineRestaurant
     public enum PreviousWindow
     {
         ACCESS,
-        LOGIN
+        LOGIN,
+        MENU
     }
 }

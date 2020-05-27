@@ -31,8 +31,18 @@
         <Button Name="btnBack"
                 Grid.Row="0"
                 Grid.Column="0"
+<<<<<<< Updated upstream
                Margin="80,25,30,5"
+=======
+<<<<<<< Updated upstream
+               Margin="65,5,30,5"
+>>>>>>> Stashed changes
                 Click="btnBack_Click">
+=======
+               Margin="80,25,30,5"
+                Click="btnBack_Click"
+                BorderThickness="0">
+>>>>>>> Stashed changes
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
             </Button.Background>
@@ -130,10 +140,33 @@
             </Button.Background> Add to cart...
         </Button>
 
+        <Button Name="btnCreateAccount"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="0,5"
+                FontFamily="Viner Hand ITC"
+                FontSize="22"
+                Foreground="#FFCE1D2D"
+                BorderThickness="0"
+                Click="btnCreateAccount_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/RedBorder.png"/>
+            </Button.Background> Create new account...
+        </Button>
+
         <Button Name="btnCart"
                 Grid.Row="2"
                 Grid.Column="2"
+<<<<<<< Updated upstream
                 Margin="15,2,85,0">
+=======
+<<<<<<< Updated upstream
+                Margin="15,2,80,0">
+=======
+                Margin="15,2,85,0"
+                BorderThickness="0">
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
             <Button.Background>
                <ImageBrush ImageSource="AppImages/Cart.png"/>
             </Button.Background>
