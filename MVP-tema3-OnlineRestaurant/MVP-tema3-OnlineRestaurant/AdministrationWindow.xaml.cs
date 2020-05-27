@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MVP_tema3_OnlineRestaurant.Models;
+using MVP_tema3_OnlineRestaurant;
+using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +26,27 @@ namespace MVP_tema3_OnlineRestaurant
             InitializeComponent();
         }
 
-        public AdministrationWindow(int id, string firstName, string lastName)
+        public AdministrationWindow(int id)
         {
             InitializeComponent();
 
             this.id = id;
+            List<Product> products = Utils.GetAllProducts();
+            List<string> commandTypes = new List<string>();
+            commandTypes.Add("All commands");
+            commandTypes.Add("Active commands");
+            listFoods.ItemsSource = products;
+            listCommandTypes.ItemsSource = commandTypes;
+            listFoods.SelectedIndex = -1;
+        }
+
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if(listFoods.SelectedIndex != -1)
+            {
+                Product product = new Product();
+                string name = listFoods.GetChildrenOfType<TextBox>().First(x => x.Name == "txtName").Text.ToString();
+            }
         }
     }
 }

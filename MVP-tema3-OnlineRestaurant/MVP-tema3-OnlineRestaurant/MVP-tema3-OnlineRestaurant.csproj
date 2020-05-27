@@ -83,10 +83,15 @@
     <Compile Include="MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="NewAccountWindow.xaml.cs">
       <DependentUpon>NewAccountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="ProductWindow.xaml.cs">
+      <DependentUpon>ProductWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Window1.xaml.cs">
@@ -120,6 +125,10 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,5 +201,20 @@
   <ItemGroup>
     <Resource Include="AppImages\BackLogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\AdministrationBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\RoundBorder.png" />
+  </ItemGroup>
+<<<<<<< Updated upstream
+=======
+  <ItemGroup>
+    <Resource Include="AppImages\ProductImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\ProductBackground.png" />
+  </ItemGroup>
+>>>>>>> Stashed changes
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,18 +31,12 @@
         <Button Name="btnBack"
                 Grid.Row="0"
                 Grid.Column="0"
-<<<<<<< Updated upstream
                Margin="80,25,30,5"
-=======
-<<<<<<< Updated upstream
                Margin="65,5,30,5"
->>>>>>> Stashed changes
                 Click="btnBack_Click">
-=======
                Margin="80,25,30,5"
                 Click="btnBack_Click"
                 BorderThickness="0">
->>>>>>> Stashed changes
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
             </Button.Background>
@@ -58,6 +52,7 @@
                   Background="Transparent"
                   FontFamily="Viner Hand ITC"
                   FontSize="24"
+                  FontSize="22"
                   Foreground="#FFCE1D2D"
                   SelectionChanged="listCategory_SelectionChanged"/>
 
@@ -157,16 +152,8 @@
         <Button Name="btnCart"
                 Grid.Row="2"
                 Grid.Column="2"
-<<<<<<< Updated upstream
-                Margin="15,2,85,0">
-=======
-<<<<<<< Updated upstream
-                Margin="15,2,80,0">
-=======
                 Margin="15,2,85,0"
                 BorderThickness="0">
->>>>>>> Stashed changes
->>>>>>> Stashed changes
             <Button.Background>
                <ImageBrush ImageSource="AppImages/Cart.png"/>
             </Button.Background>

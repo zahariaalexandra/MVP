@@ -27,6 +27,8 @@ namespace MVP_tema3_OnlineRestaurant.Models
         public string Address { get; set; }
         public Status Status { get; set; }
 
+        public string FullName { get { return (FirstName + " " + LastName); } }
+
         public User()
         {
             Id = 0;

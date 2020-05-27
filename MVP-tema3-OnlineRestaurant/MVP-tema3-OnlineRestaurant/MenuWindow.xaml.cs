@@ -30,11 +30,6 @@ namespace MVP_tema3_OnlineRestaurant
         public MenuWindow(int? id, Status status)
         {
             InitializeComponent();
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 
             List<string> categories = new List<string>();
             categories.Add("Appetizers");
@@ -45,22 +40,16 @@ namespace MVP_tema3_OnlineRestaurant
             categories.Add("Deserts");
             categories.Add("Sauces");
             categories.Add("Drinks");
-<<<<<<< Updated upstream
             categories.Add("Menus");
-            listCategories.ItemsSource = categories;
 
-=======
             listCategories.ItemsSource = categories;
-
->>>>>>> Stashed changes
->>>>>>> Stashed changes
             listCategories.SelectedIndex = 0;
 
-            if(id != null)
+            if (id != null)
             {
                 this.id = Convert.ToInt32(id);
                 btnCreateAccount.Visibility = Visibility.Hidden;
-            }                
+            }
             else
             {
                 btnAdd.Visibility = Visibility.Hidden;
@@ -83,32 +72,15 @@ namespace MVP_tema3_OnlineRestaurant
                 Close();
             }            
         }
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
-
         private void listCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string category = listCategories.SelectedItem.ToString();
 
-<<<<<<< Updated upstream
-            if(category != "Menus")
-            {
+            
                 List<Product> products =
                     Utils.GetProductsByCategory(category);
-                listFoods.ItemsSource = products;
-            } 
-            else
-            {
-
-            }           
-        }
-=======
-            List<Product> products =
-                Utils.GetProductsByCategory(category);
-            listFoods.ItemsSource = products;         
+                listFoods.ItemsSource = products;        
+               
         }
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
@@ -117,7 +89,5 @@ namespace MVP_tema3_OnlineRestaurant
             window.Show();
             Close();
         }
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     }
 }

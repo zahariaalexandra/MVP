@@ -10,16 +10,10 @@ using System.Net.NetworkInformation;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< Updated upstream
 using System.Windows.Media.Imaging;
-=======
-<<<<<<< Updated upstream
-=======
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -90,11 +84,6 @@ namespace MVP_tema3_OnlineRestaurant
 
             return id;
         }
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 
         public static List<Product> GetProductsByCategory(string category)
         {
@@ -133,8 +122,6 @@ namespace MVP_tema3_OnlineRestaurant
 
             return products;
         }       
-<<<<<<< Updated upstream
-=======
 
         public static List<Product> GetAllProducts()
         {
@@ -174,8 +161,6 @@ namespace MVP_tema3_OnlineRestaurant
 
             return products;
         }
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     }
 
     public enum Status
