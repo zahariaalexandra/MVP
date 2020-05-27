@@ -30,12 +30,16 @@ namespace MVP_tema3_OnlineRestaurant.Models
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
         string Name { get { return _name; } set { _name = value; } }
         decimal Price { get { return _price; } set { _price = value; } }
         Category Category { get { return _category; } set { _category = value; } }
         decimal Quantity { get { return _quantity; } set { _quantity = value; } }
         uint TotalQuantity { get { return _totalQuantity; } set { _totalQuantity = value; } }
         BitmapImage Photo { get { return _photo; } set { _photo = value; } }
+<<<<<<< Updated upstream
 =======
         public int Id { get { return _id; } set { _id = value; } }
         public string Name { get { return _name; } set { _name = value; } }
@@ -48,6 +52,12 @@ namespace MVP_tema3_OnlineRestaurant.Models
         public string FullInfo { get { return TotalQuantity.ToString() + "x " + Name; } set { FullInfo = value; } }
         
         //public uint CommandQuantity { get { return _quantityCommand; } set { _quantityCommand = value; } }
+>>>>>>> Stashed changes
+=======
+        
+        public string Info { get { return (Price.ToString() + "lei / " + Quantity.ToString()) + "g"; } set { Info = value; } }
+        public string FullInfo { get { return TotalQuantity.ToString() + "x " + Name; } set { FullInfo = value; } }
+       
 >>>>>>> Stashed changes
     }
 }

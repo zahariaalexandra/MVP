@@ -80,6 +80,86 @@ namespace MVP_tema3_OnlineRestaurant
 
             if (firstName != "" && lastName != "")
                 return id;
+<<<<<<< Updated upstream
+=======
+
+            return id;
+        }
+
+        public static List<Product> GetProductsByCategory(string category)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("procGetProductByCategory", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@category", category);
+            SqlDataReader reader = command.ExecuteReader();
+            List<Product> products = new List<Product>();
+
+            while (reader.Read())
+            {
+                Product product = new Product();
+
+                product.Id = Convert.ToInt32(reader[0]);
+                product.Name = reader[1].ToString();
+                product.Price = Convert.ToDecimal(reader[2]);
+                product.Category = category;
+                product.Quantity = Convert.ToUInt32(reader[4]);
+                product.TotalQuantity = Convert.ToUInt32(reader[5]);
+
+                byte[] image = (byte[])reader[6];
+                MemoryStream stream = new MemoryStream();
+                stream.Write(image, 0, image.Length);
+                stream.Position = 0;
+                BitmapImage photo = new BitmapImage();
+                photo.BeginInit();
+                photo.StreamSource = stream;
+                photo.EndInit();
+                product.Photo = photo;
+
+                products.Add(product);
+            }
+
+            connection.Close();
+
+            return products;
+        }
+
+        public static List<Product> GetAllProducts()
+        {
+            List<Product> products = new List<Product>();
+
+            connection.Open();
+            SqlCommand command = new SqlCommand("procGetAllProducts", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader = command.ExecuteReader();
+
+            while(reader.Read())
+            {
+                byte[] image = (byte[])reader[6];
+                MemoryStream stream = new MemoryStream();
+                stream.Write(image, 0, image.Length);
+                stream.Position = 0;
+                BitmapImage photo = new BitmapImage();
+                photo.BeginInit();
+                photo.StreamSource = stream;
+                photo.EndInit();
+
+                Product product = new Product()
+                {
+                    Id = Convert.ToInt32(reader[0]),
+                    Name = reader[1].ToString(),
+                    Price = Convert.ToDecimal(reader[2]),
+                    Category = reader[3].ToString(),
+                    Quantity = Convert.ToUInt32(reader[4]),
+                    TotalQuantity = Convert.ToUInt32(reader[5]),
+                    Photo = photo
+                };
+
+                products.Add(product);
+            }
+
+            connection.Close();
+>>>>>>> Stashed changes
 
             return id;
         }

@@ -125,7 +125,11 @@
                 <DataTemplate>
                     <StackPanel Orientation="Vertical"
                                 Width="120"
+<<<<<<< Updated upstream
                                 Height="250"
+=======
+                                Height="270"
+>>>>>>> Stashed changes
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                         <Image Source="{Binding Photo}"
