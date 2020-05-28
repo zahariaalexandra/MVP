@@ -221,6 +221,23 @@ namespace MVP_tema3_OnlineRestaurant
             command.ExecuteReader();
             connection.Close();
         }
+
+        public static void SelectImage(ref byte[] image, ref string fileName)
+        {
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            //dialog.DefaultExt = ".png";
+            dialog.Filter = "PNG Files (*.png)|*.png|JPEG Files (*.jpeg)|*.jpeg|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            Nullable<bool> result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                FileStream fileStream = new FileStream(dialog.FileName, FileMode.Open, FileAccess.Read);
+                image = new byte[fileStream.Length];
+                fileStream.Read(image, 0, System.Convert.ToInt32(fileStream.Length));
+                fileStream.Close();
+                fileName = Path.GetFileName(dialog.FileName);
+            }
+        }
     }
 
     public enum Status

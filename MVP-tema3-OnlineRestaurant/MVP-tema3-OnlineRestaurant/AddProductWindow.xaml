@@ -136,7 +136,8 @@
             </Button.Background> Add image...
         </Button>
 
-        <Label Grid.Row="5"
+        <Label Name="lblFileName"
+               Grid.Row="5"
                Grid.Column="1"
                VerticalAlignment="Center"
                FontSize="12"

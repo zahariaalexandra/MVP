@@ -18,32 +18,27 @@ using System.Windows.Shapes;
 
 namespace MVP_tema3_OnlineRestaurant
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
-    public partial class Window1 : Window
+    public partial class AddProductWindow : Window
     {
-        public Window1()
+        byte[] image = new byte[0];
+
+        public AddProductWindow()
         {
             InitializeComponent();
-        }
 
-        byte[] image;
+            List<string> categories = new List<string>();
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.DefaultExt = ".png";
-            dialog.Filter = "PNG Files (*.png)|*.png|JPEG Files (*.jpeg)|*.jpeg|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-            Nullable<bool> result = dialog.ShowDialog();
+            categories.Add("Appetizers");
+            categories.Add("Salads");
+            categories.Add("Soups");
+            categories.Add("Rice");
+            categories.Add("Noodles");
+            categories.Add("Deserts");
+            categories.Add("Sauces");
+            categories.Add("Drinks");
 
-            if (result == true)
-            {
-                FileStream fileStream = new FileStream(dialog.FileName, FileMode.Open, FileAccess.Read);
-                image = new byte[fileStream.Length];
-                fileStream.Read(image, 0, System.Convert.ToInt32(fileStream.Length));
-                fileStream.Close();
-            }
+            listCategory.ItemsSource = categories;
+            listCategory.SelectedIndex = -1;
         }
 
         private void button_Copy_Click(object sender, RoutedEventArgs e)
@@ -51,7 +46,7 @@ namespace MVP_tema3_OnlineRestaurant
             SqlConnection connection =
             new SqlConnection(ConfigurationManager.ConnectionStrings["database"].ConnectionString);
 
-            connection.Open();
+            /*connection.Open();
             SqlCommand command = new SqlCommand("procAddProduct", connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@name", textBox.Text);
@@ -61,7 +56,29 @@ namespace MVP_tema3_OnlineRestaurant
             command.Parameters.AddWithValue("@total_quantity", Convert.ToInt32(textBox4.Text));
             command.Parameters.AddWithValue("@photo", image);
             command.ExecuteNonQuery();
-            connection.Close();
+            connection.Close();*/
+        }
+
+        private void btnImage_Click(object sender, RoutedEventArgs e)
+        {
+            string fileName = "";
+            Utils.SelectImage(ref image, ref fileName);
+            lblFileName.Content = fileName;
+        }
+
+        private void listCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

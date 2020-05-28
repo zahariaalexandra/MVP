@@ -65,12 +65,15 @@ namespace MVP_tema3_OnlineRestaurant
                 Product product = Utils.GetProductByName(name);
                 Utils.DeleteProduct(product);
                 listFoods.SelectedIndex = -1;
+                listFoods.ItemsSource = Utils.GetAllProducts();
             }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            AddProductWindow window = new AddProductWindow();
+            window.ShowDialog();
+            listFoods.ItemsSource = Utils.GetAllProducts();
         }
     }
 }
