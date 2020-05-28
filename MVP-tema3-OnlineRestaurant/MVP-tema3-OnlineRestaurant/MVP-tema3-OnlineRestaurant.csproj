@@ -207,14 +207,11 @@
   <ItemGroup>
     <Resource Include="AppImages\RoundBorder.png" />
   </ItemGroup>
-<<<<<<< Updated upstream
-=======
   <ItemGroup>
     <Resource Include="AppImages\ProductImage.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="AppImages\ProductBackground.png" />
   </ItemGroup>
->>>>>>> Stashed changes
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

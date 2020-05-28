@@ -14,7 +14,7 @@ namespace MVP_tema3_OnlineRestaurant.Models
         string _name;
         decimal _price;
         string _category;
-        decimal _quantity;
+        uint _quantity;
         uint _totalQuantity;
         BitmapImage _photo;
         //uint _quantityCommand;
@@ -25,7 +25,7 @@ namespace MVP_tema3_OnlineRestaurant.Models
             _name = "";
             _price = 0.0m;
             _category = "";
-            _quantity = 0.0m;
+            _quantity = 0;
             _totalQuantity = 0;
             _photo = new BitmapImage();
             //_quantityCommand = 0;
@@ -36,7 +36,7 @@ namespace MVP_tema3_OnlineRestaurant.Models
         public string Name { get { return _name; } set { _name = value; } }
         public decimal Price { get { return _price; } set { _price = value; } }
         public string Category { get { return _category; } set { _category = value; } }
-        public decimal Quantity { get { return _quantity; } set { _quantity = value; } }
+        public uint Quantity { get { return _quantity; } set { _quantity = value; } }
         public uint TotalQuantity { get { return _totalQuantity; } set { _totalQuantity = value; } }
         public BitmapImage Photo { get { return _photo; } set { _photo = value; } }
         public string Info { get { return (Price.ToString() + "lei / " + Quantity.ToString()) + "g"; } set { Info = value; } }

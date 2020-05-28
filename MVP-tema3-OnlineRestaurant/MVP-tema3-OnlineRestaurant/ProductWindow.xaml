@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
-<<<<<<< Updated upstream
         Title="ProductWindow" 
         Height="500" 
         Width="400"
@@ -37,7 +36,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Margin="45,5"
+                Margin="50,5"
                 BorderThickness="0">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
@@ -48,7 +47,7 @@
                 Grid.Row="1"
                Grid.Column="0"
                Grid.ColumnSpan="3"
-               Margin="20"/>
+               Margin="25"/>
 
         <Image Grid.Row="1"
                Grid.Column="0"
@@ -146,10 +145,5 @@
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
             </Button.Background> Update qunatity...
         </Button>
-=======
-        Title="ProductWindow" Height="450" Width="800">
-    <Grid>
-        
->>>>>>> Stashed changes
     </Grid>
 </Window>

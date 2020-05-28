@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace MVP_tema3_OnlineRestaurant
 {
-    /// <summary>
-    /// Interaction logic for ProductWindow.xaml
-    /// </summary>
     public partial class ProductWindow : Window
     {
         public ProductWindow()
