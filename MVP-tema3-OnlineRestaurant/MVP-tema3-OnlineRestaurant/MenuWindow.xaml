@@ -43,7 +43,7 @@
                   Grid.Row="0"
                   Grid.Column="0"
                   Grid.ColumnSpan="3"
-                  Margin="185,25,75,5"
+                  Margin="185,25,95,5"
                   BorderThickness="3"
                   BorderBrush="#FFCE1D2D"
                   Background="Transparent"
