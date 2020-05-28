@@ -39,6 +39,7 @@ namespace MVP_tema3_OnlineRestaurant
             listFoods.ItemsSource = products;
             listCommandTypes.ItemsSource = commandTypes;
             listFoods.SelectedIndex = -1;
+            listCommandTypes.SelectedIndex = 0;
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
