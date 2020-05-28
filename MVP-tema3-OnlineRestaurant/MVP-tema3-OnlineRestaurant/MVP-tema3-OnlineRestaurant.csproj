@@ -93,8 +93,8 @@
       <DependentUpon>ProductWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
+    <Compile Include="AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AccessWindow.xaml">
       <SubType>Designer</SubType>
@@ -128,7 +128,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window1.xaml">
+    <Page Include="AddProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,6 +211,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="AppImages\ProductBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\BlackProductImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

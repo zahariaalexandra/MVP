@@ -114,7 +114,8 @@
                 Margin="320,2,80,2"
                 Foreground="#FFCE1D2D"
                 FontFamily="Viner Hand ITC"
-                FontSize="16">
+                FontSize="16"
+                Click="btnDelete_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
             </Button.Background>Delete product...
@@ -186,7 +187,8 @@
                 FontFamily="Viner Hand ITC"
                 FontSize="20"
                 BorderThickness="0"
-                Margin="170,5,80,3">
+                Margin="170,5,80,3"
+                Click="btnAdd_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
             </Button.Background>Add new product...

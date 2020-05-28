@@ -211,6 +211,16 @@ namespace MVP_tema3_OnlineRestaurant
             command.ExecuteNonQuery();
             connection.Close();
         }
+
+        public static void DeleteProduct(Product product)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("procDeleteProduct", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", product.Id);
+            command.ExecuteReader();
+            connection.Close();
+        }
     }
 
     public enum Status

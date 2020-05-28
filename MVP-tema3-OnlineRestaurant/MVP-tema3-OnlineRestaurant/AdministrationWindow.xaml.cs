@@ -56,5 +56,21 @@ namespace MVP_tema3_OnlineRestaurant
             window.Show();
             Close();
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if(listFoods.SelectedIndex != -1)
+            {
+                string name = listFoods.GetChildrenOfType<TextBox>().First(x => x.Name == "txtName").Text.ToString();
+                Product product = Utils.GetProductByName(name);
+                Utils.DeleteProduct(product);
+                listFoods.SelectedIndex = -1;
+            }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
