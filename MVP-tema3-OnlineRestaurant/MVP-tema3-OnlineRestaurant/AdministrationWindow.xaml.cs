@@ -44,9 +44,17 @@ namespace MVP_tema3_OnlineRestaurant
         {
             if(listFoods.SelectedIndex != -1)
             {
-                Product product = new Product();
                 string name = listFoods.GetChildrenOfType<TextBox>().First(x => x.Name == "txtName").Text.ToString();
+                ProductWindow window = new ProductWindow(name);
+                window.ShowDialog();
             }
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow window = new LoginWindow();
+            window.Show();
+            Close();
         }
     }
 }

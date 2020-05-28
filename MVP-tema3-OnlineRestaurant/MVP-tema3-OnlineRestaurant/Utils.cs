@@ -155,6 +155,62 @@ namespace MVP_tema3_OnlineRestaurant
 
             return products;
         }
+
+        public static Product GetProductByName(string name)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("procGetProductByName", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@name", name);
+            SqlDataReader reader = command.ExecuteReader();
+            Product product = new Product();
+
+            if(reader.Read())
+            {
+                product.Id = Convert.ToInt32(reader[0]);
+                product.Name = name;
+                product.Price = Convert.ToDecimal(reader[2]);
+                product.Category = reader[3].ToString();
+                product.Quantity = Convert.ToUInt32(reader[4]);
+                product.TotalQuantity = Convert.ToUInt32(reader[5]);
+
+                byte[] image = (byte[])reader[6];
+                MemoryStream stream = new MemoryStream();
+                stream.Write(image, 0, image.Length);
+                stream.Position = 0;
+                BitmapImage photo = new BitmapImage();
+                photo.BeginInit();
+                photo.StreamSource = stream;
+                photo.EndInit();
+                product.Photo = photo;
+            }
+
+            connection.Close();
+
+            return product;
+        }
+
+        public static bool OnlyDigits(string quantity)
+        {
+            foreach(char ch in quantity)
+            {
+                if (!char.IsDigit(ch))
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static void UpdateQuantity(int id, int quantity)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("procUpdateQuantity", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@quantity", quantity);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 
     public enum Status

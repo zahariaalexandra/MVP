@@ -86,7 +86,8 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 BorderThickness="0"
-                Margin="195,2,265,2">
+                Margin="195,2,265,2"
+                Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
             </Button.Background>
@@ -147,7 +148,7 @@
                                VerticalAlignment="Top"
                                Stretch="UniformToFill"/>
 
-                        <TextBox Text="{Binding FullInfo}"
+                        <TextBox Text="{Binding Name}"
                                  Name="txtName"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Center"
