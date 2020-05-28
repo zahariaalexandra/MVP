@@ -144,6 +144,17 @@
                                 Height="270"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
+                        <StackPanel.Style>
+                            <Style TargetType="{x:Type StackPanel}">
+                                <Setter Property="IsEnabled" Value="True"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Active}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+
                         <Image Source="{Binding Photo}"
                                HorizontalAlignment="Stretch"
                                VerticalAlignment="Top"

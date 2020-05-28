@@ -98,6 +98,7 @@ namespace MVP_tema3_OnlineRestaurant
                 product.Category = category;
                 product.Quantity = Convert.ToUInt32(reader[4]);
                 product.TotalQuantity = Convert.ToUInt32(reader[5]);
+                product.Active = Convert.ToBoolean(reader[7]);
 
                 byte[] image = (byte[])reader[6];
                 MemoryStream stream = new MemoryStream();
@@ -145,7 +146,8 @@ namespace MVP_tema3_OnlineRestaurant
                     Category = reader[3].ToString(),
                     Quantity = Convert.ToUInt32(reader[4]),
                     TotalQuantity = Convert.ToUInt32(reader[5]),
-                    Photo = photo
+                    Photo = photo,
+                    Active = Convert.ToBoolean(reader[7])
                 };
 
                 products.Add(product);
@@ -208,6 +210,12 @@ namespace MVP_tema3_OnlineRestaurant
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@id", id);
             command.Parameters.AddWithValue("@quantity", quantity);
+
+            if (quantity == 0)
+                command.Parameters.AddWithValue("@active", false);
+            else
+                command.Parameters.AddWithValue("@active", true);
+
             command.ExecuteNonQuery();
             connection.Close();
         }
@@ -277,6 +285,7 @@ namespace MVP_tema3_OnlineRestaurant
             command.Parameters.AddWithValue("@quantity", Convert.ToInt32(product.Quantity));
             command.Parameters.AddWithValue("@total_quantity", Convert.ToInt32(product.TotalQuantity));
             command.Parameters.AddWithValue("@photo", image);
+            command.Parameters.AddWithValue("@active", product.Active);
             command.ExecuteNonQuery();
             connection.Close();
         }

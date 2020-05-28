@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -44,9 +45,12 @@ namespace MVP_tema3_OnlineRestaurant
         {
             if(listFoods.SelectedIndex != -1)
             {
-                string name = listFoods.GetChildrenOfType<TextBox>().First(x => x.Name == "txtName").Text.ToString();
+                Product selectedItem = new Product();
+                selectedItem = (Product)listFoods.SelectedItem;
+                string name = selectedItem.Name;
                 ProductWindow window = new ProductWindow(name);
                 window.ShowDialog();
+                listFoods.ItemsSource = Utils.GetAllProducts();
             }
         }
 

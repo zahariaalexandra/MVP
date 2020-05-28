@@ -86,6 +86,7 @@ namespace MVP_tema3_OnlineRestaurant
             product.Category = listCategory.SelectedItem.ToString();
             product.Quantity = Convert.ToUInt32(txtQuantity.Text);
             product.TotalQuantity = Convert.ToUInt32(txtTotalQuantity.Text);
+            product.Active = (Convert.ToUInt32(txtTotalQuantity.Text) == 0);
 
             Utils.AddProduct(product, image);
 
