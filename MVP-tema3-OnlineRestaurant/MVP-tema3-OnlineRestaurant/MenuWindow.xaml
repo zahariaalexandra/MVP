@@ -31,7 +31,7 @@
         <Button Name="btnBack"
                 Grid.Row="0"
                 Grid.Column="0"
-               Margin="70,5,35,5"
+               Margin="85,25,35,5"
                 BorderThickness="0"
                 Click="btnBack_Click">
             <Button.Background>
@@ -49,7 +49,6 @@
                   Background="Transparent"
                   FontFamily="Viner Hand ITC"
                   FontSize="24"
-                  FontSize="22"
                   Foreground="#FFCE1D2D"
                   SelectionChanged="listCategory_SelectionChanged"/>
 
