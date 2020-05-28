@@ -15,7 +15,7 @@
         <ImageBrush ImageSource="AppImages/AccessBackground.jpg"/>
     </Window.Background>
     
-    <Grid>
+    <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -46,30 +46,28 @@
         <TextBox Name="txtName"
                  Grid.Row="0"
                  Grid.Column="1"
-                 VerticalAlignment="Bottom"
                  Background="Transparent"
                  BorderThickness="2"
                  BorderBrush="Black"
                  FontSize="16"
                  FontFamily="Viner Hand ITC"
-                 Margin="0,0,5,0"/>
+                 Margin="0,20,5,0"/>
 
         <Label Grid.Row="1"
                Grid.Column="1"
                VerticalAlignment="Top"
                FontSize="12"
-               FontFamily="Viner Hand ITC">Price</Label>
+               FontFamily="Viner Hand ITC">Price (ex: 12.00)</Label>
 
         <TextBox Name="txtPrice"
                  Grid.Row="1"
                  Grid.Column="1"
-                 VerticalAlignment="Bottom"
                  Background="Transparent"
                  BorderThickness="2"
                  BorderBrush="Black"
                  FontSize="16"
                  FontFamily="Viner Hand ITC"
-                 Margin="0,0,5,0"/>
+                 Margin="0,20,5,0"/>
 
         <Label Grid.Row="2"
                Grid.Column="1"
@@ -80,14 +78,12 @@
         <ListBox Name="listCategory"
                  Grid.Row="2"
                  Grid.Column="1"
-                 VerticalAlignment="Bottom"
                  Background="Transparent"
                  BorderThickness="2"
                  BorderBrush="Black"
                  FontSize="16"
                  FontFamily="Viner Hand ITC"
-                 Margin="0,0,5,0"
-                 SelectionChanged="listCategory_SelectionChanged"/>
+                 Margin="0,20,5,0"/>
 
         <Label Grid.Row="3"
                Grid.Column="1"
@@ -98,13 +94,12 @@
         <TextBox Name="txtQuantity"
                  Grid.Row="3"
                  Grid.Column="1"
-                 VerticalAlignment="Bottom"
                  Background="Transparent"
                  BorderThickness="2"
                  BorderBrush="Black"
                  FontSize="16"
                  FontFamily="Viner Hand ITC"
-                 Margin="0,0,5,0"/>
+                 Margin="0,20,5,0"/>
 
         <Label Grid.Row="4"
                Grid.Column="1"
@@ -115,13 +110,12 @@
         <TextBox Name="txtTotalQuantity"
                  Grid.Row="4"
                  Grid.Column="1"
-                 VerticalAlignment="Bottom"
                  Background="Transparent"
                  BorderThickness="2"
                  BorderBrush="Black"
                  FontSize="16"
                  FontFamily="Viner Hand ITC"
-                 Margin="0,0,5,0"/>
+                 Margin="0,20,5,0"/>
 
         <Button Name="btnImage"
                 Grid.Row="5"
@@ -136,13 +130,17 @@
             </Button.Background> Add image...
         </Button>
 
-        <Label Name="lblFileName"
-               Grid.Row="5"
-               Grid.Column="1"
-               VerticalAlignment="Center"
-               FontSize="12"
-               FontFamily="Viner Hand ITC"
-               Margin="115,0,5,0">...</Label>
+        <TextBox Name="txtFileName"
+                Grid.Row="5"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="12"
+                FontFamily="Viner Hand ITC"
+                Margin="115,0,5,0"
+                 Background="Transparent"
+                 TextWrapping="WrapWithOverflow"
+                 IsReadOnly="True"
+                 BorderThickness="0">...</TextBox>
 
         <Button Name="btnAdd"
                 Grid.Row="6"

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVP_tema3_OnlineRestaurant.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -41,44 +42,75 @@ namespace MVP_tema3_OnlineRestaurant
             listCategory.SelectedIndex = -1;
         }
 
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
-        {
-            SqlConnection connection =
-            new SqlConnection(ConfigurationManager.ConnectionStrings["database"].ConnectionString);
-
-            /*connection.Open();
-            SqlCommand command = new SqlCommand("procAddProduct", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@name", textBox.Text);
-            command.Parameters.AddWithValue("@price", Convert.ToDecimal(textBox1.Text));
-            command.Parameters.AddWithValue("@category", textBox2.Text);
-            command.Parameters.AddWithValue("@quantity", Convert.ToDecimal(textBox3.Text));
-            command.Parameters.AddWithValue("@total_quantity", Convert.ToInt32(textBox4.Text));
-            command.Parameters.AddWithValue("@photo", image);
-            command.ExecuteNonQuery();
-            connection.Close();*/
-        }
-
         private void btnImage_Click(object sender, RoutedEventArgs e)
         {
             string fileName = "";
             Utils.SelectImage(ref image, ref fileName);
-            lblFileName.Content = fileName;
-        }
-
-        private void listCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            txtFileName.Text = fileName;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            foreach (TextBox textBox in grid.Children.OfType<TextBox>())
+            {
+                if (textBox.Text == "")
+                {
+                    MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageIncomplete"],
+                            "",
+                            MessageBoxButton.OK);
+                    return;
+                }
+            }
 
+            if(listCategory.SelectedIndex == -1 || txtFileName.Text == "...")
+            {
+                MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageIncomplete"],
+                            "",
+                            MessageBoxButton.OK);
+                return;
+            }
+
+            if(!Utils.OnlyDigits(txtQuantity.Text) || 
+                !Utils.OnlyDigits(txtTotalQuantity.Text) || 
+                !Utils.IsDecimal(txtPrice.Text))
+            {
+                MessageBox.Show(ConfigurationManager.AppSettings["btnOrderIncorrect"],
+                           "",
+                           MessageBoxButton.OK);
+                return;
+            }
+
+            Product product = new Product();
+            product.Name = txtName.Text;
+            product.Price = Convert.ToDecimal(txtPrice.Text);
+            product.Category = listCategory.SelectedItem.ToString();
+            product.Quantity = Convert.ToUInt32(txtQuantity.Text);
+            product.TotalQuantity = Convert.ToUInt32(txtTotalQuantity.Text);
+
+            Utils.AddProduct(product, image);
+
+            MessageBox.Show(ConfigurationManager.AppSettings["btnOrderCorrect"],
+                "",
+                MessageBoxButton.OK);
+
+            foreach (TextBox textBox in grid.Children.OfType<TextBox>())
+            {
+                textBox.Text = "";
+            }
+
+            txtFileName.Text = "...";
+            listCategory.SelectedIndex = -1;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result =
+                MessageBox.Show(ConfigurationManager.AppSettings["btnCancelMessage"],
+                "",
+                MessageBoxButton.YesNo);
 
+            if (result == MessageBoxResult.Yes)
+                Close();
         }
     }
 }

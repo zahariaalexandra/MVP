@@ -56,13 +56,59 @@
                   Grid.Row="1"
                   Grid.Column="0"
                   Grid.ColumnSpan="3"
-                  Margin="15,0"
+                  Margin="23,0"
                   BorderBrush="#FFCE1D2D"
                   BorderThickness="3"
                   Background="Transparent"
-                  Foreground="#FFCE1D2D"/>
+                  Foreground="#FFCE1D2D">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3"
+                                 HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
 
-        <Button Name="btnProfile"
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical"
+                                Width="160"
+                                Height="275"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <Image Source="{Binding Photo}"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Top"
+                               Stretch="UniformToFill"/>
+
+                        <TextBox Text="{Binding Name}"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 FontSize="18"
+                                 FontFamily="Viner Hand ITC"
+                                 Foreground="#FFCE1D2D"
+                                 Background="Transparent"
+                                 BorderThickness="2,0,2,0"
+                                 BorderBrush="#FFCE1D2D"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="WrapWithOverflow"
+                                 IsReadOnly="True"/>
+
+                        <Label Content="{Binding Info}"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Bottom"
+                                 FontSize="18"
+                                 FontFamily="Viner Hand ITC"
+                                 Foreground="#FFCE1D2D"
+                                 Background="Transparent"
+                                 BorderThickness="2,0,2,2"
+                                 BorderBrush="#FFCE1D2D"
+                                  HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+            <Button Name="btnProfile"
                 Grid.Row="2"
                 Grid.Column="0"
                 Margin="80,1,15,0"

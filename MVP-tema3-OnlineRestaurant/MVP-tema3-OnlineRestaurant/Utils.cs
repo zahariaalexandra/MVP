@@ -238,6 +238,48 @@ namespace MVP_tema3_OnlineRestaurant
                 fileName = Path.GetFileName(dialog.FileName);
             }
         }
+
+        public static bool IsDecimal(string text)
+        {
+            bool dot = false;
+            int nrDot = 0;
+            int digits = 0;
+
+            foreach(char ch in text)
+            {
+                if ((!char.IsDigit(ch) && ch != '.') || nrDot > 1 || digits > 2)
+                    return false;
+
+                if (ch == '.')
+                {
+                    dot = true;
+                    nrDot++;
+                }
+
+                if (char.IsDigit(ch) && dot)
+                    digits++;
+            }
+
+            if (!dot || digits < 2)
+                return false;
+
+            return true;
+        }
+
+        public static void AddProduct(Product product, byte[] image)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("procAddProduct", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@name", product.Name);
+            command.Parameters.AddWithValue("@price", product.Price);
+            command.Parameters.AddWithValue("@category", product.Category);
+            command.Parameters.AddWithValue("@quantity", Convert.ToInt32(product.Quantity));
+            command.Parameters.AddWithValue("@total_quantity", Convert.ToInt32(product.TotalQuantity));
+            command.Parameters.AddWithValue("@photo", image);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 
     public enum Status
