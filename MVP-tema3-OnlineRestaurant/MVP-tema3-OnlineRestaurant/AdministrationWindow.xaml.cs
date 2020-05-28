@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -38,15 +39,46 @@ namespace MVP_tema3_OnlineRestaurant
             listFoods.ItemsSource = products;
             listCommandTypes.ItemsSource = commandTypes;
             listFoods.SelectedIndex = -1;
+            listCommandTypes.SelectedIndex = 0;
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
             if(listFoods.SelectedIndex != -1)
             {
-                Product product = new Product();
-                string name = listFoods.GetChildrenOfType<TextBox>().First(x => x.Name == "txtName").Text.ToString();
+                Product selectedItem = new Product();
+                selectedItem = (Product)listFoods.SelectedItem;
+                string name = selectedItem.Name;
+                ProductWindow window = new ProductWindow(name);
+                window.ShowDialog();
+                listFoods.ItemsSource = Utils.GetAllProducts();
             }
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow window = new LoginWindow();
+            window.Show();
+            Close();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if(listFoods.SelectedIndex != -1)
+            {
+                string name = listFoods.GetChildrenOfType<TextBox>().First(x => x.Name == "txtName").Text.ToString();
+                Product product = Utils.GetProductByName(name);
+                Utils.DeleteProduct(product);
+                listFoods.SelectedIndex = -1;
+                listFoods.ItemsSource = Utils.GetAllProducts();
+            }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddProductWindow window = new AddProductWindow();
+            window.ShowDialog();
+            listFoods.ItemsSource = Utils.GetAllProducts();
         }
     }
 }

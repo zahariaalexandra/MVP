@@ -40,7 +40,6 @@ namespace MVP_tema3_OnlineRestaurant
             categories.Add("Deserts");
             categories.Add("Sauces");
             categories.Add("Drinks");
-            categories.Add("Menus");
 
             listCategories.ItemsSource = categories;
             listCategories.SelectedIndex = 0;

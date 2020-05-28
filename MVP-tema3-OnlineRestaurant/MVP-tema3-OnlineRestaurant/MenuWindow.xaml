@@ -31,12 +31,9 @@
         <Button Name="btnBack"
                 Grid.Row="0"
                 Grid.Column="0"
-               Margin="80,25,30,5"
-               Margin="65,5,30,5"
+               Margin="70,5,35,5"
+                BorderThickness="0"
                 Click="btnBack_Click">
-               Margin="80,25,30,5"
-                Click="btnBack_Click"
-                BorderThickness="0">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
             </Button.Background>
@@ -112,7 +109,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Name="btnProfile"
+            <Button Name="btnProfile"
                 Grid.Row="2"
                 Grid.Column="0"
                 Margin="85,1,15,0"

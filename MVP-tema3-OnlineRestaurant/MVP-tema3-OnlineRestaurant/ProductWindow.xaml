@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
-<<<<<<< Updated upstream
         Title="ProductWindow" 
         Height="500" 
         Width="400"
         Icon="Logo.png"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Background>
         <ImageBrush ImageSource="AppImages/ProductBackground.png"/>
@@ -37,8 +36,9 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Margin="45,5"
-                BorderThickness="0">
+                Margin="55,5"
+                BorderThickness="0"
+                Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
             </Button.Background>
@@ -48,7 +48,7 @@
                 Grid.Row="1"
                Grid.Column="0"
                Grid.ColumnSpan="3"
-               Margin="20"/>
+               Margin="25"/>
 
         <Image Grid.Row="1"
                Grid.Column="0"
@@ -85,6 +85,7 @@
                  TextWrapping="WrapWithOverflow"
                  IsReadOnly="True"/>
 
+        <!--
         <Button Name="btnMinus"
                 Grid.Row="4"
                 Grid.Column="0"
@@ -100,11 +101,13 @@
                 <ImageBrush ImageSource="AppImages/RoundBorder.png"/>
             </Button.Background> -
         </Button>
+        -->
 
         <TextBox Name="txtQuantity"
                 Grid.Row="4"
-                Grid.Column="1"
-                Margin="5"
+                Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                Margin="35,5"
                 BorderThickness="2"
                 BorderBrush="#FFCE1D2D"
                 Foreground="#FFCE1D2D"
@@ -116,15 +119,17 @@
 
         <Button Name="btnPlus"
                 Grid.Row="4"
-                Grid.Column="2"
-                Margin="0,5,10,5"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Margin="38,5"
                 BorderThickness="0"
                 BorderBrush="#FFCE1D2D"
                 Foreground="#FFCE1D2D"
                 FontFamily="Viner Hand ITC"
                 FontSize="30"
                 VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center">
+                HorizontalContentAlignment="Center"
+                Click="btnPlus_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RoundBorder.png"/>
             </Button.Background> +
@@ -141,15 +146,11 @@
                 FontFamily="Viner Hand ITC"
                 FontSize="16"
                 VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center">
+                HorizontalContentAlignment="Center"
+                Click="btnUpdate_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
-            </Button.Background> Update qunatity...
+            </Button.Background> Update quantity...
         </Button>
-=======
-        Title="ProductWindow" Height="450" Width="800">
-    <Grid>
-        
->>>>>>> Stashed changes
     </Grid>
 </Window>
