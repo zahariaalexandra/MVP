@@ -89,18 +89,8 @@ namespace MVP_tema3_OnlineRestaurant
             user.Telephone = txtTelephone.Text;
             user.Address = txtAddress.Text;
 
-            if (checkCustomer.IsChecked == false && checkEmployee.IsChecked == false)
-            {
-                MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageIncomplete"],
-                        "",
-                        MessageBoxButton.OK);
-                return;
-            } 
-            else if (checkCustomer.IsChecked == true)
-                user.Status = Status.CUSTOMER;
-            else
-                user.Status = Status.EMPLOYEE;
-            
+            user.Status = Status.CUSTOMER;
+
             MessageBoxResult result = 
                 MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageConfimation"],
                 "",

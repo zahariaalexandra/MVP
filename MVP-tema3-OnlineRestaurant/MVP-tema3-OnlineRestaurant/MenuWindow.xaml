@@ -103,6 +103,10 @@
                                  BorderThickness="2,0,2,2"
                                  BorderBrush="#FFCE1D2D"
                                   HorizontalContentAlignment="Center"/>
+
+                        <Label Name="lblId"
+                               Content="{Binding Id}"
+                               Visibility="Hidden"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

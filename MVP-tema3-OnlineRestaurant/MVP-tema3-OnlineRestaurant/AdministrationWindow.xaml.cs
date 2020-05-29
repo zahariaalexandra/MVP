@@ -48,8 +48,8 @@ namespace MVP_tema3_OnlineRestaurant
             {
                 Product selectedItem = new Product();
                 selectedItem = (Product)listFoods.SelectedItem;
-                string name = selectedItem.Name;
-                ProductWindow window = new ProductWindow(name);
+                int id = selectedItem.Id;
+                ProductWindow window = new ProductWindow(id);
                 window.ShowDialog();
                 listFoods.ItemsSource = Utils.GetAllProducts();
             }
@@ -66,8 +66,10 @@ namespace MVP_tema3_OnlineRestaurant
         {
             if(listFoods.SelectedIndex != -1)
             {
-                string name = listFoods.GetChildrenOfType<TextBox>().First(x => x.Name == "txtName").Text.ToString();
-                Product product = Utils.GetProductByName(name);
+                Product selectedItem = new Product();
+                selectedItem = (Product)listFoods.SelectedItem;
+                int id = selectedItem.Id;
+                Product product = Utils.GetProductById(id);
                 Utils.DeleteProduct(product);
                 listFoods.SelectedIndex = -1;
                 listFoods.ItemsSource = Utils.GetAllProducts();

@@ -75,11 +75,9 @@ namespace MVP_tema3_OnlineRestaurant
         {
             string category = listCategories.SelectedItem.ToString();
 
-            
-                List<Product> products =
-                    Utils.GetProductsByCategory(category);
-                listFoods.ItemsSource = products;        
-               
+            List<Product> products =
+                Utils.GetProductsByCategory(category);
+            listFoods.ItemsSource = products;
         }
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)

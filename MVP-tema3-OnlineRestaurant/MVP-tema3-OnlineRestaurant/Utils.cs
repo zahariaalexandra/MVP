@@ -5,14 +5,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.ExceptionServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
-using System.Windows;
-using System.Windows.Media;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -106,12 +98,13 @@ namespace MVP_tema3_OnlineRestaurant
                 byte[] image = (byte[])reader[6];
                 MemoryStream stream = new MemoryStream();
                 stream.Write(image, 0, image.Length);
-                stream.Position = 0;
-                BitmapImage photo = new BitmapImage();
+                //stream.Position = 0;
+                product.Photo = image;
+                /*BitmapImage photo = new BitmapImage();
                 photo.BeginInit();
                 photo.StreamSource = stream;
                 photo.EndInit();
-                product.Photo = photo;
+                product.Photo = photo;*/
 
                 products.Add(product);
             }
@@ -135,11 +128,11 @@ namespace MVP_tema3_OnlineRestaurant
                 byte[] image = (byte[])reader[6];
                 MemoryStream stream = new MemoryStream();
                 stream.Write(image, 0, image.Length);
-                stream.Position = 0;
+                /*stream.Position = 0;
                 BitmapImage photo = new BitmapImage();
                 photo.BeginInit();
                 photo.StreamSource = stream;
-                photo.EndInit();
+                photo.EndInit();*/
 
                 Product product = new Product()
                 {
@@ -149,7 +142,7 @@ namespace MVP_tema3_OnlineRestaurant
                     Category = reader[3].ToString(),
                     Quantity = Convert.ToUInt32(reader[4]),
                     TotalQuantity = Convert.ToUInt32(reader[5]),
-                    Photo = photo,
+                    Photo = image,
                     Active = Convert.ToBoolean(reader[7])
                 };
 
@@ -161,19 +154,19 @@ namespace MVP_tema3_OnlineRestaurant
             return products;
         }
 
-        public static Product GetProductByName(string name)
+        public static Product GetProductById(int id)
         {
             connection.Open();
-            SqlCommand command = new SqlCommand("procGetProductByName", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@name", name);
+            SqlCommand command = new SqlCommand("procGetProductById", connection);
+            command.CommandType =    CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", id);
             SqlDataReader reader = command.ExecuteReader();
             Product product = new Product();
 
             if(reader.Read())
             {
-                product.Id = Convert.ToInt32(reader[0]);
-                product.Name = name;
+                product.Id = id;
+                product.Name = reader[1].ToString();
                 product.Price = Convert.ToDecimal(reader[2]);
                 product.Category = reader[3].ToString();
                 product.Quantity = Convert.ToUInt32(reader[4]);
@@ -182,12 +175,12 @@ namespace MVP_tema3_OnlineRestaurant
                 byte[] image = (byte[])reader[6];
                 MemoryStream stream = new MemoryStream();
                 stream.Write(image, 0, image.Length);
-                stream.Position = 0;
+                /*stream.Position = 0;
                 BitmapImage photo = new BitmapImage();
                 photo.BeginInit();
                 photo.StreamSource = stream;
-                photo.EndInit();
-                product.Photo = photo;
+                photo.EndInit();*/
+                product.Photo = image;
             }
 
             connection.Close();

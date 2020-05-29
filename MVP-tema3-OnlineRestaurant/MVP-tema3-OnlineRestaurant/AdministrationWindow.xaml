@@ -186,6 +186,10 @@
                                  HorizontalContentAlignment="Center"
                                  TextWrapping="WrapWithOverflow"
                                  IsReadOnly="True"/>
+
+                        <Label Name="lblId"
+                                Content="{Binding Id}"
+                               Visibility="Hidden"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,12 @@ namespace MVP_tema3_OnlineRestaurant
 
             this.status = status;
             lblStatus.Content = lblStatus.Content + " " + status.ToString();
+
+            if (status == Status.EMPLOYEE)
+            {
+                btnCreateAccount.Visibility = Visibility.Hidden;
+                btnCancel.Margin = new Thickness(50, 80, 50, 10);
+            }
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)

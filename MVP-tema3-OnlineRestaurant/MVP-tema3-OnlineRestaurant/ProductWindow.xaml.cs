@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +26,21 @@ namespace MVP_tema3_OnlineRestaurant
             InitializeComponent();
         }
 
-        public ProductWindow(string name)
+        public ProductWindow(int id)
         {
             InitializeComponent();
 
-            product = Utils.GetProductByName(name);
+            product = Utils.GetProductById(id);
 
-            imgProduct.Source = product.Photo;
+            MemoryStream stream = new MemoryStream();
+            stream.Write(product.Photo, 0, product.Photo.Length);
+            stream.Position = 0;
+            BitmapImage source = new BitmapImage();
+            source.BeginInit();
+            source.StreamSource = stream;
+            source.EndInit();
+
+            imgProduct.Source = source;
             txtName.Text = product.Name;
             txtInfo.Text = product.Info;
             txtQuantity.Text = product.TotalQuantity.ToString();
@@ -50,7 +59,7 @@ namespace MVP_tema3_OnlineRestaurant
             if(Utils.OnlyDigits(quantity) && Convert.ToUInt32(quantity) >= product.TotalQuantity)
             {
                 Utils.UpdateQuantity(product.Id, Convert.ToInt32(quantity));
-                product = Utils.GetProductByName(product.Name);
+                product = Utils.GetProductById(product.Id);
                 MessageBox.Show(ConfigurationManager.AppSettings["btnOrderCorrect"],
                     "",
                     MessageBoxButton.OK);

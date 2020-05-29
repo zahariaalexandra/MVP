@@ -25,7 +25,6 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="1.3*"/>
             <RowDefinition Height="1.2*"/>
         </Grid.RowDefinitions>
 
@@ -149,29 +148,13 @@
                  TextWrapping="Wrap"
                  AcceptsReturn="True"/>
 
-        <RadioButton Name="checkCustomer"
-                  Grid.Row="7"
-                  Grid.Column="1"
-                  FontSize="25"
-                  VerticalContentAlignment="Center"
-                  Margin="10,0,0,30"
-                  Foreground="Black"
-                  FontFamily="Viner Hand ITC">I am a customer</RadioButton>
-
-        <RadioButton Name="checkEmployee"
-                  Grid.Row="7"
-                  Grid.Column="1"
-                  FontSize="25"
-                  VerticalContentAlignment="Center"
-                  Margin="10,35,0,0"
-                  Foreground="Black"
-                  FontFamily="Viner Hand ITC">I am an employee</RadioButton>
+        
 
         <Button Name="btnCancel"
                 Grid.Row="8"
                 Grid.Column="1"
                 Foreground="Black"
-                Margin="0,0,153,5"
+                Margin="0,10,153,5"
                 FontSize="22"
                 FontFamily="Viner Hand ITC"
                 Click="btnCancel_Click">
@@ -184,7 +167,7 @@
                 Grid.Row="8"
                 Grid.Column="1"
                 Foreground="Black"
-                Margin="152,0,5,5"
+                Margin="152,10,5,5"
                 FontSize="22"
                 FontFamily="Viner Hand ITC"
                 Click="btnContinue_Click">
