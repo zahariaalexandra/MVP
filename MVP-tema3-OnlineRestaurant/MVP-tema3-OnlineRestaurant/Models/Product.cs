@@ -38,7 +38,7 @@ namespace MVP_tema3_OnlineRestaurant.Models
         public uint TotalQuantity { get { return _totalQuantity; } set { _totalQuantity = value; } }
         public byte[] Photo { get { return _photo; } set { _photo = value; } }
         public bool Active { get { return (TotalQuantity == 0); } set { _active = (TotalQuantity == 0); } }
-        public string Info { get { return (Price.ToString() + "lei / " + Quantity.ToString()) + "g"; } set { Info = value; } }
+        public string Info { get { return (Quantity.ToString()) + "g - " + Price.ToString() + " lei"; } set { Info = value; } }
         public string FullInfo { get { return TotalQuantity.ToString() + "x " + Name; } set { FullInfo = value; } }
     }
 }

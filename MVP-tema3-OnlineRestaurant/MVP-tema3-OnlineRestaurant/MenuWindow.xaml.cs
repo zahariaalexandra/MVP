@@ -20,14 +20,14 @@ namespace MVP_tema3_OnlineRestaurant
 {
     public partial class MenuWindow : Window
     {
-        int id;
-
+        User user;
+        List<Product> chosenProducts = new List<Product>();
         public MenuWindow()
         {
             InitializeComponent();
         }
 
-        public MenuWindow(int? id, Status status)
+        public MenuWindow(User user, Status status)
         {
             InitializeComponent();
 
@@ -43,10 +43,11 @@ namespace MVP_tema3_OnlineRestaurant
 
             listCategories.ItemsSource = categories;
             listCategories.SelectedIndex = 0;
+            listFoods.SelectedIndex = -1;
 
-            if (id != null)
+            if (user.Id != 0)
             {
-                this.id = Convert.ToInt32(id);
+                this.user = user;
                 btnCreateAccount.Visibility = Visibility.Hidden;
             }
             else
@@ -85,6 +86,30 @@ namespace MVP_tema3_OnlineRestaurant
             NewAccountWindow window = new NewAccountWindow(PreviousWindow.MENU, null);
             window.Show();
             Close();
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if(listFoods.SelectedIndex != -1)
+            {
+                Product product = (Product)listFoods.SelectedItem;
+                product = Utils.GetProductById(product.Id);
+                int totalQuantity = Convert.ToInt32(product.TotalQuantity);
+                totalQuantity--;
+                product.TotalQuantity = Convert.ToUInt32(totalQuantity);
+                chosenProducts.Add(product);
+                Utils.UpdateQuantity(product.Id, totalQuantity);
+                listFoods.ItemsSource =
+                    Utils.GetProductsByCategory(listCategories.SelectedItem.ToString());
+            }
+        }
+
+        private void btnCart_Click(object sender, RoutedEventArgs e)
+        {
+            OrderWindow window = new OrderWindow(chosenProducts, user);
+            window.ShowDialog();
+            listFoods.ItemsSource =
+                    Utils.GetProductsByCategory(listCategories.SelectedItem.ToString());
         }
     }
 }

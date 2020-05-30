@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
-        Title="Chopsticks" 
+        Title="Chopsticks menu" 
         Height="800" 
         Width="900"
         Icon="Logo.png"
@@ -107,6 +107,10 @@
                         <Label Name="lblId"
                                Content="{Binding Id}"
                                Visibility="Hidden"/>
+
+                        <Label Name="lblQuantiy"
+                               Content="{Binding TotalQuantity}"
+                               Visibility="Hidden"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -129,7 +133,8 @@
                 FontFamily="Viner Hand ITC"
                 FontSize="22"
                 Foreground="#FFCE1D2D"
-                BorderThickness="0">
+                BorderThickness="0"
+                Click="btnAdd_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
             </Button.Background> Add to cart...
@@ -153,7 +158,8 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 Margin="15,2,85,0"
-                BorderThickness="0">
+                BorderThickness="0"
+                Click="btnCart_Click">
             <Button.Background>
                <ImageBrush ImageSource="AppImages/Cart.png"/>
             </Button.Background>

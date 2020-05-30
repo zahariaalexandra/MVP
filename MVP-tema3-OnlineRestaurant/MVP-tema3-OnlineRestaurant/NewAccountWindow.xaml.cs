@@ -82,6 +82,14 @@ namespace MVP_tema3_OnlineRestaurant
                 }
             }
 
+            if(txtPassword.Password == "")
+            {
+                MessageBox.Show(ConfigurationManager.AppSettings["btnContinueMessageIncomplete"],
+                            "",
+                            MessageBoxButton.OK);
+                return;
+            }
+
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
             user.Email = txtEmail.Text;

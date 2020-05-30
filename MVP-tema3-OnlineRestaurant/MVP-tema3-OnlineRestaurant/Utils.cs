@@ -54,24 +54,33 @@ namespace MVP_tema3_OnlineRestaurant
                 return true;
         }
 
-        public static int GetUser(string email, string password, string status)
+        public static User GetUser(string email, string password, Status status)
         {
-            int id = 0;
+            User user = new User();
 
             connection.Open();
             SqlCommand command = new SqlCommand("procGetUser", connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@email", email);
             command.Parameters.AddWithValue("@password", password);
-            command.Parameters.AddWithValue("@status", status);
+            command.Parameters.AddWithValue("@status", status.ToString());
             SqlDataReader reader = command.ExecuteReader();
 
             if(reader.Read())
-                id = Convert.ToInt32(reader[0]);
+            {
+                user.Id = Convert.ToInt32(reader[0]);
+                user.FirstName = reader[1].ToString();
+                user.LastName = reader[2].ToString();
+                user.Email = reader[3].ToString();
+                user.Password = reader[4].ToString();
+                user.Telephone = reader[5].ToString();
+                user.Address = reader[6].ToString();
+                user.Status = status;
+            }
 
             connection.Close();
 
-            return id;
+            return user;
         }
 
         public static List<Product> GetProductsByCategory(string category)
@@ -284,6 +293,26 @@ namespace MVP_tema3_OnlineRestaurant
             command.Parameters.AddWithValue("@active", product.Active);
             command.ExecuteNonQuery();
             connection.Close();
+        }
+
+        public static Order GenerateOrder(List<Product> products, User user)
+        {
+            decimal price = 0;
+
+            foreach(Product product in products)
+            {
+                price += product.Price;
+            }
+
+            Order order = new Order()
+            {
+                User = user,
+                Products = products,
+                StartDate = DateTime.Now,
+                Price = price
+            };
+
+            return order;
         }
     }
 

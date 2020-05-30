@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVP_tema3_OnlineRestaurant.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing.Printing;
@@ -43,21 +44,21 @@ namespace MVP_tema3_OnlineRestaurant
             }
             else
             {
-                int id = 
-                    Utils.GetUser(txtEmail.Text, txtPassword.Password, status.ToString());
+                User user = 
+                    Utils.GetUser(txtEmail.Text, txtPassword.Password, status);
 
-                if(id != 0)
+                if(user.Id != 0)
                 {
                     switch(status)
                     {
                         case Status.CUSTOMER:
-                            MenuWindow menuWindow = new MenuWindow(id, status);
+                            MenuWindow menuWindow = new MenuWindow(user, status);
                             menuWindow.Show();
                             Close();
                             break;
 
                         case Status.EMPLOYEE:
-                            AdministrationWindow administrationWindow = new AdministrationWindow(id);
+                            AdministrationWindow administrationWindow = new AdministrationWindow(user);
                             administrationWindow.Show();
                             Close();
                             break;

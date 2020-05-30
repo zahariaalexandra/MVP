@@ -20,18 +20,18 @@ namespace MVP_tema3_OnlineRestaurant
 {
     public partial class AdministrationWindow : Window
     {
-        int id;
+        User user;
 
         public AdministrationWindow()
         {
             InitializeComponent();
         }
 
-        public AdministrationWindow(int id)
+        public AdministrationWindow(User user)
         {
             InitializeComponent();
 
-            this.id = id;
+            this.user = user;
             List<Product> products = Utils.GetAllProducts();
             List<string> commandTypes = new List<string>();
             commandTypes.Add("All commands");
