@@ -121,23 +121,20 @@
   <data name="AccessBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\AppImages\AccessBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AccessBackground1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\AppImages\AccessBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="AdministrationBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\AppImages\AdministrationBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BackLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\AppImages\BackLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BlackBackLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\AppImages\BlackBackLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Border" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\AppImages\Border.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\AppImages\Cart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="imgbin_chongzuo_red_envelope_wechat_chinese_new_year_black_hair_hfz4H7ka9uLL3SeTqEBiGBFQi" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\AppImages\imgbin-chongzuo-red-envelope-wechat-chinese-new-year-black-hair-hfz4H7ka9uLL3SeTqEBiGBFQi.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LoginBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\AppImages\LoginBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

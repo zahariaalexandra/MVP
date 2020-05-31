@@ -120,7 +120,8 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 Margin="85,1,15,0"
-                BorderThickness="0">
+                BorderThickness="0"
+                    Click="btnProfile_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Profile.png"/>
             </Button.Background>

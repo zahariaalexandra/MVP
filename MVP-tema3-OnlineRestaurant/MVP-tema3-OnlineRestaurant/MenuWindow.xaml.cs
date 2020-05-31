@@ -111,5 +111,11 @@ namespace MVP_tema3_OnlineRestaurant
             listFoods.ItemsSource =
                     Utils.GetProductsByCategory(listCategories.SelectedItem.ToString());
         }
+
+        private void btnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            UserProfileWindow window = new UserProfileWindow();
+            window.Show();
+        }
     }
 }

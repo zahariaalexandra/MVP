@@ -96,6 +96,9 @@
     <Compile Include="ProductWindow.xaml.cs">
       <DependentUpon>ProductWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserProfileWindow.xaml.cs">
+      <DependentUpon>UserProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,9 +198,6 @@
     <Resource Include="AppImages\BlackLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AppImages\imgbin-chongzuo-red-envelope-wechat-chinese-new-year-black-hair-hfz4H7ka9uLL3SeTqEBiGBFQi.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="AppImages\MenuBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +229,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="AppImages\OrderBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\ProfileBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppImages\BlackBackLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
