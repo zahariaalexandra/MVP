@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -309,10 +310,64 @@ namespace MVP_tema3_OnlineRestaurant
                 User = user,
                 Products = products,
                 StartDate = DateTime.Now,
+                FinishDate = DateTime.Now,
                 Price = price
             };
 
             return order;
+        }
+
+        public static void PlaceOrder(Order order)
+        {
+            connection.Open();
+            SqlCommand orderCommand = new SqlCommand("procPlaceOrder", connection);
+            orderCommand.CommandType = CommandType.StoredProcedure;
+            orderCommand.Parameters.AddWithValue("@user", order.User.Id);
+            orderCommand.Parameters.AddWithValue("@status", order.Status.ToString());
+            orderCommand.Parameters.AddWithValue("@start_date", order.StartDate);
+            orderCommand.Parameters.AddWithValue("@finish_date", order.FinishDate);
+            orderCommand.Parameters.AddWithValue("@price", order.Price);
+            orderCommand.Parameters.AddWithValue("@shipping", Convert.ToInt32(order.Shipping));
+            orderCommand.Parameters.AddWithValue("@discount", Convert.ToInt32(order.Discount));
+            orderCommand.Parameters.AddWithValue("@final_price", order.FinalPrice);
+            orderCommand.Parameters.AddWithValue("@address", order.Address);
+            orderCommand.ExecuteNonQuery();
+            connection.Close();
+
+            order.Id = GetOrderId(order.StartDate, order.User);
+
+            connection.Open();
+
+            foreach (Product product in order.Products)
+            {              
+                SqlCommand productsCommand = new SqlCommand("procInsertProducts", connection);
+                productsCommand.CommandType = CommandType.StoredProcedure;
+                productsCommand.Parameters.AddWithValue("@id_order", order.Id);
+                productsCommand.Parameters.AddWithValue("@id_product", product.Id);
+                productsCommand.ExecuteNonQuery();
+            }
+
+            connection.Close();
+        }
+
+        public static int GetOrderId(DateTime startDate, User user)
+        {
+            int id = 0;
+
+            connection.Open();
+            SqlCommand command = new SqlCommand("procGetOrderId", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@user", user.Id);
+            command.Parameters.AddWithValue("@start_date", startDate);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                id = Convert.ToInt32(reader[0]);
+            }
+
+            connection.Close();
+            return id;
         }
     }
 
@@ -328,5 +383,12 @@ namespace MVP_tema3_OnlineRestaurant
         ACCESS,
         LOGIN,
         MENU
+    }
+
+    public enum OrderProgress
+    {
+        IN_PROGRESS,
+        DELIVERED,
+        CANCELED
     }
 }

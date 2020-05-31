@@ -181,7 +181,8 @@
                 FontSize="24"
                 FontFamily="Viner Hand ITC"
                 BorderThickness="0"
-                HorizontalAlignment="Center">
+                HorizontalAlignment="Center"
+                Click="btnPlaceOrder_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/RedBorder.png"/>
             </Button.Background> Place order...
