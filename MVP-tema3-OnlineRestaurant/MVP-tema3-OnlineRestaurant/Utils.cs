@@ -466,6 +466,105 @@ namespace MVP_tema3_OnlineRestaurant
             command.ExecuteNonQuery();
             connection.Close();
         }
+        
+        public static void RestockProducts(List<Product> products)
+        {
+            foreach (Product product in products)
+            {
+                Product tempProduct = Utils.GetProductById(product.Id);
+                int quantity = Convert.ToInt32(tempProduct.TotalQuantity);
+                quantity++;
+                Utils.UpdateQuantity(product.Id, quantity);
+            }
+        }
+
+        public static List<Order> GetAllOrders(string type)
+        {
+            List<Order> orders = new List<Order>();
+
+            connection.Open();
+            SqlCommand orderCommand;
+
+            if (type == "Active commands")
+                orderCommand = new SqlCommand("procGetActiveOrders", connection);
+            else
+                orderCommand = new SqlCommand("procGetAllOrders", connection);
+
+            orderCommand.CommandType = CommandType.StoredProcedure;
+            SqlDataReader orderReader = orderCommand.ExecuteReader();
+
+            while (orderReader.Read())
+            {
+                Order order = new Order()
+                {
+                    Id = Convert.ToInt32(orderReader[0]),
+                    StartDate = Convert.ToDateTime(orderReader[3]),
+                    FinishDate = Convert.ToDateTime(orderReader[4]),
+                    Price = Convert.ToDecimal(orderReader[5]),
+                    Address = orderReader[9].ToString()
+                };
+
+                switch (orderReader[2])
+                {
+                    case "IN_PROGRESS":
+                        order.Status = OrderProgress.IN_PROGRESS;
+                        break;
+
+                    case "CANCELED":
+                        order.Status = OrderProgress.CANCELED;
+                        break;
+
+                    case "DELIVERED":
+                        order.Status = OrderProgress.DELIVERED;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                orders.Add(order);
+            }
+
+            orderReader.Close();
+            List<List<int>> ids = new List<List<int>>();
+
+            foreach (Order order in orders)
+            {
+
+                List<int> products = new List<int>();
+                SqlCommand productCommand = new SqlCommand("procGetProductsFromOrder", connection);
+                productCommand.CommandType = CommandType.StoredProcedure;
+                productCommand.Parameters.AddWithValue("@order_id", order.Id);
+                SqlDataReader productReader = productCommand.ExecuteReader();
+
+                while (productReader.Read())
+                {
+                    int id = Convert.ToInt32(productReader[0]);
+                    products.Add(id);
+                }
+
+                ids.Add(products);
+                productReader.Close();
+            }
+
+            connection.Close();
+            var collection = ids.Zip(orders, (id, order) => new { Id = id, Order = order });
+
+            foreach (var entry in collection)
+            {
+                List<Product> products = new List<Product>();
+
+                foreach (int id in entry.Id)
+                {
+                    Product product = GetProductById(id);
+                    products.Add(product);
+                }
+
+                entry.Order.Products = products;
+            }
+
+            return orders;
+        }
     }
 
     public enum Status

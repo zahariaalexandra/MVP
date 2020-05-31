@@ -28,18 +28,20 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ListView Name="listCommandTypes"
+        <ListView Name="listOrderTypes"
                   Grid.Row="0"
                   Grid.Column="0"
                   BorderThickness="2"
                   BorderBrush="#FFCE1D2D"
                   Background="Transparent"
-                  Margin="75,5,160,7"
+                  Margin="165,5,160,7"
                   Foreground="#FFCE1D2D"
                   FontFamily="Viner Hand ITC"
-                  FontSize="27"/>
+                  FontSize="22"
+                  VerticalAlignment="Center"
+                  SelectionChanged="listOrderTypes_SelectionChanged"/>
 
-        <ListView Name="listCommands"
+        <ListView Name="listOrders"
                   Grid.Row="1"
                   Grid.Column="0"
                   BorderThickness="2"
@@ -55,42 +57,190 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBox Text="{Binding CommandInfo}"
-                                 VerticalAlignment="Top"
-                                 FontSize="18"
-                                 FontFamily="Viner Hand ITC"
-                                 Foreground="#FFCE1D2D"
-                                 Background="Transparent"
-                                 BorderThickness="2,2,2,0"
-                                 BorderBrush="#FFCE1D2D"
-                                 HorizontalContentAlignment="Center"
-                                 TextWrapping="WrapWithOverflow"
-                                 IsReadOnly="True"/>
+                    <StackPanel Height="auto">                     
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontFamily="Viner Hand ITC"
+                                   FontSize="22"
+                                   Foreground="#FFCE1D2D">Status:</Label>
 
-                        <ListView ItemsSource="{Binding States}"
-                                  VerticalAlignment="Bottom"
-                                 FontSize="18"
-                                 FontFamily="Viner Hand ITC"
-                                 Foreground="#FFCE1D2D"
-                                 Background="Transparent"
-                                 BorderThickness="2,0,2,2"
-                                 BorderBrush="#FFCE1D2D"
-                                 HorizontalContentAlignment="Center"/>
+                            <Label Content="{Binding Status}"
+                                   FontFamily="Viner Hand ITC"
+                                   FontSize="22"
+                                   Foreground="#FFCE1D2D"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontFamily="Viner Hand ITC"
+                                   FontSize="22"
+                                   Foreground="#FFCE1D2D">Date:</Label>
+
+                            <Label Content="{Binding StartDate}"
+                                   FontFamily="Viner Hand ITC"
+                                   FontSize="22"
+                                   Foreground="#FFCE1D2D"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontFamily="Viner Hand ITC"
+                                   FontSize="22"
+                                   Foreground="#FFCE1D2D">Delivery date:</Label>
+
+                            <Label Content="{Binding FinishDate}"
+                                   FontFamily="Viner Hand ITC"
+                                   FontSize="22"
+                                   Foreground="#FFCE1D2D">
+                                <Label.Style>
+                                    <Style TargetType="{x:Type Label}">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Status}" Value="DELIVERED">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                        </StackPanel>
+
+                        <Label FontFamily="Viner Hand ITC"
+                               FontSize="22"
+                               Foreground="#FFCE1D2D">Products</Label>
+
+                        <ListView ItemsSource="{Binding Products}"
+                                  Margin="5,0"
+                                  FontFamily="Viner Hand ITC"
+                                  FontSize="20"
+                                  BorderThickness="1"
+                                  BorderBrush="#FFCE1D2D"
+                                  Background="Transparent"
+                                  Height="200">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1"
+                                                 HorizontalAlignment="Stretch"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="Transparent"
+                                                Height="auto">
+                                        <TextBox Text="{Binding Name}"
+                                                 FontFamily="Viner Hand ITC" 
+                                                 FontSize="20"
+                                                 Background="Transparent"
+                                                 TextWrapping="WrapWithOverflow"
+                                                 IsReadOnly="True"
+                                                 BorderThickness="0"
+                                                 Foreground="#FFCE1D2D"/>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="{Binding Info}"
+                                                   Margin="10,0,10,0"
+                                                   FontSize="18"
+                                                   Background="Transparent"
+                                                   Foreground="#FFCE1D2D"/>
+
+
+                                            <Label Content="{Binding Id}"
+                                                   Visibility="Hidden"
+                                                   Foreground="#FFCE1D2D"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Label Content="{Binding Price}"
+                               FontSize="20"
+                               Margin="100,0,0,0"
+                               FontFamily="Viner Hand ITC"
+                               Foreground="#FFCE1D2D"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="20"
+                                   FontFamily="Viner Hand ITC"
+                                   Foreground="#FFCE1D2D">Shipping:</Label>
+
+                            <Label Content="{Binding Shipping}"
+                                   Margin="100,0,0,0"
+                                   FontSize="20"
+                                   FontFamily="Viner Hand ITC"
+                                   Foreground="#FFCE1D2D"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="20"
+                                   FontFamily="Viner Hand ITC"
+                                   Foreground="#FFCE1D2D">Discount:</Label>
+
+                            <Label Content="{Binding Discount}"
+                                   Margin="100,0,0,0"
+                                   FontSize="20"
+                                   FontFamily="Viner Hand ITC"
+                                   Foreground="#FFCE1D2D"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="22"
+                                   FontFamily="Viner Hand ITC"
+                                   BorderThickness="0,0,0,2"
+                                   BorderBrush="#FFCE1D2D"
+                                   Foreground="#FFCE1D2D">Total:</Label>
+
+                            <Label Content="{Binding FinalPrice}"
+                                   FontSize="22"
+                                   Margin="100,0,0,0"
+                                   FontFamily="Viner Hand ITC"
+                                   BorderThickness="0,0,0,2"
+                                   BorderBrush="#FFCE1D2D"
+                                   Foreground="#FFCE1D2D"/>
+                        </StackPanel>
+
+                        <Label Content="{Binding Id}"
+                               Visibility="Hidden"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
         <Button Name="btnBack"
-                Grid.Row="2"
+                Grid.Row="0"
                 Grid.Column="0"
                 BorderThickness="0"
-                Margin="195,2,265,2"
+                Margin="70,2,390,2"
                 Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BackLogo.png"/>
             </Button.Background>
+        </Button>
+
+        <Button Name="btnCancelOrder"
+                Grid.Row="2"
+                Grid.Column="0"
+                BorderThickness="0"
+                Foreground="#FFCE1D2D"
+                FontFamily="Viner Hand ITC"
+                FontSize="20"
+                Margin="80,5,350,0"
+                Click="btnCancelOrder_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/RedBorder.png"/>
+            </Button.Background> Cancel
+        </Button>
+
+        <Button Name="btnDeliverOrder"
+                Grid.Row="2"
+                Grid.Column="0"
+                BorderThickness="0"
+                Foreground="#FFCE1D2D"
+                FontFamily="Viner Hand ITC"
+                FontSize="18"
+                Margin="200,5,160,0"
+                Click="btnDeliverOrder_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="AppImages/RedBorder.png"/>
+            </Button.Background> Mark as delivered
         </Button>
 
         <Button Name="btnOrder"

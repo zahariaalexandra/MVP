@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
+using System.Configuration;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -37,9 +38,9 @@ namespace MVP_tema3_OnlineRestaurant
             commandTypes.Add("All commands");
             commandTypes.Add("Active commands");
             listFoods.ItemsSource = products;
-            listCommandTypes.ItemsSource = commandTypes;
+            listOrderTypes.ItemsSource = commandTypes;
             listFoods.SelectedIndex = -1;
-            listCommandTypes.SelectedIndex = 0;
+            listOrderTypes.SelectedIndex = 0;
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
@@ -81,6 +82,56 @@ namespace MVP_tema3_OnlineRestaurant
             AddProductWindow window = new AddProductWindow();
             window.ShowDialog();
             listFoods.ItemsSource = Utils.GetAllProducts();
+        }
+
+        private void listOrderTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(listOrderTypes.SelectedIndex != -1)
+            {
+                listOrders.ItemsSource = Utils.GetAllOrders(listOrderTypes.SelectedItem.ToString());
+                listOrders.SelectedIndex = -1;
+            }
+        }
+
+        private void btnCancelOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (listOrders.SelectedIndex != -1)
+            {
+                Order order = (Order)listOrders.SelectedItem;
+
+                if (order.Status == OrderProgress.IN_PROGRESS)
+                {
+                    MessageBoxResult result =
+                        MessageBox.Show(ConfigurationManager.AppSettings["btnCancelOrder"],
+                            "",
+                            MessageBoxButton.YesNo);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Utils.UpdateOrderStatus(order, OrderProgress.CANCELED);
+                        listOrders.ItemsSource = Utils.GetOrdersByUser(user);
+                        Utils.RestockProducts(order.Products);
+                    }
+                }
+            }
+        }
+
+        private void btnDeliverOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (listOrders.SelectedIndex != -1)
+            {
+                Order order = (Order)listOrders.SelectedItem;
+
+                if (order.Status == OrderProgress.IN_PROGRESS)
+                {
+                    MessageBox.Show(ConfigurationManager.AppSettings["btnOrderCorrect"],
+                        "",
+                        MessageBoxButton.OK);
+                    Utils.UpdateOrderStatus(order, OrderProgress.DELIVERED);
+                    order.FinishDate = DateTime.Now;
+                    listOrders.ItemsSource = Utils.GetOrdersByUser(user);
+                }
+            }
         }
     }
 }

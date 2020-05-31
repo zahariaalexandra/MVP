@@ -67,14 +67,7 @@ namespace MVP_tema3_OnlineRestaurant
                     {
                         Utils.UpdateOrderStatus(order, OrderProgress.CANCELED);
                         listOrders.ItemsSource = Utils.GetOrdersByUser(user);
-                        
-                        foreach(Product product in order.Products)
-                        {
-                            Product tempProduct = Utils.GetProductById(product.Id);
-                            int quantity = Convert.ToInt32(tempProduct.TotalQuantity);
-                            quantity++;
-                            Utils.UpdateQuantity(product.Id, quantity);
-                        }
+                        Utils.RestockProducts(order.Products);
                     }                    
                 }
             }
