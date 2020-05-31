@@ -15,15 +15,14 @@
         <ImageBrush ImageSource="AppImages/ProfileBackground.jpg"/>
     </Window.Background>
 
-    <Grid>
+    <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.8*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -34,8 +33,9 @@
         <Button Name="btnBack"
                 Grid.Row="0"
                 Grid.Column="1"
-                Margin="10,5,350,5"
-                BorderThickness="0">
+                Margin="20,5,340,5"
+                BorderThickness="0"
+                Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/BlackBackLogo.png"/>
             </Button.Background>
@@ -44,7 +44,7 @@
         <TextBox Name="txtName"
                  Grid.Row="0"
                  Grid.Column="1"
-                 Margin="140,0,0,0"
+                 Margin="150,0,0,0"
                  VerticalAlignment="Center"
                  FontFamily="Viner Hand ITC"
                  Foreground="Black"
@@ -52,21 +52,21 @@
                  FontSize="24"
                  TextWrapping="WrapWithOverflow"
                  IsReadOnly="True"
-                 BorderThickness="0">Nume</TextBox>
+                 BorderThickness="0"/>
 
-        <Label Name="lblName"
+        <Label Name="lblEmail"
                Grid.Row="1"
                Grid.Column="1"
                FontSize="22"
                FontFamily="Viner Hand ITC"
                Margin="10,0,0,0">Email</Label>
 
-        <Label Name="lblNameValue"
+        <Label Name="lblEmailValue"
                Grid.Row="1"
                Grid.Column="1"
                FontSize="22"
                FontFamily="Viner Hand ITC"
-               Margin="120,0,0,0">Email</Label>
+               Margin="120,0,0,0"/>
 
         <Label Name="lblTelephone"
                Grid.Row="1"
@@ -80,7 +80,7 @@
                Grid.Column="1"
                FontSize="22"
                FontFamily="Viner Hand ITC"
-               Margin="120,30,0,0">Telephone</Label>
+               Margin="120,30,0,0"/>
 
         <Label Name="lblAddress"
                Grid.Row="1"
@@ -99,7 +99,7 @@
                  Background="Transparent"
                  BorderThickness="0"
                  TextWrapping="WrapWithOverflow"
-                 IsReadOnly="True">address</TextBox>
+                 IsReadOnly="True"/>
 
         <Label Name="lblOrders"
                Grid.Row="2"
@@ -111,9 +111,9 @@
 
         <ListView Name="listOrders"
                   Grid.Row="2"
-                  Grid.RowSpan="4"
+                  Grid.RowSpan="3"
                   Grid.Column="1"
-                  Margin="10,35,10,80"
+                  Margin="10,35,10,5"
                   Background="Transparent"
                   Foreground="Black"
                   BorderBrush="Black"
@@ -127,20 +127,131 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Height="auto">
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontFamily="Viner Hand ITC"
+                                   FontSize="22">Status:</Label>
+
+                            <Label Content="{Binding Status}"
+                                   FontFamily="Viner Hand ITC"
+                                   FontSize="22"/>
+                        </StackPanel>
+
                         <StackPanel Orientation="Horizontal">
                             <Label FontFamily="Viner Hand ITC"
                                    FontSize="22">Date: </Label>
 
-                            <Label Content="{Binding StartDate}"/>
+                            <Label Content="{Binding StartDate}"
+                                   FontFamily="Viner Hand ITC"
+                                   FontSize="22"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
                             <Label FontFamily="Viner Hand ITC"
                                    FontSize="22">Delivery date:</Label>
 
-                            <Label Content="{Binding FinishDate}"/>
+                            <Label Content="{Binding FinishDate}"
+                                   FontFamily="Viner Hand ITC"
+                                   FontSize="22">
+                                <Label.Style>
+                                    <Style TargetType="{x:Type Label}">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Status}" Value="DELIVERED">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
                         </StackPanel>
+
+                        <Label FontFamily="Viner Hand ITC"
+                               FontSize="22">Products</Label>
+
+                        <ListView ItemsSource="{Binding Products}"
+                                  Margin="5,0"
+                                  FontFamily="Viner Hand ITC"
+                                  FontSize="20"
+                                  BorderThickness="1"
+                                  BorderBrush="Black"
+                                  Background="Transparent"
+                                  Height="200">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1"
+                                                 HorizontalAlignment="Stretch"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="Transparent"
+                                                Height="auto">
+                                        <TextBox Text="{Binding Name}"
+                                                 FontFamily="Viner Hand ITC" 
+                                                 FontSize="20"
+                                                 Background="Transparent"
+                                                 TextWrapping="WrapWithOverflow"
+                                                 IsReadOnly="True"
+                                                 BorderThickness="0"/>  
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="{Binding Info}"
+                                                   Margin="10,0,10,0"
+                                                   FontSize="18"
+                                                   Background="Transparent"/>
+
+
+                                            <Label Content="{Binding Id}"
+                                                   Visibility="Hidden"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Label Content="{Binding Price}"
+                               FontSize="20"
+                               Margin="100,0,0,0"
+                               FontFamily="Viner Hand ITC"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="20"
+                                   FontFamily="Viner Hand ITC">Shipping:</Label>
+
+                            <Label Content="{Binding Shipping}"
+                                   Margin="100,0,0,0"
+                                   FontSize="20"
+                                   FontFamily="Viner Hand ITC"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="20"
+                                   FontFamily="Viner Hand ITC">Discount:</Label>
+
+                            <Label Content="{Binding Discount}"
+                                   Margin="100,0,0,0"
+                                   FontSize="20"
+                                   FontFamily="Viner Hand ITC"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="22"
+                                   FontFamily="Viner Hand ITC"
+                                   BorderThickness="0,0,0,2"
+                                   BorderBrush="Black">Total:</Label>
+
+                            <Label Content="{Binding FinalPrice}"
+                                   FontSize="22"
+                                   Margin="100,0,0,0"
+                                   FontFamily="Viner Hand ITC"
+                                   BorderThickness="0,0,0,2"
+                                   BorderBrush="Black"/>
+                        </StackPanel>
+
+                        <Label Content="{Binding Id}"
+                               Visibility="Hidden"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -154,21 +265,10 @@
                 FontSize="24"
                 VerticalAlignment="Bottom"
                 Height="70"
-                Margin="80,0,80,0">
+                Margin="80,0,80,15"
+                Click="btnCancelOrder_Click">
             <Button.Background>
                 <ImageBrush ImageSource="AppImages/Border.png"/>
             </Button.Background> Cancel order</Button>
-
-        <Button Name="btnEdit"                
-                Grid.Row="6"
-                Grid.Column="1"
-                Margin="60,15"
-                Foreground="Black"
-                BorderThickness="0"
-                FontFamily="Viner Hand ITC"
-                FontSize="26">
-            <Button.Background>
-                <ImageBrush ImageSource="AppImages/Border.png"/>
-            </Button.Background> Edit profile</Button>
     </Grid>
 </Window>

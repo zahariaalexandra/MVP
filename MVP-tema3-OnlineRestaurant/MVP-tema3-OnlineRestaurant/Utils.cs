@@ -5,7 +5,9 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -368,6 +370,101 @@ namespace MVP_tema3_OnlineRestaurant
 
             connection.Close();
             return id;
+        }
+
+        public static List<Order> GetOrdersByUser(User user)
+        {
+            List<Order> orders = new List<Order>();
+
+            connection.Open();
+            SqlCommand orderCommand = new SqlCommand("procGetOrdersByUser", connection);
+            orderCommand.CommandType = CommandType.StoredProcedure;
+            orderCommand.Parameters.AddWithValue("@user_id", user.Id);
+            SqlDataReader orderReader = orderCommand.ExecuteReader();
+
+            while(orderReader.Read())
+            {
+                Order order = new Order()
+                {
+                    Id = Convert.ToInt32(orderReader[0]),
+                    User = user,
+                    StartDate = Convert.ToDateTime(orderReader[3]),
+                    FinishDate = Convert.ToDateTime(orderReader[4]),
+                    Price = Convert.ToDecimal(orderReader[5]),
+                    Address = orderReader[9].ToString()
+                };
+
+                switch(orderReader[2])
+                {
+                    case "IN_PROGRESS":
+                        order.Status = OrderProgress.IN_PROGRESS;
+                        break;
+
+                    case "CANCELED":
+                        order.Status = OrderProgress.CANCELED;
+                        break;
+
+                    case "DELIVERED":
+                        order.Status = OrderProgress.DELIVERED;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                orders.Add(order);
+            }
+
+            orderReader.Close();
+            List<List<int>> ids = new List<List<int>>();
+
+            foreach (Order order in orders)
+            {
+                
+                List<int> products = new List<int>();
+                SqlCommand productCommand = new SqlCommand("procGetProductsFromOrder", connection);
+                productCommand.CommandType = CommandType.StoredProcedure;
+                productCommand.Parameters.AddWithValue("@order_id", order.Id);
+                SqlDataReader productReader = productCommand.ExecuteReader();
+
+                while (productReader.Read())
+                {
+                    int id = Convert.ToInt32(productReader[0]);
+                    products.Add(id);
+                }
+
+                ids.Add(products);
+                productReader.Close();
+            }
+
+            connection.Close();
+            var collection = ids.Zip(orders, (id, order) => new { Id = id, Order = order });
+
+            foreach(var entry in collection)
+            {
+                List<Product> products = new List<Product>();
+
+                foreach(int id in entry.Id)
+                {
+                    Product product = GetProductById(id);
+                    products.Add(product);
+                }
+
+                entry.Order.Products = products;
+            }
+
+            return orders;
+        }
+
+        public static void UpdateOrderStatus(Order order, OrderProgress newStatus)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("procUpdateOrderStatus", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", order.Id);
+            command.Parameters.AddWithValue("@status", newStatus.ToString());
+            command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 

@@ -114,8 +114,10 @@ namespace MVP_tema3_OnlineRestaurant
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
-            UserProfileWindow window = new UserProfileWindow();
-            window.Show();
+            UserProfileWindow window = new UserProfileWindow(user);
+            window.ShowDialog();
+            listFoods.ItemsSource =
+                    Utils.GetProductsByCategory(listCategories.SelectedItem.ToString());
         }
     }
 }
