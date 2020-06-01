@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
-        Title="Administration add product"
+        Title="New Product"
         Icon="Logo.png"
         Height="375" 
         Width="460"

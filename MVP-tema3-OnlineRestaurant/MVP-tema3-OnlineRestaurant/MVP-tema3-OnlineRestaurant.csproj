@@ -80,7 +80,6 @@
     <Compile Include="AdministrationWindow.xaml.cs">
       <DependentUpon>AdministrationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions.cs" />
     <Compile Include="MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>

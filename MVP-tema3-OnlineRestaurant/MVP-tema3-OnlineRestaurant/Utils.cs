@@ -6,8 +6,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace MVP_tema3_OnlineRestaurant
 {

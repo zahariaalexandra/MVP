@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVP_tema3_OnlineRestaurant"
         mc:Ignorable="d"
-        Title="ProductWindow" 
+        Title="Order" 
         Height="500" 
         Width="400"
         Icon="Logo.png"
@@ -84,24 +84,6 @@
                  FontSize="18"
                  TextWrapping="WrapWithOverflow"
                  IsReadOnly="True"/>
-
-        <!--
-        <Button Name="btnMinus"
-                Grid.Row="4"
-                Grid.Column="0"
-                Margin="10,5,0,5"
-                BorderThickness="0"
-                BorderBrush="#FFCE1D2D"
-                Foreground="#FFCE1D2D"
-                FontFamily="Viner Hand ITC"
-                FontSize="30"
-                VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center">
-            <Button.Background>
-                <ImageBrush ImageSource="AppImages/RoundBorder.png"/>
-            </Button.Background> -
-        </Button>
-        -->
 
         <TextBox Name="txtQuantity"
                 Grid.Row="4"

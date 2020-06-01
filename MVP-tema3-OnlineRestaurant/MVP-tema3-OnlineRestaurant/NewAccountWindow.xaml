@@ -148,8 +148,6 @@
                  TextWrapping="Wrap"
                  AcceptsReturn="True"/>
 
-        
-
         <Button Name="btnCancel"
                 Grid.Row="8"
                 Grid.Column="1"

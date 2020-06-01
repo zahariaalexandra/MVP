@@ -1,11 +1,5 @@
 ﻿using MVP_tema3_OnlineRestaurant.Models;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MVP_tema3_OnlineRestaurant
