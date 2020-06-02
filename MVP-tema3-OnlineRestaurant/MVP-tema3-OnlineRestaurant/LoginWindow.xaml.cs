@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using MVP_tema3_OnlineRestaurant.Models;
+using System.Windows;
 
 namespace MVP_tema3_OnlineRestaurant
 {
@@ -32,7 +33,8 @@ namespace MVP_tema3_OnlineRestaurant
 
         private void btnNoAccount_Click(object sender, RoutedEventArgs e)
         {
-            MenuWindow window = new MenuWindow(null, Status.NO_ACCOUNT);
+            User user = new User();
+            MenuWindow window = new MenuWindow(user, Status.NO_ACCOUNT);
             window.Show();
             Close();
         }

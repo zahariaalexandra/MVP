@@ -461,6 +461,7 @@ namespace MVP_tema3_OnlineRestaurant
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@id", order.Id);
             command.Parameters.AddWithValue("@status", newStatus.ToString());
+            command.Parameters.AddWithValue("@finish_date", order.FinishDate);
             command.ExecuteNonQuery();
             connection.Close();
         }

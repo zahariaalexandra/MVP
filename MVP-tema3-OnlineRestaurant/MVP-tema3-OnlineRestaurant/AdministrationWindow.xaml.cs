@@ -115,8 +115,8 @@ namespace MVP_tema3_OnlineRestaurant
                     MessageBox.Show(ConfigurationManager.AppSettings["btnOrderCorrect"],
                         "",
                         MessageBoxButton.OK);
-                    Utils.UpdateOrderStatus(order, OrderProgress.DELIVERED);
                     order.FinishDate = DateTime.Now;
+                    Utils.UpdateOrderStatus(order, OrderProgress.DELIVERED);
                     listOrders.ItemsSource = Utils.GetOrdersByUser(user);
                 }
             }
