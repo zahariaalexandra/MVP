@@ -9,7 +9,8 @@
         Title="Statistics" 
         Height="350" 
         Width="550"
-        Icon="Icon.png">
+        Icon="Icon.png"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <FlowDocumentReader Margin="10,10,10,10"

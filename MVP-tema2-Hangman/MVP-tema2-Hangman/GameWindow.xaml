@@ -9,7 +9,8 @@
         Title="Hangman" 
         Height="450" 
         Width="650"
-        Icon="Icon.png">
+        Icon="Icon.png"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Grid.RowDefinitions>
